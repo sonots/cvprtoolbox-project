@@ -1,0 +1,495 @@
+% Template for SLT-2006 paper; to be used with:
+%          spconf.sty  - ICASSP/ICIP LaTeX style file, and
+%          IEEEbib.bst - IEEE bibliography style file.
+% --------------------------------------------------------------------------
+\documentclass{article}
+\usepackage{spconf,amsmath,epsfig}
+\usepackage{amsmath,amssymb,amsthm,amsfonts,graphicx,hyperref,subfigure,rotating}
+%\renewcommand{\thefigure}{\arabic{figure}}
+
+\usepackage{url}
+%% Define a new 'leo' style for the package that will use a smaller font.
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\makeatother
+%% Now actually use the newly defined style.
+\urlstyle{leo}
+
+% Example definitions.
+% --------------------
+\def\x{{\mathbf x}}
+\def\L{{\cal L}}
+
+% Title.
+% ------
+\title{Eigenfaces and Fisherfaces}
+% 
+% Single address.
+% ---------------
+\name{Naotoshi Seo}
+\address{University of Maryland\\ENEE633 Pattern Recognition\\Project 2-1}
+% 
+% For example:
+% ------------
+% \address{School\\
+%   Department\\
+%   Address}
+% 
+% Two addresses (uncomment and modify for two-address case).
+% ----------------------------------------------------------
+% \twoauthors
+% {A. Author-one, B. Author-two\sthanks{Thanks to XYZ agency for funding.}}
+%	{School A-B\\
+%   Department A-B\\
+%   Address A-B}
+% {C. Author-three, D. Author-four\sthanks{The fourth author performed the work
+%     while at ...}}
+%	{School C-D\\
+%   Department C-D\\
+%   Address C-D}
+% 
+\begin{document}
+% \ninept
+% 
+\DeclareGraphicsExtensions{.pdf,.eps,.gif,.jpg,.eps, .png}
+\maketitle
+% 
+\begin{abstract}
+This project describes a study of two traditional face recognition
+methods, the Eigenface \cite{Eigenface91} and the Fisherface \cite{Fisherface97}. 
+The Eigenface is the first method considered as a successful technique of face recognition. 
+The Eigenface method uses Principal Component Analysis (PCA) to linearly project the image space to 
+a low dimensional feature space. 
+The Fisherface method is an enhancement of the Eigenface method that it uses Fisher's Linear Discriminant Analysis (FLDA or LDA) for the dimensionality reduction. 
+The LDA maximizes the ratio of between-class scatter to that of within-class scatter, therefore, 
+it works better than PCA for purpose of discrimination. 
+The Fisherface is especially useful when facial images have large variations in illumination and facial expression. 
+In this project, a comparison of the Eigenface and the Fisherface methods respect to facial images having large illumination variations is examined. 
+
+\end{abstract}
+% 
+\begin{keywords}
+Eigenface, Fisherface, Face Recognition, PCA, LDA, Illumination Invariant
+
+\end{keywords}
+% 
+\section{Introduction}
+\label{sec:intro}
+%
+%顔画像の認識でまず考えられるのは、目・鼻・口などの顔を構成する部品の形状やそれらの配置の個人差に着目し、これらから特徴点を抽出して認識に利用する方法である。しかし、顔画像からこれらの部品を精度よく抽出することはかなり難しい。また、各部品がうまく抽出できたとしても、類似した形状の差を認識に利用することはそれほど容易ではない。そこで、このような顔に特有の知識を用いるのではなく、顔画像そのものをパターンとして扱い、統計的パターン認識手法を適用する方向の研究が活発に行われている。
+%
+%最も簡単なパターン認識手法は、パターン間のマッチングに基づく方法であるが、画像そのものをパターンとして扱った場合には、パターンの次元が膨大になってしまう。そのため、パターンを情報圧縮した後でマッチングを行う方法がいくつか提案されている。パターンを情報圧縮すれば、入力条件の変動に対して頑健な認識結果が得られると期待できる。Turk等 [77,78]が提案した固有顔(eigenface)による方法では、主成分分析によりパターンを情報圧縮し、顔画像の識別に利用している。手法の単純さと固有顔という名前の付け方の上手さから、顔画像の認識において最も有名な手法のひとつとなっている。 
+
+Over the last couple of years, face recognition has become a popular area of research in computer vision
+and one of the most successful applications of image analysis and understanding. 
+The face recognition problem can generally be formulated as: 
+Given still or video images of a scene, identify or verify one or more persons in the scene using store database of faces. 
+
+The Eigenface \cite{sirovitch1987lowdimensional}, \cite{turk1991eigenfaces}, \cite{turk1991face} is the first method considered as a successful technique of face recognition. 
+The Eigenface method uses Principal Component Analysis (PCA) to linearly project the image space to 
+a low dimensional feature space. 
+
+The Fisherface \cite{belhumeur1996eigenfaces} is an enhancement of the Eigenface method. 
+The Eigenface method uses PCA for dimensionality reduction, thus, yields projection directions 
+that maximize the total scatter across all classes, i.e., across all image s of all faces. 
+The PCA projections are optimal for representation in a low dimensional basis, but
+they may not be optional from a discrimination standpoint. 
+In stead, the Fisherface method uses Fisher's Linear Discriminant Analysis (FLDA or LDA) which 
+maximizes the ratio of between-class scatter to that of within-class scatter. 
+
+In section \ref{S:Eigenface}, the Eigenface method is investigated. 
+In section \ref{S:Fisherface}, the Fisherface method is examined.  
+In section \ref{S:Comparison}, an empirical comparison of the Eigenface and the Fisherface methods subject to facial images having large illumination variations is performed. 
+In section \ref{S:Conclusion}, conclusion of this study is provided.
+
+\section{Eigenface}\label{S:Eigenface}
+
+The {\it Eigenface} method is based on linearly projecting
+the image space to a low dimensional feature space \cite{sirovitch1987lowdimensional}, \cite{turk1991eigenfaces}, \cite{turk1991face}. The Eigenface method, which uses principal
+components analysis (PCA) for dimensionality reduction,
+yields projection directions that maximize the total
+scatter across all classes, i.e., across all images of all faces. 
+% In choosing the projection which maximizes total scatter, PCA
+% retains unwanted variations due to lighting and facial
+% expression. As illustrated in Figs. 1 and 4 and stated by
+% Moses et al., "the variations between the images of the same
+% face due to illumination and viewing direction are almost
+% always larger than image variations due to change in face
+% identity" [9]. Thus, while the PCA projections are optimal
+% for reconstruction from a low dimensional basis, they may
+% not be optimal from a discrimination standpoint.
+
+Let us consider a set of $N$ sample images $\{\mathbf{x}_{1},\ \mathbf{x}_{2},\ \ldots,\ \mathbf{x}_{N}\}$ taking values in an n-dimensional image space, and assume that each image belongs to one of $c$ classes $\{X_{1},X_{2},\ \ldots,X_{c}\}$. Let us also consider a linear transformation mapping the original n-dimensional image space into an m-dimensional feature space, where $m<n$. The new feature vectors $\mathbf{y}_{k}\in \mathbb{R}^{m}$ are defined by the following linear transformation:
+\begin{equation}
+\mathbf{y}_{k}=W^{T}\mathbf{x}_{k}~~~~~~~~~~~~~~~k=1,2,\ldots,N
+\end{equation}
+where $W\in \mathbb{R}^{n\times m}$ is a matrix with orthonormal columns.
+
+  If the total scatter matrix $S_{T}$ is defined as
+\begin{equation}
+S_{T}=\sum_{k=1}^{N}(\mathbf{x}_{k}-\mathbf{\mu})(\mathbf{x}_{k}-\mathbf{\mu})^{T}
+\end{equation}
+where $\mathbf{\mu}\in \mathbb{R}^{n}$ is the mean image of all samples, then after applying the linear transformation $W^{T}$, the scatter of the transformed feature vectors $\{\mathbf{y}_{1},\ \mathbf{y}_{2},\ \ldots,\ \mathbf{y}_{N}\}$ is $W^{T}S_{T}W$. In PCA, the projection $W_{\text{opt}}$ is chosen to maximize the determinant of the total scatter matrix of the projected samples, i.e.,
+\begin{equation}
+W_{\text{opt}}=\arg \max_{W}|W^{T}S_{T}W|
+\end{equation}
+\begin{equation}
+=[\mathbf{w}_{1}\mathbf{w}_{2}\text{ }...\text{ }\mathbf{w}_{m}]
+\end{equation}
+where $\{\mathbf{w}_i |i=1,2,\ \ldots,\ m\}$ is the set of $n$-dimensional eigenvectors of $S_{T}$ corresponding to the $m$ largest eigenvalues $\{\lambda_i |i=1,2,\ \ldots,\ m\}$ \cite{duda2001pattern}, i.e.,
+\begin{equation}
+S_T \mathbf{w}_i = \lambda_i \mathbf{w}_i,~~~~~~~i=1,2,\cdots,m.
+\end{equation}
+
+ Since these eigenvectors have the same dimension as the original images, they are referred to as Eigenpictures in \cite{sirovitch1987lowdimensional} and Eigenfaces in \cite{turk1991eigenfaces}, \cite{turk1991face}. Classification is performed using a nearest neighbor classifier in the reduced feature space.
+%If classification is performed using a nearest neighbor classifier in the reduced feature space and $m$ is chosen to be the number of images $N$ in the training set, then the Eigenface method is equivalent to the correlation method in the previous section.
+
+%   A drawback of this approach is that the scatter being maximized is due not only to the between-class scatter that is useful for classification, but also to the within-class scatter that, for classification purposes, is unwanted information. Recall the comment by Moses et al. \cite{moses1994face}: Much of the variation from one image to the next is due to illumination changes. Thus if PCA is presented with images of faces under varying illumination, the projection matrix $W_{\text{opt}}$ will contain principal components (i.e., Eigenfaces) which retain, in the projected feature space, the variation due lighting. Consequently, the points in the projected space will not be well clustered, and worse, the classes may be smeared together.
+
+%   It has been suggested that by discarding the three most significant principal components, the variation due to lighting is reduced. The hope is that if the first principal components capture the variation due to lighting, then better clustering of projected samples is achieved by ignoring them. Yet, it is unlikely that the first several principal components correspond solely to variation in lighting; as a consequence, information that is useful for discrimination may be lost.
+
+% For a data $\textbf{X}^T$ with zero empirical mean (the empirical mean of the distribution has been subtracted from the data set), where each row represents a different repetition of the experiment, and each column gives the results from a particular probe, the PCA transformation is given by:
+% \begin{eqnarray}
+% \mathbf{Y}&=&\mathbf{W}^T\mathbf{X}
+% \end{eqnarray}
+% where $\mathbf{V}\mathbf{\Sigma}\mathbf{W}^T$ is the singular value decomposition (svd) of $\mathbf{X}^T$.
+
+\subsection{Further Observations}
+
+To obtain deeper understandings of the Eigenface methods, 
+a few extra experiments are conducted in this section.
+
+The Fig. \ref{fig:dataset} shows a facial image set taken from ORL face database \cite{ORL}. The PCA analysis is applied to the image set, and the obtained meanface and eigenfaces are shown in the Fig. \ref{fig:eigenface}. 
+% A projection of a feature vector into the PCA subspace can be considered as a computation of weights of linear transform of eigenfaces to reconstruct back into the full space. 
+
+\begin{figure}[htbp]
+\begin{tabular}{ccccc}
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=face01.eps,width=1.6cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=face02.eps,width=1.6cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=face03.eps,width=1.6cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=face04.eps,width=1.6cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=face05.eps,width=1.6cm}}
+\end{minipage}
+\end{tabular}
+\caption{The input facial image set}
+\label{fig:dataset}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\begin{tabular}{ccccc}
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=meanface.eps,width=1.6cm}}
+  \centerline{(a)}\medskip
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=eigenface01.eps,width=1.6cm}}
+  \centerline{(b)}\medskip
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=eigenface02.eps,width=1.6cm}}
+  \centerline{(c)}\medskip
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=eigenface03.eps,width=1.6cm}}
+  \centerline{(d)}\medskip
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=eigenface04.eps,width=1.6cm}}
+  \centerline{(e)}\medskip
+\end{minipage}
+\end{tabular}
+\caption{(a) The meanface (b-e) The eigenfaces. The left-most eigenface is the most principal one.}
+\label{fig:eigenface}
+\end{figure}
+
+In Fig. \ref{fig:newset}, the top row shows another image set and the bottom row shows the reconstructed images which are created by projecting images into the PCA subspace once and reconstructing them back into the full original space. 
+The pictures illustrate the reason why the Eigenface method works well. The reconstructed images each other are more similar than the original images each other, thus, it possibly achieves better recognition by comparing the reconstructed images than comparing the original images like a typical template matching method. 
+
+Notice that we in fact do not need to compute the reconstructed images, but uses the projected points in the PCA subspace for the face recognition. 
+A simple proof to show their equivalence is as follows: Without loss of generality, let $\mathbf{x} \in \mathbb{R}^n $ be a query face image vector to be classified and $\{\mathbf{x}_i \in \mathbb{R}^n, i = 1,\ldots,c\}$ \footnote{One representative from one class is the minimum requirement for the nearest neighbor classification.} be representatives from each face class $i$ with zero empirical mean where $n$ is the dimension of the vectors. Furthermore, let $\mathbf{y} \in \mathbb{R}^m$ and $\{\mathbf{y}_i \in \mathbb{R}^m, i=1,\ldots,c\}$ be the projected points into the PCA subspace of them, that is,
+\begin{eqnarray}
+\mathbf{y} &=& \mathbf{W}^T \mathbf{x},\\
+\mathbf{y}_i &=& \mathbf{W}^T \mathbf{x}_i,~~~i=1,\ldots,c.
+\end{eqnarray}
+where $\mathbf{W} =[\mathbf{w}_{1}\mathbf{w}_{2}\text{ }...\text{ }\mathbf{w}_{m}]$ is a $n \times m$ matrix of a set of $n$ dimensional orthonormal eigenvectors and $m \ll n$. Furthermore, let $\hat{\mathbf{x}} \in \mathbb{R}^n$ and $\{\hat{\mathbf{x}}_i \in \mathbb{R}^n, i=1,\ldots,c\}$ be the reconstructed images of them, that is,
+\begin{eqnarray}
+\hat{\mathbf{x}} &=& \mathbf{W} \mathbf{y},\\
+\hat{\mathbf{x}}_i &=& \mathbf{W} \mathbf{y}_i,~~~i=1,\ldots,c.
+\end{eqnarray}
+Notice that
+\begin{eqnarray}
+\mathbf{y} &=& \mathbf{W}^T \hat{\mathbf{x}},\\
+\mathbf{y}_i &=& \mathbf{W}^T \hat{\mathbf{x}}_i,~~~~i=1,\ldots,c
+\end{eqnarray}
+are also satisfied and the orthonormal eigenvectors $\mathbf{W}$ is the orthonomal ``basis'' for the reconstructed image space. 
+The recognition task using the reconstructed images is to identify $i^*$ by finding a representative $\hat{\mathbf{x}}_i$ with minimal distance to the query image $\hat{\mathbf{x}}$ in the reconstructed space, i.e., 
+\begin{eqnarray}
+i^* &=& \arg \min_i ||\hat{\mathbf{x}} - \hat{\mathbf{x}}_i||_2 \label{eq:reconstructed}
+\end{eqnarray}
+Using a property of the orthonomal basis:
+\begin{equation}
+||\hat{\mathbf{x}}||_2 = ||\mathbf{W}^T \hat{\mathbf{x}}||_2,
+\end{equation}
+the Eq. \ref{eq:reconstructed} is
+\begin{eqnarray}
+i^* &=& \arg \min_i ||\mathbf{W}^T (\hat{\mathbf{x}} - \hat{\mathbf{x}}_i)||_2 \\
+&=& \arg \min_i ||\mathbf{y} - \mathbf{y}_i||_2. 
+\end{eqnarray}
+Therefore, the recognition task using the reconstructed images is equivalent with the one using the PCA projected points without reconstruction. 
+
+The result of occluded face shows another interesting capability of the PCA as a interpolation or a noise removal method. 
+
+
+
+\begin{figure}[htbp]
+\begin{center}
+\begin{tabular}{ccc}
+\begin{minipage}[b]{0.2\linewidth}
+  \centering
+  \centerline{\epsfig{figure=face01.eps,width=1.6cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.2\linewidth}
+  \centering
+  \centerline{\epsfig{figure=face06.eps,width=1.6cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.2\linewidth}
+  \centering
+  \centerline{\epsfig{figure=occludedface06.eps,width=1.6cm}}
+\end{minipage}\\
+\begin{minipage}[b]{0.2\linewidth}
+  \centering
+  \centerline{\epsfig{figure=re_face01.eps,width=1.6cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.2\linewidth}
+  \centering
+  \centerline{\epsfig{figure=re_face06.eps,width=1.6cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.2\linewidth}
+  \centering
+  \centerline{\epsfig{figure=re_occludedface06.eps,width=1.6cm}}
+\end{minipage}
+\end{tabular}
+\end{center}
+\caption{Top row: the orginal images. Bottom row: the reconstructed images.}
+\label{fig:newset}
+\end{figure}
+
+
+\section{Fisherface}\label{S:Fisherface}
+
+% The previous algorithm takes advantage of the fact that, under admittedly idealized conditions, the variation within class lies in a linear subspace of the image space. Hence, the classes are convex, and, therefore, linearly separable. One can perform dimensionality reduction using linear projection and still preserve linear separability. This is a strong argument in favor of using linear methods for dimensionality reduction in the face recognition problem, at least when one seeks insensitivity to lighting conditions.
+
+  Since the learning set is labeled, it makes sense to use this information to build a more reliable method for reducing the dimensionality of the feature space. 
+% Here we argue that using class specific linear methods for dimensionality reduction and simple classifiers in the reduced feature space, one may get better recognition rates than with either the Linear Subspace method or the Eigenface method. 
+% Fisher's Linear Discriminant (FLD) \cite{fisher1936the} is an example of a {\it class specific method}, in the sense that it tries to ``shape'' the scatter in order to make it more reliable for classification. 
+{\it Fisherface} method \cite{belhumeur1996eigenfaces} uses a class specific linear method, Fisher's Linear Discriminant (FLD) \cite{fisher1936the}, for dimensionality reduction and simple classifiers in the reduced feature space. 
+This method selects $W$ in \cite{chellappa1995human} in such a way that the ratio of the between-class scatter and the within class scatter is maximized.
+
+Again, 
+let us consider a set of $N$ sample images $\{\mathbf{x}_{1},\ \mathbf{x}_{2},\ \ldots,\ \mathbf{x}_{N}\}$ taking values in an n-dimensional image space, and assume that each image belongs to one of $c$ classes $\{X_{1},X_{2},\ \ldots,X_{c}\}$.
+  Let the between-class scatter matrix be defined as
+\begin{equation}
+S_{B}=\sum_{i=1}^{c}N_{i}(\mathbf{\mu}_{i}-\mathbf{\mu})(\mathbf{\mu}_{i}-\mathbf{\mu})^{T}
+\end{equation}
+and the within-class scatter matrix be defined as
+\begin{equation}
+S_{W}=\sum_{i=1}^{c}\sum_{\mathbf{x}_{k}\in X_{i}}(\mathbf{x}_{k}-\mathbf{\mu}_{i})(\mathbf{x}_{k}-\mathbf{\mu}_{i})^{T}
+\end{equation}
+where $\mathbf{\mu}_{i}$ is the mean image of class $X_{i}$, $N_{i}$ is the number of samples in class $X_{i}$, and $\mathbf{\mu}$ is the mean image of all samples. If $S_{W}$ is nonsingular, the optimal projection $W_{\text{opt}}$ is chosen as the matrix with orthonormal columns which maximizes the ratio of the determinant of the between-class scatter matrix of the projected samples to the determinant of the within-class scatter matrix of the projected samples, i.e.,
+\begin{eqnarray}
+W_{\text{opt}}&=&\arg\max_{W}\frac{|W^{T}S_{B}W|}{|W^{T}S_{W}W|} \nonumber \\
+&=&[\mathbf{w}_{1}\mathbf{w}_{2}\text{ }...\text{ }\mathbf{w}_{m}] \label{eq:Fisherface4}
+\end{eqnarray}
+where $\{\mathbf{w}_i |i=1,2,\ \ldots,\ m\}$ is the set of generalized eigenvectors of $S_{B}$ and $S_{W}$ corresponding to the $m$ largest generalized eigenvalues $\{\lambda_{i}|i=1,2,\ \ldots,\ m\}$, i.e.,
+\begin{equation}
+S_{B}\mathbf{w}_{i}=\lambda_{i}S_{W}\mathbf{w}_{i},~~~~~~~i=1,2,\ldots,m.
+\end{equation}
+Note that there are at most $c-1$ nonzero generalized eigenvalues, and so an upper bound on $m$ is $c-1$, where $c$ is the number of classes. See \cite{duda1973pattern}.
+
+
+  To illustrate the benefits of class specific linear projection, a low dimensional analogue to the classification problem in which the samples from each class lie near a linear subspace is shown. Fig.  \ref{fig:Fisherface2} is a comparison of PCA and FLD for a two-class problem in which the samples from each class are randomly perturbed in a direction perpendicular to a linear subspace. For this example, $N=20,\ n=2$, and $m=1$. So, the samples from each class lie near a line passing through the origin in the 2D feature space. Both PCA and FLD have been used to project the points from 2D down to 1D. Comparing the two projections in the figure, {\it PCA actually smears the classes together} so that they are no longer linearly separable in the projected space. It is clear that, although PCA achieves larger total scatter, FLD achieves greater between-class scatter, and, consequently, classification is simplified.
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=74.51mm,height=75.48mm]{./Fisherface_images/image004.eps}
+\end{center}
+\caption{A comparison of principal component analysis (PCA) and Fisher's linear discriminant (FLD) for a two class problem where data for each class lies near a linear subspace.}
+\label{fig:Fisherface2}
+\end{figure}
+
+  In the face recognition problem, one is confronted with the difficulty that the within-class scatter matrix $S_{W}\in \mathbb{R}^{n\times n}$ is always singular. This stems from the fact that the rank of $S_{W}$ is at most $N-c$, and, in general, the number of images in the learning set $N$ is much smaller than the number of pixels in each image $n$. This means that it is possible to choose the matrix $W$ such that the within-class scatter of the projected samples can be made exactly zero.
+
+  In order to overcome the complication of a singular $S_{W}$, an alternative to the criterion in (\ref{eq:Fisherface4}) is proposed. This
+method, named {\it Fisherfaces}, avoids this problem by projecting the image set to a lower dimensional space so that the resulting within-class scatter matrix $S_{W}$ is nonsingular. This is achieved by using PCA to reduce the dimension of the feature space to $N-c$, and then applying the standard FLD defined by (\ref{eq:Fisherface4}) to reduce the dimension to $c-1$. More formally, $W_{\text{opt}}$ is given by
+\begin{equation}
+W_{\text{opt}}^{T}=W_{\text{fld}}^{T}W_{\text{pca}}^{T}
+\end{equation}
+where
+\begin{equation}
+W_{\text{pca}}=\arg \max_{W}|W^{T}S_{T}W|
+\end{equation}
+\begin{equation}
+W_{\text{fld}}\text{ }=\arg \max_{W}\frac{|W^{T}W_{\text{pca}}^{T}S_{B}W_{\text{pca}}W|}{|W^{T}W_{\text{pca}}^{T}S_{W}W_{\text{pca}}W|}
+\end{equation}
+Note that the optimization for $W_{\text{pca}}$ is performed over $n\times(N-c)$ matrices with orthonormal columns, while the optimization for $W_{\text{fld}}$ is performed over $(N-c)\times m$ matrices with orthonormal columns. In computing $W_{\text{pca}}$, we have thrown away only the smallest c-l principal components.
+
+%   There are certainly other ways of reducing the within class scatter while preserving between-class scatter. For example, a second method which we are currently investigating chooses $W$ to maximize the between-class scatter of the projected samples after having first reduced the within-class scatter. Taken to an extreme, we can maximize the between-class scatter of the projected samples subject to the constraint that the within-class scatter is zero, i.e.,
+% \begin{equation}
+% W_{\text{opt}}=\arg \max_{W \in \mathcal{W}}|W^{T}S_{B}W|
+% \end{equation}
+% where $\mathcal{W}$ is the set of $n\times m$ matrices with orthonormal columns contained in the kernel of $S_{W}$.
+
+\section{Experimental Results}\label{S:Comparison}
+
+The PIE database is used in the experiments. The PIE database contains 21 face images of 68 people having a large illumination variations. A few sample images from PIE database are shown in Fig. \ref{fig:PIE}. The former 16 images of each person are used as a training set and the latter 5 images are used as a testing set. 
+
+
+\begin{figure}[htbp]
+\begin{tabular}{ccccc}
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/01/img01.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/02/img01.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/03/img01.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/04/img01.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/05/img01.eps,width=1.4cm}}
+\end{minipage}\\
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/01/img02.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/02/img02.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/03/img02.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/04/img02.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/05/img02.eps,width=1.4cm}}
+\end{minipage}\\
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/01/img03.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/02/img03.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/03/img03.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/04/img03.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/05/img03.eps,width=1.4cm}}
+\end{minipage}\\
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/01/img04.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/02/img04.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/03/img04.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/04/img04.eps,width=1.4cm}}
+\end{minipage} &
+\begin{minipage}[b]{0.15\linewidth}
+  \centering
+  \centerline{\epsfig{figure=PIE/05/img04.eps,width=1.4cm}}
+\end{minipage}
+\end{tabular}
+\caption{Examples from PIE database. Original image size 48x40.}
+\label{fig:PIE}
+\end{figure}
+
+The Fig. \ref{fig:EigenFisher} shows a comparison of the Eigenface and Fisherface methods with respect to the recognition rate versus number of feature dimensions used. The Fig. \ref{fig:CMS} shows an evaluation based on cumulative match score (CMS) \cite{phillips1997the} using 40 dimensional feature vectors. 
+
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=9.0cm]{EigenFisher1.eps}
+\end{center}
+\caption{Face recognition experiment: Eigenface v.s. Fisherface}
+\label{fig:EigenFisher}
+\end{figure} 
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=9.0cm]{CMS1.eps}
+\end{center}
+\caption{Cumulative Match Score: Eigenface v.s. Fisherface. 40 dimensional features are used.}
+\label{fig:CMS}
+\end{figure} 
+
+\section{Conclusion}\label{S:Conclusion}
+
+The Eigenface and Fisherface method were investigated and compared. 
+The comparative experiment showed that the Fisherface method outperformed the Eigenface method. 
+The usefulness of the Fisherface method under varying illumination was verified. 
+
+% To start a new column (but not a new page) and help balance the last-page
+% column length use \vfill\pagebreak.
+% -------------------------------------------------------------------------
+% \vfill
+% \pagebreak
+
+% References should be produced using the bibtex program from suitable
+% BiBTeX files (here: strings, refs, manuals). The IEEEbib.bst bibliography
+% style file from IEEE produces unsorted bibliography list.
+% -------------------------------------------------------------------------
+%\nocite{*}
+% \bibliographystyle{IEEEbib}
+\bibliographystyle{amsplain}
+\bibliography{EigenFisherFace}
+
+\end{document}

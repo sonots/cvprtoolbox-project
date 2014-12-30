@@ -1,0 +1,252 @@
+\documentclass[article,oneside]{memoir}
+
+\usepackage{graphicx} % Add graphics capabilities
+\usepackage{booktabs} % ``Proper'' table layout
+\usepackage{amsmath}  % Better maths support
+\usepackage{memhfixc} % This package is required to resolve incompatibilities
+                      % with the memoir class & the hyperref package
+                      
+\setlength{\oddsidemargin}{ 20pt}
+\setlength{\textwidth}{440pt}
+\setlength{\topmargin}{ 0pt}
+\setlength{\headheight}{00pt}
+\setlength{\headsep}{40pt}
+\setlength{\textheight}{620pt}
+%\usepackage{pdfsync}
+% This package is used to tell TeXShop where things are in the PDF file.
+% Command-click at any spot in the PDF and it will jump to the corresponding
+% location in the source file.
+
+\usepackage[colorlinks=true,linkcolor=red]{hyperref} % Hyperlink capabilities
+%\usepackage{url}
+
+% Code highlight
+    \usepackage{alltt}
+    \usepackage{color}
+    \usepackage{fullpage}
+    %\definecolor{string}{rgb}{0.0,0.0,0.0}
+    %\definecolor{comment}{rgb}{0.0,0.0,0.0}
+    %\definecolor{keyword}{rgb}{0.0,0.0,0.0}   
+    \definecolor{string}{rgb}{0.7,0.0,0.0}
+    \definecolor{comment}{rgb}{0.13,0.54,0.13}
+    \definecolor{keyword}{rgb}{0.0,0.0,1.0}
+    
+    
+\title {ENEE731 Project\\Texture Segmentation using Gabor Filters}
+\author{Naotoshi Seo, sonots@umd.edu}
+\date{November 8, 2006}
+
+
+\begin{document}
+
+\maketitle
+% Generates a title based on the \title, \author, and \date commands in the preamble.
+
+\chapter{Introduction}
+
+
+Malik and Perona (1989) \cite{Malik} presented a model of texture perception with the early stages of human visual system. Their model consists of three stages: (1) convolution of the image with a bank of even-symmetric linear filters followed by half-wave rectification to give a set of responses, (2) inhibition, localized in space, within and among the neural response profiles that results in the suppression of weak   responses when there are strong responses at the same or nearby locations, and (3) texture-boundary detection by using wide odd-symmetric mechanisms. The stage (1) is referred to as the multi-channel filtering approach. 
+
+Jain and Farrokhania (1990) \cite{Jain} presented a texture segmentation algorithm inspired by the multi-channel filtering theory in  the early stages of human visual system. They characterized channels by a bank of Gabor filters.  This is the paper which we basically followed to implement a Filtering Method based Image Segmentation system. 
+
+\chapter{Algorithm}
+
+The texture segmentation system involves the following three steps:
+\begin{itemize}
+\item Decomposition of the input image using a filter bank, 
+\item Feature extraction, and
+\item Clustering. 
+\end{itemize}
+
+\section{Filter Bank}
+
+
+We present the channels with a bank of two-dimensional Gabor filters. 
+A two-dimensional Gabor function consists of a sinusoidal plane wave of some frequency and orientation, modulated by a two-dimensional Gaussian \cite{Daugman}. The Gabor filter in the spatial domain is given by
+                                                                  
+\begin{equation}
+g_{\lambda\theta\psi\sigma\gamma}(x,y)=exp(-\frac{x'^2+\gamma^2y'^2}{2\sigma^2})cos(2\pi\frac{x'}{\lambda}+\psi)
+\end{equation}
+where 
+$$x' = x cos(\theta) + y sin(\theta), $$
+$$ y' = y cos(\theta) - x sin(\theta). $$  
+
+In this equation,  $ \lambda $ represents the wavelength of the cosine factor,  $ \theta $ represents the orientation of the normal to the parallel stripes of a Gabor function in degrees,  $ \psi $ is the phase offset in degrees, and  $ \gamma $ is the spatial aspect ratio and specifies the elliptically of the support of the Gabor function, and $ \sigma $ is the standard deviation of the Gaussian determines the (linear) size of the receptive field. 
+
+The parameter $ \lambda $ is the wavelength and $ f = 1 / \lambda$ is the spatial frequency of the cosine factor. 
+The ratio $ \sigma / \lambda $ determines the spatial frequency bandwidth of simple cells and thus the number of parallel excitatory and inhibitory stripe zones which can be observed in their receptive fields. The half-response spatial frequency bandwidth $ b$  (in octaves) and the ratio $ \sigma / \lambda $ are related as follows: 
+\begin{equation}
+b = log_2 \frac{ \frac{ \sigma }{ \lambda } \pi + \sqrt{\frac{ln2}{2}}}{\frac{\sigma}{\lambda} \pi - \sqrt{\frac{ln2}{2}}},
+\frac{\sigma}{\lambda} = \frac{1}{\pi} \sqrt{\frac{ln2}{2}}\frac{2^b + 1}{2^b - 1}. 
+\label{eq:gaborsigma}
+\end{equation}
+$ \psi = 0^\circ $ and $ \psi = 90^\circ $ returns the real part and the imaginary part of Gabor filter respectively. 
+The real part of Gabor filter is an even-symmetric filter, and the property satisfies the requirement proposed by Malik \cite{Malik}. 
+Therefore, we use the real part of Gabor. 
+
+\subsection{Choice of Filter Parameters}
+
+We use orientation separation angles of $ 30^\circ $ as recommended in \cite{Clausi}, that is:
+$$ \theta: 0^\circ, 30^\circ, 60^\circ, 90^\circ, 120^\circ, 150^\circ $$
+and following values of frequencies as recommended in \cite{Zhang}
+$$ F_L(i) = 0.25 - 2^{i - 0.5} / N_c  $$
+$$ F_H(i) = 0.25 + 2^{i - 0.5} / N_c $$
+where $ i = 1,2, ... , \log_2(N_c/8) $, 
+$ N_c $ is the width of image which is a power of 2. 
+Note that $ 0 < F_L(i) < 0.25 $ and $ 0.25 \le F_H(i) < 0.5 $. 
+
+For an image with 256 columns, for example, a total of 60 filters can be used - 6 orientations and (5 + 5) frequencies. 
+%$$ \sqrt{2} ( 1, 2, 4, 8, ..., N_c/4 ) / N_c  ~~~~~ \text{cycles/pixel} $$
+%For an image with 256 columns, for example, a total of 42 filters can be used - 6 orientations and 7 frequencies. 
+%For frequency consideration, we can omit the filters at low frequencies $ 1\sqrt{2} $ and $ 2\sqrt{2} $ because they capture spatial variations that are too large to correspond to texture \cite{Jain}.
+Note that in this paper we set the value of the bandwidth $b$ of the Gabor filter to 1 octave. 
+
+\section{Feature Extraction}
+
+Jain \cite{Jain} suggested to use a nonlinear sigmoidal function, 
+\begin{equation}
+\tanh(\alpha t) = \frac{1 - e^{-2 \alpha t}}{1 + e^{-2 \alpha t}}
+\end{equation}
+which saturates the output of the filters. 
+
+Jain \cite{Jain} also suggested to compute the average absolute deviation (AAD) for each filtered image. 
+We use Gaussian smoothing function which is given by
+\begin{equation}
+g(x,y) =  exp \left\{  - \frac{x^2 + y^2 }{2 \sigma^2} \right\}
+\end{equation}
+where $ \sigma  $  is the standard deviation which determines the (linear) size of the receptive field (window size). 
+
+% Jain \cite{Jain} suggested to set $ \sigma = 0.5 \lambda $, however, it did not perform well and we used $ \sigma = 7 $ for all filters without considering the value of $ \lambda $ for the purpose of smoothing simply.   
+We choose $ \sigma = 3 \sigma_s $ where  $ \sigma_s$ is the scale parameter of Gabor filter given by (\ref{eq:gaborsigma}) as similar to the recommendation, $ \sigma  = 2 \sigma_s, $ by \cite{Zhang}. 
+
+\section{Clustering}
+
+The final step is to cluster the pixels into a number of clusters representing the texture regions. Although Jain used CLUSTER algorithm \cite{Jain}, we use the k-means algorithm. 
+The algorithm of k-means is as follows:
+\begin{enumerate}
+\item Initialize centroids of K-clusters randomly.
+\item Assign each sample to the nearest centroid.
+\item Calculate centroids (means) of K-clusters.
+\item If centroids are unchanged, done. Otherwise, go to step 2.
+\end{enumerate}
+
+Furthermore, we include the spatial coordinates of the pixels as two additional features to take into account the spatial adjacency information in the clustering process as proposed by \cite{Jain}. 
+
+\chapter{Experimental Results}
+
+The multi-channel image segmentation system mentioned above was implemented and tested against textured images from the Brodatz album \cite{dataset}. 
+
+Figure. \ref{fig:original} shows an original image obtained by Brodatz album \cite{dataset}. 
+Figure \ref{fig:gabor} shows the filtered images by Gabor filters. 
+Figure \ref{fig:gauss} shows a gaussian smoothed image of Figure \ref{fig:gabor} (c). 
+Finally, figure \ref{fig:seg} shows the segmentation result. 
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=5cm]{image/data_20.eps}
+\end{center}
+ \caption{Five texture Brodatz image of size 256x256}
+\label{fig:original}
+\end{figure}
+
+%\begin{center}
+%  \begin{figure}[ht]
+%  \begin{tabular}{@{} ccc @{}}
+
+%  \begin{minipage}{0.33\hsize}
+%   \begin{center}
+%   \includegraphics[width=5cm]{image/gabor_8_data_20.eps}
+%   \end{center}
+%  \end{minipage}    &
+%  \begin{minipage}{0.33\hsize}
+%   \begin{center}
+%   \includegraphics[width=5cm]{image/gabor_16_data_20.eps}
+%   \end{center}
+%  \end{minipage}    &
+%  \begin{minipage}{0.33\hsize}
+%   \begin{center}
+%   \includegraphics[width=5cm]{image/gabor_32_data_20.eps}
+%   \end{center}
+%  \end{minipage}    \\
+
+%  \end{tabular}
+% \caption{(a) shows a filtered image at frequency 8$\sqrt{2}$ cycles/image-width and orientation of $0^\circ$. 
+% (b) shows a filtered image at frequency 16$\sqrt{2}$ cycles/image-width and orientation of $0^\circ$.
+% (c) shows a filtered image at frequency 32$\sqrt{2}$ cycles/image-width and orientation of $0^\circ$.
+% } 
+% \label{fig:gabor}
+% \end{figure} 
+%\end{center}
+\begin{center}
+  \begin{figure}[ht]
+  \begin{tabular}{@{} ccc @{}}
+
+  \begin{minipage}{0.33\hsize}
+   \begin{center}
+   \includegraphics[width=5cm]{image/gabor_5_1_data_20.eps}
+   \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.33\hsize}
+   \begin{center}
+   \includegraphics[width=5cm]{image/gabor_1_1_data_20.eps}
+   \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.33\hsize}
+   \begin{center}
+   \includegraphics[width=5cm]{image/gabor_5_2_data_20.eps}
+   \end{center}
+  \end{minipage}    \\
+
+  \end{tabular}
+ \caption{(a) shows a filtered image at frequency $F_L(5)$ and orientation of $0^\circ$. 
+ (b) shows a filtered image at frequency $F_L(1)$ and orientation of $0^\circ$.
+ (c) shows a filtered image at frequency $F_H(5)$ and orientation of $0^\circ$.
+ Note $ F_L(5) < F_L(1) < F_H(5) .$
+ } 
+ \label{fig:gabor}
+ \end{figure} 
+\end{center}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=5cm]{image/gauss_gabor_1_1_data_20.eps}
+\end{center}
+ \caption{Smoothed Gabor response at frequency $F_L(1)$ and orientation of $0^\circ$. $ \sigma = 10 $. }
+\label{fig:gauss}
+\end{figure}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=5cm]{image/seg_data_20.eps}
+\end{center}
+ \caption{Segmentation result with $30^\circ$ orientation separation, $\gamma = 1$, $ b= 1$.}
+ \label{fig:seg}
+\end{figure}
+
+
+\newpage
+
+\chapter{Discussion}
+
+K-means clustering often did not output the desired segmentation due to the random initialization, and we had to run programs several times to obtain good results. Using another criteria might resolve this problem. 
+This method is an unsupervised technique, but we still needed to supervise the number of segments $ K $. 
+The nonlinear transformation at step 2 did not affect big differences, therefore, this may be able to be skipped. 
+
+The filtering methods such as Gabor filter, Gaussian filter, average filter must take into account how to process pixels at outer circumference of images. The conv2 function of matlab assumed as pixels at out of the image has 0 intensity values, and it caused bad segmentation often for pixels at outer circumference (The pixels at outer circumference will  usually have lower values than other usual middle placed pixels in spite of the intensities of the original image.) This is a defect of a Filtering Method based Image Segmentation system. 
+
+This program worked reasonably fast, 9.874256 seconds, for 256x256 sized images, but took 219.196721 seconds for 512x512 sized images. 
+The electric version of this document and source codes is available at \url{http://note.sonots.com/SciSoftware/GaborTextureSegmentation.html}
+
+ \begin{thebibliography}{99}
+ 
+\bibitem{Malik} Perona and Malik, "Preattentive texture discrimination with early vision mechanisms," \textit{J. Opt. Soc. Am. A}, Vol. 7, No. 5, May 1990 \url{http://mplab.ucsd.edu/~marni/Igert/Malik_Perona_1990.pdf}
+ \bibitem{Jain} A. K. Jain, F. Farrokhnia, "Unsupervised texture segmentation using Gabor filters,"  \textit{Pattern Recognition}, vol. 24, no. 12, pp.1167-1186, 1991
+\bibitem{Daugman} J.G. Daugman: "Uncertainty relations for resolution in space, spatial frequency, and orientation optimized by two-dimensional visual cortical filters", \textit{Journal of the Optical Society of America A}, 1985, vol. 2, pp. 1160-1169.
+ \bibitem{Clausi} D. Clausi, M. Ed Jernigan, "Designing Gabor filters for optimal texture separability," \textit{Pattern Recognition}, vol. 33, pp. 1835-1849, 2000. 
+\bibitem{dataset} P. Drodatz, "Textures: A Photographic Album for Artists and Designers," '''Dover''', New York, 1966. \url{http://www-dbv.informatik.uni-bonn.de/image/segmentation.html}
+\bibitem{Zhang} Jianguo Zhang, Tieniu Tan, Li Ma, "Invariant texture segmentation via circular gabor filter",  \textit{Proceedings of the 16th IAPR International Conference on Pattern Recognition (ICPR)}, Vol II, pp. 901-904, 2002. \url{http://www.dcs.qmul.ac.uk/~jgzhang/ICPR_857.pdf}
+
+\bibitem{Applet} Gabor filter Applet. \url{http://www.cs.rug.nl/~imaging/simplecell.html}
+\end{thebibliography}
+
+\end{document}

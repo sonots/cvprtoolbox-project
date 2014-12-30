@@ -1,0 +1,449 @@
+This is pdfeTeX, Version 3.141592-1.30.4-2.2 (Web2C 7.5.5) (format=pdflatex 2006.11.4)  21 APR 2007 23:16
+entering extended mode
+\write18 enabled.
+**proposal.tex
+(./proposal.tex
+LaTeX2e <2003/12/01>
+Babel <v3.8d> and hyphenation patterns for american, french, german, ngerman, b
+ahasa, basque, bulgarian, catalan, croatian, czech, danish, dutch, esperanto, e
+stonian, finnish, greek, icelandic, irish, italian, latin, magyar, norsk, polis
+h, portuges, romanian, russian, serbian, slovak, slovene, spanish, swedish, tur
+kish, ukrainian, nohyphenation, loaded.
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/memoir/memoir.cls
+Document Class: memoir 2004/04/05 v1.61 configurable document class
+\onelineskip=\skip41
+\lxvchars=\skip42
+\xlvchars=\skip43
+\@memcnta=\count79
+\stockheight=\skip44
+\stockwidth=\skip45
+\trimtop=\skip46
+\trimedge=\skip47
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/memoir/mem10.clo
+File: mem10.clo 2002/07/27 v0.2 memoir class 10pt size option
+)
+\spinemargin=\skip48
+\foremargin=\skip49
+\uppermargin=\skip50
+\lowermargin=\skip51
+\headdrop=\skip52
+\normalrulethickness=\skip53
+\headwidth=\skip54
+\c@storedpagenumber=\count80
+\thanksmarkwidth=\skip55
+\thanksmarksep=\skip56
+\droptitle=\skip57
+\abstitleskip=\skip58
+\absleftindent=\skip59
+\absrightindent=\skip60
+\absparindent=\skip61
+\absparsep=\skip62
+\c@part=\count81
+\c@chapter=\count82
+\c@section=\count83
+\c@subsection=\count84
+\c@subsubsection=\count85
+\c@paragraph=\count86
+\c@subparagraph=\count87
+\beforechapskip=\skip63
+\midchapskip=\skip64
+\afterchapskip=\skip65
+\chapindent=\skip66
+\bottomsectionskip=\skip67
+\secindent=\skip68
+\beforesecskip=\skip69
+\aftersecskip=\skip70
+\subsecindent=\skip71
+\beforesubsecskip=\skip72
+\aftersubsecskip=\skip73
+\subsubsecindent=\skip74
+\beforesubsubsecskip=\skip75
+\aftersubsubsecskip=\skip76
+\paraindent=\skip77
+\beforeparaskip=\skip78
+\afterparaskip=\skip79
+\subparaindent=\skip80
+\beforesubparaskip=\skip81
+\aftersubparaskip=\skip82
+\pfbreakskip=\skip83
+\c@@ppsavesec=\count88
+\c@@ppsaveapp=\count89
+\ragrparindent=\dimen102
+\parsepi=\skip84
+\topsepi=\skip85
+\itemsepi=\skip86
+\parsepii=\skip87
+\topsepii=\skip88
+\topsepiii=\skip89
+\m@msavetopsep=\skip90
+\m@msavepartopsep=\skip91
+\@enLab=\toks14
+\c@vslineno=\count90
+\c@poemline=\count91
+\c@modulo@vs=\count92
+\vleftskip=\skip92
+\vrightskip=\skip93
+\stanzaskip=\skip94
+\versewidth=\skip95
+\vgap=\skip96
+\vindent=\skip97
+\c@verse=\count93
+\c@chrsinstr=\count94
+\beforepoemtitleskip=\skip98
+\afterpoemtitleskip=\skip99
+\col@sep=\dimen103
+\extrarowheight=\dimen104
+\NC@list=\toks15
+\extratabsurround=\skip100
+\backup@length=\skip101
+\TX@col@width=\dimen105
+\TX@old@table=\dimen106
+\TX@old@col=\dimen107
+\TX@target=\dimen108
+\TX@delta=\dimen109
+\TX@cols=\count95
+\TX@ftn=\toks16
+\heavyrulewidth=\dimen110
+\lightrulewidth=\dimen111
+\cmidrulewidth=\dimen112
+\belowrulesep=\dimen113
+\belowbottomsep=\dimen114
+\aboverulesep=\dimen115
+\abovetopsep=\dimen116
+\cmidrulesep=\dimen117
+\cmidrulekern=\dimen118
+\defaultaddspace=\dimen119
+\@cmidla=\count96
+\@cmidlb=\count97
+\@aboverulesep=\dimen120
+\@belowrulesep=\dimen121
+\@thisruleclass=\count98
+\@lastruleclass=\count99
+\@thisrulewidth=\dimen122
+\ctableftskip=\skip102
+\ctabrightskip=\skip103
+\abovecolumnspenalty=\count100
+\@linestogo=\count101
+\@cellstogo=\count102
+\@cellsincolumn=\count103
+\crtok=\toks17
+\@mincolumnwidth=\dimen123
+\c@newflo@tctr=\count104
+\@contcwidth=\skip104
+\@contindw=\skip105
+\abovecaptionskip=\skip106
+\belowcaptionskip=\skip107
+\subfloattopskip=\skip108
+\subfloatcapskip=\skip109
+\subfloatcaptopadj=\skip110
+\subfloatbottomskip=\skip111
+\subfloatlabelskip=\skip112
+\subfloatcapmargin=\dimen124
+\c@@contsubnum=\count105
+\beforeepigraphskip=\skip113
+\afterepigraphskip=\skip114
+\epigraphwidth=\skip115
+\epigraphrule=\skip116
+LaTeX Info: Redefining \emph on input line 4419.
+LaTeX Info: Redefining \em on input line 4420.
+\tocentryskip=\skip117
+\tocbaseline=\skip118
+\cftparskip=\skip119
+\cftbeforepartskip=\skip120
+\cftpartindent=\skip121
+\cftpartnumwidth=\skip122
+\cftbeforechapterskip=\skip123
+\cftchapterindent=\skip124
+\cftchapternumwidth=\skip125
+\cftbeforesectionskip=\skip126
+\cftsectionindent=\skip127
+\cftsectionnumwidth=\skip128
+\cftbeforesubsectionskip=\skip129
+\cftsubsectionindent=\skip130
+\cftsubsectionnumwidth=\skip131
+\cftbeforesubsubsectionskip=\skip132
+\cftsubsubsectionindent=\skip133
+\cftsubsubsectionnumwidth=\skip134
+\cftbeforeparagraphskip=\skip135
+\cftparagraphindent=\skip136
+\cftparagraphnumwidth=\skip137
+\cftbeforesubparagraphskip=\skip138
+\cftsubparagraphindent=\skip139
+\cftsubparagraphnumwidth=\skip140
+\c@maxsecnumdepth=\count106
+\bibindent=\dimen125
+\bibitemsep=\skip141
+\indexcolsep=\skip142
+\indexrule=\skip143
+\indexmarkstyle=\toks18
+\@indexbox=\insert233
+\sideparvshift=\skip144
+\sideins=\insert232
+\sidebarhsep=\skip145
+\sidebarvsep=\skip146
+\sidebarwidth=\skip147
+\footmarkwidth=\skip148
+\footmarksep=\skip149
+\footparindent=\skip150
+\footinsdim=\skip151
+\footinsv@r=\insert231
+\@mpfootinsv@r=\insert230
+\m@m@k=\count107
+\m@m@h=\dimen126
+\m@mipn@skip=\skip152
+\c@sheetsequence=\count108
+\c@lastsheet=\count109
+\c@lastpage=\count110
+\every@verbatim=\toks19
+\afterevery@verbatim=\toks20
+\verbatim@line=\toks21
+\tab@position=\count111
+\verbatim@in@stream=\read1
+\verbatimindent=\skip153
+\verbatim@out=\write3
+\bvboxsep=\skip154
+\c@bvlinectr=\count112
+\bvnumlength=\skip155
+\FrameRule=\dimen127
+\FrameSep=\dimen128
+\c@cp@cntr=\count113
+LaTeX Info: Redefining \: on input line 7541.
+LaTeX Info: Redefining \! on input line 7543.
+\c@ism@mctr=\count114
+\c@xsm@mctr=\count115
+\c@csm@mctr=\count116
+\c@ksm@mctr=\count117
+\c@xksm@mctr=\count118
+\c@cksm@mctr=\count119
+\c@msm@mctr=\count120
+\c@xmsm@mctr=\count121
+\c@cmsm@mctr=\count122
+\c@bsm@mctr=\count123
+\c@workm@mctr=\count124
+\c@figure=\count125
+\c@lofdepth=\count126
+\c@lofdepth=\count126
+\cftbeforefigureskip=\skip156
+\cftfigureindent=\skip157
+\cftfigurenumwidth=\skip158
+\c@table=\count126
+\c@lotdepth=\count127
+\c@lotdepth=\count127
+\cftbeforetableskip=\skip159
+\cfttableindent=\skip160
+\cfttablenumwidth=\skip161
+
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/memoir/mempatch.sty
+File: mempatch.sty 2005/02/01 v3.5 Patches for memoir class v1.61
+\abs@leftindent=\dimen129
+LaTeX Info: Redefining \em on input line 142.
+LaTeX Info: Redefining \em on input line 384.
+LaTeX Info: Redefining \emph on input line 392.
+))
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks22
+)
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/graphics/graphics.sty
+Package: graphics 2001/07/07 v1.0n Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/graphics/graphics.cfg
+File: graphics.cfg 2005/02/03 v1.3 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 80.
+
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/graphics/pdftex.def
+File: pdftex.def 2002/06/19 v0.03k graphics/color for pdftex
+\Gread@gobject=\count127
+))
+\Gin@req@height=\dimen130
+\Gin@req@width=\dimen131
+)
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2003/03/28 v1.618 publication quality tables
+\heavyrulewidth=\dimen132
+\lightrulewidth=\dimen133
+\cmidrulewidth=\dimen134
+\belowrulesep=\dimen135
+\belowbottomsep=\dimen136
+\aboverulesep=\dimen137
+\abovetopsep=\dimen138
+\cmidrulesep=\dimen139
+\cmidrulekern=\dimen140
+\defaultaddspace=\dimen141
+\@cmidla=\count128
+\@cmidlb=\count129
+\@aboverulesep=\dimen142
+\@belowrulesep=\dimen143
+\@thisruleclass=\count130
+\@lastruleclass=\count131
+\@thisrulewidth=\dimen144
+)
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip162
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks23
+\ex@=\dimen145
+))
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen146
+)
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count132
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count133
+\leftroot@=\count134
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count135
+\DOTSCASE@=\count136
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen147
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count137
+\c@MaxMatrixCols=\count138
+\dotsspace@=\muskip10
+\c@parentequation=\count139
+\dspbrk@lvl=\count140
+\tag@help=\toks24
+\row@=\count141
+\column@=\count142
+\maxfields@=\count143
+\andhelp@=\toks25
+\eqnshift@=\dimen148
+\alignsep@=\dimen149
+\tagshift@=\dimen150
+\tagwidth@=\dimen151
+\totwidth@=\dimen152
+\lineht@=\dimen153
+\@envbody=\toks26
+\multlinegap=\skip163
+\multlinetaggap=\skip164
+\mathdisplay@stack=\toks27
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2004/03/15  ver 3.1  Verb mode for urls, etc.
+)
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/memoir/memhfixc.sty
+Package: memhfixc 2004/05/13 v1.6 package fixes for memoir class
+)
+(./proposal.aux)
+\openout1 = `proposal.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+\c@lofdepth=\count144
+\c@lotdepth=\count145
+
+(/usr/local/teTeX/share/texmf.tetex/tex/context/base/supp-pdf.tex
+(/usr/local/teTeX/share/texmf.tetex/tex/context/base/supp-mis.tex
+loading : Context Support Macros / Miscellaneous (2004.10.26)
+\protectiondepth=\count146
+\scratchcounter=\count147
+\scratchtoks=\toks28
+\scratchdimen=\dimen154
+\scratchskip=\skip165
+\scratchmuskip=\muskip12
+\scratchbox=\box28
+\scratchread=\read2
+\scratchwrite=\write4
+\zeropoint=\dimen155
+\onepoint=\dimen156
+\onebasepoint=\dimen157
+\minusone=\count148
+\thousandpoint=\dimen158
+\onerealpoint=\dimen159
+\emptytoks=\toks29
+\nextbox=\box29
+\nextdepth=\dimen160
+\everyline=\toks30
+\!!counta=\count149
+\!!countb=\count150
+\recursecounter=\count151
+)
+loading : Context Support Macros / PDF (2004.03.26)
+\nofMPsegments=\count152
+\nofMParguments=\count153
+\MPscratchCnt=\count154
+\MPscratchDim=\dimen161
+\MPnumerator=\count155
+\everyMPtoPDFconversion=\toks31
+)
+Underfull \hbox (badness 10000) in paragraph at lines 51--53
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--63
+
+ []
+
+
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [1
+
+{/usr/local/teTeX/share/texmf.local/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [2]
+bibitemlist
+
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [3]
+(./proposal.aux) ) 
+Here is how much of TeX's memory you used:
+ 3597 strings out of 94424
+ 44746 string characters out of 1172363
+ 2121109 words of memory out of 4572755
+ 6820 multiletter control sequences out of 10000+50000
+ 9884 words of font info for 36 fonts, out of 2000000 for 2000
+ 582 hyphenation exceptions out of 5000
+ 27i,10n,20p,1080b,280s stack positions out of 5000i,500n,6000p,200000b,40000s
+PDF statistics:
+ 34 PDF objects out of 300000
+ 0 named destinations out of 131072
+ 1 words of extra memory for PDF output out of 10000
+</usr/local/teTeX/share/texmf.tetex/fonts/type1/bluesky/cm/cm
+tt10.pfb></usr/local/teTeX/share/texmf.tetex/fonts/type1/bluesky/cm/cmti10.pfb>
+</usr/local/teTeX/share/texmf.tetex/fonts/type1/bluesky/cm/cmmi10.pfb></usr/loc
+al/teTeX/share/texmf.tetex/fonts/type1/bluesky/cm/cmsl10.pfb></usr/local/teTeX/
+share/texmf.tetex/fonts/type1/bluesky/cm/cmbx10.pfb></usr/local/teTeX/share/tex
+mf.tetex/fonts/type1/bluesky/cm/cmbx12.pfb></usr/local/teTeX/share/texmf.tetex/
+fonts/type1/bluesky/cm/cmr10.pfb></usr/local/teTeX/share/texmf.tetex/fonts/type
+1/bluesky/cm/cmr12.pfb>
+Output written on proposal.pdf (3 pages, 73672 bytes).

@@ -1,0 +1,553 @@
+
+%
+% This document has designed to be read through as a PDF first.
+% Click on the ``Typeset'' button in the toolbar to generate the PDF
+% if it is not already visible.
+%
+
+%%% PREAMBLE %%%
+% You probably want to skip to \begin{document} if this is your first time.
+
+\documentclass[article,oneside]{memoir}
+% This command goes at the beginning of every document
+% [oneside,article] are two of many options that can be chosen
+%   oneside makes each page have the same layout, for printing on only one side 
+%     of the paper (change it to twoside to see the difference)
+%   article means we're writing a short document only and won't be using special 
+%     chapter headings
+%   a4paper changes the page dimensions for A4 sized paper 
+
+%%% PACKAGES %%%
+
+\usepackage{graphicx} % Add graphics capabilities
+\usepackage{booktabs} % ``Proper'' table layout
+\usepackage{amsmath}  % Better maths support
+\usepackage[colorlinks=false,linkcolor=red]{hyperref} % Hyperlink capabilities
+%\usepackage{url}
+
+\usepackage{memhfixc} % This package is required to resolve incompatibilities
+                      % with the memoir class & the hyperref package
+                      
+\setlength{\oddsidemargin}{ 20pt}
+\setlength{\textwidth}{440pt}
+\setlength{\topmargin}{ 0pt}
+\setlength{\headheight}{00pt}
+\setlength{\headsep}{40pt}
+\setlength{\textheight}{620pt}
+%\usepackage{pdfsync}
+% This package is used to tell TeXShop where things are in the PDF file.
+% Command-click at any spot in the PDF and it will jump to the corresponding
+% location in the source file.
+
+\title {ENEE731 Project\\Shape and motion from image streams: A factorization method }
+\author{Naotoshi Seo, sonots@umd.edu}
+\date{December 20, 2006}
+
+
+%%% BODY OF THE DOCUMENT: %%%
+\begin{document}
+
+\maketitle
+% Generates a title based on the \title, \author, and \date commands in the preamble.
+
+\chapter{Introduction}
+
+The structure from motion - recovering scene geometry and camera motion from a sequence of images - is an important task and has wide applicability in many tasks, such as navigation and robot manipulation. Tomasi and Kanade \cite{Tomasi} first developed a factorization method to recover shape and motion under an orthographic projection model, and obtained robust and accurate results. Poelman and Kanade \cite{Poelman} have extended the factorization method to paraperspective projection. Triggs \cite{Triggs} further extended the factorization method to fully perspective projection. This method recovers a consistent set of projective depths (projective scale factors) for the image points.
+
+In this project, we implemented these three factorization methods, and comparisons are shown.
+
+\chapter{Algorithm: The Orthographic Factorization}
+
+The orthographic factorization method \cite{Tomasi} was implemented. 
+Given an image stream, suppose that we have tracked $ P $ feature points over $ F $ frames. We then trajectories of image coordinates $ \{ (u_{fp}, v_{fp}) | f = 1, ..., F, p = 1, ..., P \}. $ We write the horizontal feature coordinates $ u_{fp} $ into an $ F \times P $ matrix $ \mathbf{U}. $ Similarly, an $ F \times P $ matrix $ \mathbf{V} $ is built from the vertical coordinates $ v_{fp}. $ 
+
+Define the \textit{measurement matrix} of size $ 2F \times P $
+$$ \mathbf{W} = \left[ \frac{\mathbf{U}}{\mathbf{V}} \right]. $$
+Compute the $ 2F \times 1 $ translation vector $ \mathbf{t} $ whose each entry is the mean of the entries in the same row of the measurement matrix $ \mathbf{W}. $
+Define the \textit{registered measument matrix}
+$$ \tilde{\mathbf{W}} = \mathbf{W} - \mathbf{t} [1 .. 1] $$
+The $ \tilde{\mathbf{W}} $ can be expressed in a matrix form:
+$$ \tilde{\mathbf{W}} = \mathbf{R} \mathbf{S}, $$
+where the matrix of size $ 2F \times 3 $
+\begin{equation}
+\mathbf{R} = \left[
+\begin{array}{c}
+\mathbf{i}_1^T \\
+\vdots \\
+\mathbf{i}_F^T \\
+\mathbf{j}_1^T \\
+\vdots \\
+\mathbf{j}_F^T 
+\end{array}
+\right]
+\end{equation}
+represents the camera rotation, and the matrix of size $ 3 \times P $
+$$ \mathbf{S} = [\mathbf{s}_1  ... \mathbf{s}_P] $$
+is the shape matrix. The rows of $ \mathbf{R} $ represent the orientations of the horizontal and vertical camera reference axes throughout the stream, while the colums of $ \mathbf{S} $ are the coordinates of the $ P $ feature points with respect to their centroid. 
+The goal of the factorization method is to compute the matrices $ \mathbf{R} $ and $ \mathbf{S}. $
+
+\subsection{Step 1}
+
+Compute the singular-value decomposition
+$$ \tilde{\mathbf{W}} = \mathbf{O_1} \mathbf{\Sigma} \mathbf{O_2}. $$
+
+\subsection{Step 2}
+
+Define $ \mathbf{O_1}' $ which is the first three columns of $ \mathbf{O_1} $, $ \mathbf{\Sigma}' $ which is the first $ 3 \times 3 $ submatrix of $ \mathbf{\Sigma} $, and $ \mathbf{O_2}' $ which is the first three rows of $ \mathbf{O_2}. $
+Define $ \hat{R} = \mathbf{O_1}'(\mathbf{\Sigma}')^{1/2} $ and $ \hat{S} = (\mathbf{\Sigma}')^{1/2}\mathbf{O_2}'. $
+
+\subsection{Step 3 - Metric Constraints}
+
+Impose the metric constraints, 
+
+$$ \hat{\mathbf{i}}_f^T Q Q^T  \hat{\mathbf{i}}_f = 1, \ \ \ \hat{\mathbf{j}}_f^T Q Q^T  \hat{\mathbf{j}}_f = 1, \ \ \ \hat{\mathbf{i}}_f^T Q Q^T  \hat{\mathbf{j}}_f = 0 $$
+where $ Q $ is a $ 3 \times 3 $ matrix, and $ \hat{\mathbf{i}}_f^T $, $ \hat{\mathbf{j}}_f^T $ are elements of $ \hat{\mathbf{R}}. $
+To solve $ Q $, we can
+\begin{enumerate}
+\item use Newton's method, or 
+\item define $ L = Q Q^T $ and solve the linear system of equations for $ L $ and use Cholesky decomposition to get $ Q. $ 
+\end{enumerate}
+
+\subsubsection{Step 3.1 - Solving the linear system}
+
+We used the 2nd way. 
+Morita and Kanade\cite{Morita} explains the steps to compute $ Q $. 
+By denoting 
+$$ L = \left[ \begin{array}{ccc}
+I_1 & I_2 & I_3 \\
+I_2 & I_4 & I_5 \\ 
+I_3 & I_5 & I_6 \end{array} \right], $$
+the quadratic system can be rewritten as
+$$ GI = c, $$
+where the $ 3F \times 6 $ matrix $ G $, the $ 6 \times 1 $ vector $ I, $ and the $ 3F \times 1 $ vector $ c $ are defined by
+\begin{equation}
+G = \left[  \begin{array}{c}
+\mathbf{g}^T(\mathbf{i}_1, \mathbf{i}_1) \\
+\vdots \\
+\mathbf{g}^T(\mathbf{i}_F, \mathbf{i}_F) \\
+\mathbf{g}^T(\mathbf{j}_1, \mathbf{j}_1) \\
+\vdots \\
+\mathbf{g}^T(\mathbf{j}_F, \mathbf{j}_F) \\
+\mathbf{g}^T(\mathbf{i}_1, \mathbf{j}_1) \\
+\vdots \\
+\mathbf{g}^T(\mathbf{i}_F, \mathbf{j}_F) \end{array} \right], 
+I = \left[ \begin{array}{c}
+I_1    \\
+\vdots \\
+I_6 \end{array} \right], 
+c = \left[ \begin{array}{c}
+1 \\
+\vdots \\
+\vdots \\
+\vdots \\
+\vdots \\
+1 \\
+0 \\
+\vdots \\
+0 \end{array} \right]. 
+\end{equation}
+where $ c $ has $ 2F $ ones and $ F $ zeros, and 
+\begin{equation}
+\mathbf{g}(\mathbf{a}, \mathbf{b}) = \left[ \begin{array}{c}
+a_1 b_1 \\
+a_1 b_2 + a_2 b_1 \\
+a_1 b_3 + a_3 b_1 \\
+a_2 b_2 \\
+a_2 b_3 + a_3 b_2 \\
+a_3 b_3 \end{array} \right]. 
+\end{equation}
+The simplest solution of the system is given by the pseudo inverse method, such that 
+$$ I = G^* c. $$
+The vector $ I $ determines the symmetric matrix $ L. $
+The Cholesky decomposition or eigen decomposition or square root of a matrix of $ L $ gives $ Q. $ as long as the $ L $ is positive definite. 
+
+\subsubsection{Step 3.2 - Enforcing positive definiteness}
+
+We might obtain a matrix that is not positive definite when we estimeated $ L $ using the linear method. 
+Higham \cite{Higham} introduced a method computing a 'nearest' symmetric positive semidefinite matrix from a matrix. The lecture note \cite{cse252b} gives the easy notation. 
+First, we compute the symmetrix matrix as
+$$ L = \frac{L + L^T}{2}. $$
+In our case, the matrix $ L $ is already a symmetric matrix. 
+Now we eigen decompose $ L $:
+$$ L = \mathbf{U} \mathbf{\Sigma} \mathbf{U}^T $$
+and form the matrix $ \mathbf{\Sigma_+} $ by setting any negative eigenvalues to zero. The positive semidefinite matrix that is closed to $ L $ is then given by
+$$ L_{psd} = \mathbf{U} \mathbf{\Sigma_+} \mathbf{U}^T. $$
+However, we want a positive definite matrix. 
+In this case, we set any nagative eigenvalues to $ \epsilon > 0. $ 
+The reason is apparent from the definition of the positive definite matrix. 
+Furthermore, we want the matrix $ Q, $ it can be simply obtained as $ \mathbf{U} \mathbf{\Sigma_+}^{1/2} $ without computing $ L. $
+As a result, 
+\begin{enumerate} 
+\item Eigen decompose $ L = \mathbf{U} \mathbf{\Sigma} \mathbf{U}^T $ 
+\item Form a matrix $ \mathbf{\Sigma_+} $ by setting any negative values to $ \epsilon > 0, $ 
+\item Compute $ Q = \mathbf{U} \mathbf{\Sigma_+}^{1/2} $
+\end{enumerate}
+
+\subsection{Step 4}
+Compute the rotation matrix $ \mathbf{R} $ and the shape matrix $ \mathbf{S} $ as
+$$ \mathbf{R} = \hat{\mathbf{R}}Q, \ \ \ \mathbf{S} = Q^{-1}\hat{\mathbf{S}}. $$
+
+\subsection{Step 5}
+
+Align the first camera reference system with world reference system by forming the products
+\begin{equation}
+ \mathbf{R} = \mathbf{R}\mathbf{R_0}, \ \ \ \mathbf{S} = \mathbf{R_0}^T \mathbf{S}, 
+ \label{cameranorm}
+ \end{equation}
+where the orthonomal matrix $ \mathbf{R_0} = [\mathbf{i}_0 \  \mathbf{j}_0 \ \mathbf{k}_0] $ rotates the first camera reference system $ \textbf{R}_1 = [ \textbf{i}_1 \ \textbf{j}_1 \ \textbf{k}_1 ]^T $ into the indentity matrix $ \textbf{I} $. Now let be $ \mathbf{R}'_0 = [\mathbf{i}_1 \  \mathbf{j}_1 \ \mathbf{k}_1] $. 
+Then, 
+$$ \textbf{R}_1 \textbf{R}'_0 = \left[ \begin{array}{c c c}
+|| \textbf{i}_1 || & 0 & 0 \\
+0 & || \textbf{j}_1 || & 0 \\
+0 & 0 & || \textbf{k}_1 || 
+\end{array} \right]. $$
+because axis are perpendicular each other. From this, 
+$$ \textbf{R}_0 = \left[ \frac{\textbf{i}_1}{|| \textbf{i}_1 || }  \frac{\textbf{j}_1}{|| \textbf{j}_1 || } \frac{\textbf{k}_1}{|| \textbf{k}_1 || } \right] . $$
+
+\chapter{Algorithm: The Paraperspective Factorization}
+
+The paraperspective factorization method \cite{Poelman} was implemented. 
+At the implementation phase, the difference with the orthographic case is only the metric constraints. 
+Let $ \mathbf{M} $ be the estimated motion matrix
+\begin{equation}
+\mathbf{M} = \left[ \begin{array}{c}
+\mathbf{m}_1^T \\
+\vdots \\
+\mathbf{m}_F^T \\
+\mathbf{n}_1^T \\
+\vdots \\
+\mathbf{n}_F^T \end{array} \right]
+\end{equation}
+Let $ T $ be the translation vector
+\begin{equation}
+\mathbf{T} = \left[ \begin{array}{c}
+x_1 \\
+\vdots \\
+x_F \\
+y_1 \\
+\vdots \\
+y_F \end{array} \right]
+\end{equation}
+The metric constraints are as followings:
+\begin{equation} \begin{array}{cc}
+\frac{|\mathbf{m}_f|^2}{1+x_f^2} - \frac{|\mathbf{n}_f|^2}{1+y_f^2} & = 0 \\
+ \mathbf{m}_f \cdot \mathbf{n}_f - x_f y_f \frac{1}{2} \left( \frac{|\mathbf{m}_f|^2}{1+x_f^2} + \frac{|\mathbf{n}_f|^2}{1+y_f^2} \right) &= 0 \\
+ | \mathbf{m}_1 | &= 1
+ \label{parametric}
+ \end{array} \end{equation}
+  
+We impose
+$$ |\mathbf{m}_f|^2 = \hat{\mathbf{m}}_f^T Q Q^T \hat{\mathbf{m}}_f, \ \ \ |\mathbf{n}_f|^2 = \hat{\mathbf{n}}_f^T Q Q^T \hat{\mathbf{n}}_f, \ \ \ \mathbf{m}_f \cdot \mathbf{n}_f = \hat{\mathbf{m}}_f^T Q Q^T \hat{\mathbf{n}}_f $$
+where $ Q $ is a $ 3 \times 3 $ matrix, and $ \hat{\mathbf{m}}_f, \hat{\mathbf{n}}_f $ are elements of the estimated motion matrix $ \hat{\mathbf{M}}. $
+The matrix $ Q $ is solvable by the same way with the orthographic case.
+
+\chapter{Algorithm: The Projective Factorization}
+
+The projective factorization method \cite{Triggs} was implemented. 
+The perspective projection equation models the projection of a 3D point $ \textbf{X}_j = [x_j, y_j, z_j, 1]^T $ on an image as
+$$ \lambda_{ij} \textbf{x}_{ij} = \textbf{P}_i \textbf{X}_j $$
+where $ \textbf{x}_{ij} = [ u_{ij}, v_{ij}, 1]^T $ are the image coordinates of point $ j $ in the $i^{th}$ view, $ \lambda_{ij} $ is the \textit{projective depth} on the point and $ \ textbf{P}_i $ is a $ 3 \times 4 $ projection matrix. 
+The complete set of image projections can be gathered into a single $ (3m \times n ) $ rescaled measurement matrix equation:
+\begin{equation}
+\textbf{W} = 
+\left[ \begin{array}{c c c }
+\lambda_{11} \textbf{x}_{11} & \cdots & \lambda_{1n} \textbf{x}_{1n} \\
+\vdots & & \vdots \\
+\lambda_{m1} \textbf{x}_{m1} & \cdots & \lambda_{mn} \textbf{x}_{mn} 
+\end{array} \right]
+= 
+\left( \begin{array}{c}
+\textbf{P}_1 \\
+\vdots \\
+\textbf{P}_m \\
+\end{array} \right)
+( \textbf{X}_1 \cdots \textbf{X}_n )
+\end{equation}
+where $ \textbf{P}_i $ is the $ 3 \times 4 $ projection matrix. 
+
+\subsection{Step 1}
+
+Normalize the image coordinates, by applying transformations $ \textbf{T}_i $ to each image as:
+\begin{enumerate}
+\item Translating so that their centroid is at the origin
+\item Scaling so that the average distance from the origin is $ \sqrt{2}. $
+\end{enumerate}
+The matrix $ \textbf{T}_i $ is constructed as
+\begin{equation}
+\textbf{T}_i = 
+\left[ \begin{array}{c c c }
+s_i & 0  & -s_i c_{ix} \\
+0 & s_i & -s_i c_{iy} \\
+0 & 0 & 1 
+\end{array} \right]
+\end{equation}
+where $ c_{ix} $ and $ c_{iy} $ are the mean in the horizontal and vertical coordinates of image $ i $ respectively and $ s_i $ is the scaling factor which is determined as
+$$ s_i = \frac{\sqrt{2}}{ d_i} $$
+where $ d_i $ is the mean distance from the centerized origin.   
+
+\subsection{Step 2 - Fundamental Matrix}
+
+Estimate the fundamental matrices $ \textbf{F}_{ij} $ and epipoles $ e_{ij} $ with the 8-point method \cite{Hartley}\cite{Butterfield}. The fundamental matrix is defined by the equation
+$$ \textbf{x}'^T \textbf{F} \textbf{x} = 0 $$
+for any pair of matching points $ \textbf{x}' $ and $ \textbf{x} $ in two images. 
+The algorithm  to estimate the fundamental matrix is as followings: 
+
+\begin{enumerate}
+\item Normalize the image coordinates by a combined translation and scale transformation. (This is the above step 1)
+\item Solve a set of linear equations derived from the Longuet-Higgins equation. Solution is either by singular value decomposition or an eigensystem method. 
+\item The constraint that the fundamental matrix should be of rank two is enforced. This is done by by computing the matrix closest to the fundamental matrix in Frobenius norm.
+\item The fundamental matrix corresponding to the original matched point coordinates is recovered by applying an "un-normalising" transform. 
+\item Perform numerical analysis of the estimated fundamental matrix
+\end{enumerate}
+
+\subsection{Step 3}
+
+Determine the scale factors $ \lambda_{ip} $
+$$ \lambda_{ip} = \frac{ (e_{ij} \wedge \textbf{x}_{ip} ) \cdot (\textbf{F}_{ij} \textbf{x}_{ip} ) }
+{ || e_{ij} \wedge \textbf{x}_{ip} ||^2} \lambda_{jp} $$
+by recursively chaining together to give estimates for the complete set of depths for point $p$, starting from some arbitrary initial value such as $ \lambda_{1p} = 1. $
+
+\subsection{Step 4}
+
+Build the rescaled measurement matrix $ \textbf{W}$ with $ \{\lambda_{ij}\} $ and $ \{\textbf{x}_{ij}\}. $
+
+\subsection{Step 5}
+
+Balance $ \textbf{W} $ by the following iterative scheme:
+\begin{enumerate}
+\item Rescale each column $ l $ so that $ \sum_{r=1}^{3m} (w_{rl})^2 = 1. $
+\item Rescale each triplet of rows $ (3k -2, 3k-1, 3k)  $ so that $ \sum^{n}_{l=1} \sum_{i=3k-2}^{3k} w_{il}^2 = 1. $
+\item If the entries of \textbf{W} changed significantly, repeat 1 and 2. 
+\end{enumerate}
+
+\subsection{Step 6}
+
+Compute the SVD of the balanced matrix \textbf{W}
+
+\subsection{Step 7}
+From the SVD, recover projective motion and shape. Note that the projective factorization has no metric constraints. 
+
+\subsection{Step 8}
+
+Adapt projective motion, to account for the normalization transformations $ \textbf{T}_i $ of step 1.
+$ \textbf{P}_i $ is recovered as
+$$ \textbf{P}_i  = \textbf{T}_i^{-1} \hat{\textbf{P}}_i. $$
+
+\chapter{Experiments and Results}
+
+\section{Datasets}
+
+The dataset of project requirements are the castle image sequences \cite{Castle} and the medusa image sequences \cite{Medusa}. KLT Tracker library \cite{KLT} was used to obtain feature tracking points. 
+However, the KLT software did not track feature points well for castle image sequences. The reason is probably why the number of frames per second in the castle sequences are pretty low (image sequences look not continuous well.) Because the feature tracking part is not essential with this project, we used the hotel image sequences \cite{Hotel} which were taken in laboratory carefully, instead of the castle sequences. Furthermore, a synthetic data was used in order to make sure behaviors of programs. 
+
+\section{Synthetic Data}
+
+The synthetic data was created as follows. The camera motion goes around the randomly generated 80 points in half an elliptical path. The size of 80 points range from -2 to -2 in their x and y coordinates. The lengths of the main axis of the ellipse are 16 and 12. A Gaussian noise source having variance of 0.5 was added to the data in the image frame. A total of 162 frames were generated on this configuration. 
+
+This data was used for testing the orthographic factorization and the paraperspective factorization. 
+The camera motion was recovered and plotted where yaw is the angle toward an axe $ \textbf{k}_1 = (0, 0, 1) $, roll is the angle toward $ \textbf{i}_1 = (1, 0, 0) $, and pitch is the angle toward $ \textbf{j}_1 = (0, 1, 0) $ given by
+$$ \text{yaw} = atan\left( \frac{\textbf{i}_{f2}}{ \textbf{i}_{f1}}\right), \ \ \ 
+\text{roll}  =  atan\left( \frac{\textbf{i}_{f3}}{ \textbf{i}_{f2}}\right), \ \ \ 
+\text{pitch} = atan\left( \frac{\textbf{i}_{f3}}{ \textbf{i}_{f1}}\right). $$
+Note that these angles handle only 180 degrees. 
+\begin{center}
+\includegraphics[width=14cm]{image/synth_camera.eps}
+\end{center}
+
+The paraperspective factorization is very sensitive. 
+
+\newpage
+
+\section{Hotel Sequences}
+
+The number of frames of the hotel sequences is 101 and 430 feature points were tracked and finally 382 feature points were used. 
+
+\subsection{Orthographic}
+
+\noindent
+\begin{center}
+  \begin{figure}[ht]
+  \begin{tabular}{@{} cc @{}}
+
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=8cm]{image/orthohotel_top3d.eps}
+    \\ (a) top view
+   \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=8cm]{image/orthohotel_upper3d.eps}
+    \\ (b) upper view
+   \end{center}
+  \end{minipage}    \\
+  \end{tabular}
+ \label{fig:color}
+ \end{figure} 
+\end{center}
+
+\subsection{Paraperspective}
+
+The metric constraints (\ref{parametric}) turned out a matrix to be non-positive definite, thus we applied an algorithm to create a positive definite matrix which approximates the original non-positive definite matrix \cite{Higham}\cite{cse252b}. Because of this approximation, the result of the paraperspective factorization resulted worse than the orthographic factorization. 
+
+\noindent
+\begin{center}
+  \begin{figure}[ht]
+  \begin{tabular}{@{} cc @{}}
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=8cm]{image/parapershotel_top3d.eps}
+    \\ (a) top view (resulted in no thickness)
+   \end{center}
+  \end{minipage}  &
+    \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=8cm]{image/parapershotel_side3d.eps}
+    \\ (b) side view
+   \end{center}
+  \end{minipage}    \\
+  \end{tabular}
+ \label{fig:color}
+ \end{figure} 
+\end{center}
+
+\subsection{Projective}
+
+\noindent
+\begin{center}
+  \begin{figure}[ht]
+  \begin{tabular}{@{} cc @{}}
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=8cm]{image/projhotel_top3d.eps}
+    \\ (a) top view
+       \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=8cm]{image/projhotel_upper3d.eps}
+    \\ (b) upper view
+   \end{center}
+  \end{minipage}    \\
+  \end{tabular}
+ \label{fig:color}
+ \end{figure} 
+\end{center}
+
+\section{Medusa Sequences}
+
+For the medusa sequences, the middle sequences of the medusa sequences which her frontal faces are shown were cropped. The number of frames is 70 and 260 feature tracking points were used. 
+
+\subsection{Orthographic}
+
+
+\noindent
+\begin{center}
+  \begin{figure}[ht]
+  \begin{tabular}{@{} cc @{}}
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=8cm]{image/orthomedusa_side3d.eps}
+    \\ (a) side view
+       \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=8cm]{image/orthomedusa_upper3d.eps}
+    \\ (b) upper view
+   \end{center}
+  \end{minipage}    \\
+  \end{tabular}
+ \label{fig:color}
+ \end{figure} 
+\end{center}
+
+\newpage
+
+\subsection{Parapespective}
+
+As the case for hotel sequences, the metric constraints (\ref{parametric}) turned out a matrix to be non-positive definite again. 
+
+\noindent
+\begin{center}
+  \begin{figure}[ht]
+  \begin{tabular}{@{} cc @{}}
+
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=8cm]{image/parapersmedusa_top3d.eps}
+    \\ (a) top view
+       \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=8cm]{image/parapersmedusa_side3d.eps}
+    \\ (b) side view
+   \end{center}
+  \end{minipage}    \\
+  \end{tabular}
+ \label{fig:color}
+ \end{figure} 
+\end{center}
+
+\subsection{Projective}
+
+\noindent
+\begin{center}
+  \begin{figure}[ht]
+  \begin{tabular}{@{} cc @{}}
+
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=8cm]{image/projmedusa_top3d.eps}
+    \\ (a) top view
+       \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=8cm]{image/projmedusa_side3d.eps}
+    \\ (b) side view
+   \end{center}
+  \end{minipage}    \\
+  \end{tabular}
+ \label{fig:color}
+ \end{figure} 
+\end{center}
+
+\newpage
+
+\chapter{Observation}
+
+Three factorization methods, the orthographic factorization  \cite{Tomasi}, the paraperspective factorization \cite{Poelman}, and the projective factorization \cite{Triggs}, were implemented. 
+
+The orthographic factorization recovered the 3D motions and structures satisfactory, however, the paraperspective factorization which is more dependent on good data could not recover the 3D motions and structures for given real scene image sequences. If desired data is obtained, the paraperspective assumption should be more robust for image sequences in which the object translates significantly toward or away from the camera. 
+We solved the metric transformation problem by solving linear systems, and it impoverished the estimation of motion and structure. This problem might be resolved by using another method such as Newton method to solve the metric transformation instead. 
+
+The projective factorization method also resulted poorer in terms of estimation of structures. 
+The projective factorization requires more estimation steps including the estimation of the fundamental matrix, and this could cause the poor results. 
+ 
+In conclusion, the simplest orthographic factorization was most robust in our experiments. However, this does not mean that the orthographic factorization is always best because the paraspective and projective facorization enables to estimate the camera motion in the direction of optical axis, too. 
+\\
+\\
+The program source codes are available at \url{http://note.sonots.com/?SciSoftware%2FFactorization}.
+
+ \begin{thebibliography}{99}
+ \bibitem{Tomasi} C. Tomasi and T. Kanade, \textit{Shape and motion from image streams -- a factorization method,}   International Journal of Computer Vision, 9(2):137--154, 1992. \url{http://www.pnas.org/cgi/reprint/90/21/9795.pdf} \url{http://www.hpl.hp.com/personal/Donald_Tanguay/cvrg/tomasiTr92Text.pdf}
+\bibitem{Poelman} C. J. Poelman and T. Kanade, \textit{A paraperspective factorization method for shape and motion recovery,} Pattern Analysis and Machine Intelligence, IEEE Transactions on , vol.19, no.3, pp.206-218, Mar 1997
+\bibitem{Triggs} Bill Triggs, \textit{Factorization methods for projective structure and motion.} In Proceeding of 1996 Computer Society Conference on Computer Vision and Pattern Recognition, pages 845--51, San Francisco, CA, USA, 1996. IEEE Comput. Soc. Press. \url{http://citeseer.ist.psu.edu/article/triggs96factorization.html}
+ \bibitem{Hartley} R. Hartley. In defence of the 8-point algorithm. In \textit{Proceedings of the 5th International Conference on Computer Vision, } pages 1064-1070, June 1995. 
+ \bibitem{Butterfield} S. Butterfield and D. Hogg. An Evaluation of the Normalised 8-Point Algorithm, 1998. \url{http://citeseer.comp.nus.edu.sg/butterfield95evaluation.html}
+\bibitem{Morita} T. Morita and T. Kanade, \textit{A Sequential Factorization Method for Recovering Shape and Motion from Image Streams, } Pattern Analysis and Machine Intelligence, IEEE Transactions on, vol. 19, no.8, pp.858-867, Aug 1997
+\bibitem{Higham} Nicholas J. Higham, \textit{Computing a nearest symmetric positive semidefinite matrix.} Linear Algebra and its Applications, 103. pp. 103-118. 1998
+\url{http://www.maths.man.ac.uk/~nareports/narep126.pdf}
+\bibitem{cse252b} \textit{CSE 252B: Computer Vision II Lecture 16 Structure from Motion from Tracked Points, UCSD}, pp.7. \url{http://www-cse.ucsd.edu/classes/sp04/cse252b/notes/lec16/lec16.pdf}
+\bibitem{KLT}  KLT: An Implementation of the
+Kanade-Lucas-Tomasi Feature Tracker \url{http://www.ces.clemson.edu/~stb/klt/}
+\bibitem{Hotel} CMU VASC Image Database: hotel \url{http://vasc.ri.cmu.edu//idb/html/motion/hotel/index.html}
+\bibitem{Castle} Leuven castle image sequence \url{http://www.cs.unc.edu/~marc/data/castlejpg.zip}
+\bibitem{Medusa} Sagalassos medusa head sequence \url{http://www.cs.unc.edu/~marc/medusa.dv}
+
+\end{thebibliography}
+
+
+\end{document}

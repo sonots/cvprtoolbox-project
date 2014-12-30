@@ -1,0 +1,143 @@
+* Image Matching
+Image matching is a terminology of methods to find corresponding points in different pictures
+This picture (book-scnene picture) shows the result of image matching obtained by SIFT method. 
+There are various applications of image matching, for example, point tracker, panoramic image stitching, 3D modeling
+#such as point tracking,
+#Because we can find matching points in two pictures, by repeating this process, we can extend it into point tracker. 
+#Another application is panoramic image stiching, 
+#because we can find corresponding points, we can overlap images. 
+#After blending these images, we can construct long, panoramic image. 
+#3D modeling, and so on. 
+To do image matching, we first have to find points, candidate points used in point matching
+A question is, What points should we use? 
+
+
+
+* Interest point detection
+There are several methods to detect interest points. 
+Interest points are robustly detected points,
+for example, corneres can be used as interest points. 
+Even if a image is rotated, translated, (partially) affine transformed, a corner is still a corner, it is robust. 
+
+
+
+
+
+* Harris corner detector
+There is a famous corner detection method, Harris corner detector. 
+SIFT can be also considered as one of interest point detectors. 
+--- next slide -- (change only picture)
+This picture shows a result of Harris corner detection
+
+
+
+
+
+
+* Defect of corner detector
+The corner is orientation invariant, but it is not invariant to scale. 
+This picture shows an example, 
+In the left case, these three reagions were considered as edges, but after scaling down the image, result in the right image, 
+they will be considered as a corner. 
+We need a scale invariant method. SIFT does!
+
+
+
+
+
+
+* SIFT
+SIFT is a method proposed by Lowe in 2004. 
+(Basic concepts were presented in a paper published in 1999, 
+but he summed up his works in 2004 and it became famous.)
+SIFT extracts interest point features from images.
+Interest point features mean not only location of points 
+but also features around the interest points. 
+The features can be robustly used for image matching. 
+
+There are mainly four steps in the computation of SIFT, 
+Scale-space construction,
+keypoint localization
+orientation assignment
+keypoint descriptor
+
+
+
+
+
+
+
+*Scale-space construction
+In this step, SIFT constructs Gaussian pyramids and Difference-of-Gaussian pyramids
+
+
+
+
+
+
+*Keypoint localization
+
+The next step is implemented by my partner, David
+
+
+
+
+
+
+========== David Start ============
+*Orientation Assignment
+Show  Image
+
+*Keypoint descriptor
+
+*Image matching
+Show Image
+
+========== David End ===============
+
+
+
+
+
+
+We invented a image matching method based on Harris corner detector, 
+and comparative experiments were performed. 
+
+*Comparison with Harris (Cont.)
+we compared the harris corner detector and the SIFT as an interest point detector. 
+That is ,the result obtained at the 2nd step, keypoint localization. 
+This upper left picture shows the result of Harris corner, 
+and its right picture shows the result applied to scaling downed image. and restored. 
+The lower left picture is the result of SIFT, and its right is 
+similarly for the scaling downed image. 
+It is not easy to see the scale invariant effect of SIFT by simply grancing this pictures, 
+but I computed distances from a point in small image to the point in the large scale image 
+whose coordinate is the nearest, and computed average. 
+Methods robust to scaling should have same coordinates in both image. 
+Thus, we can measure the scale invariant effectiveness like this. 
+The result says SIFT got about 4 and Harris got about 20. 
+
+
+
+
+
+
+
+*Comparison with Harris (Cont.)
+Again, comparison with Harris was performed, but this time is as image matching methods. 
+
+Next, experiments for scaling downed image were done. 
+The 1st picture shows the result of the Harris based method, 
+and 2nd picture shows the result obtained from SIFT. 
+Notice that correct matching should not have crossing lines. 
+This shows the scale-invariant propery of SIFT, and this is the point of SIFT. 
+
+Next, extension into point tracking was performed. 
+Let me swith again, my partner worked for this. 
+
+
+
+
+=========== David Start ===========
+* KLT, experiments, bad, good, ....
+ 

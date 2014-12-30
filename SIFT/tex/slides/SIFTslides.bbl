@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{mBrown03}
+{\sc M.~Brown and D.~Lowe}, {\em Recognising panoramas}, In Proceedings of IEEE
+  International Conference on Computer Vision,  (2003), p.~1.
+
+\bibitem{cHarris88}
+{\sc C.~Harris and M.~J. Stephens}, {\em A combined corner and edge detector},
+  In Alvey Vision Conference,  (1988), pp.~147--152.
+
+\bibitem{dLowe04}
+{\sc D.~G. Lowe}, {\em Distinctive image features from scale-invariant
+  keypoints}, International Journal of Computer Vision, 60 (2004), pp.~91--110.
+
+\bibitem{cTomasi91}
+{\sc C.~Tomasi and T.~Kanada}, {\em Detection and tracking of point features},
+  Carnegie Mellon University Technical Report CMU-CS-91-132,  (1991),
+  pp.~1--10.
+
+\end{thebibliography}

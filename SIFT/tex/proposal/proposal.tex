@@ -1,0 +1,124 @@
+\documentclass[article,oneside]{memoir}
+
+\usepackage{graphicx} % Add graphics capabilities
+\usepackage{booktabs} % ``Proper'' table layout
+\usepackage{amsmath}  % Better maths support
+%\usepackage[colorlinks=false,linkcolor=red]{hyperref} % Hyperlink capabilities
+\usepackage{url}
+
+\usepackage{memhfixc} % This package is required to resolve incompatibilities
+                      % with the memoir class & the hyperref package
+                      
+\setlength{\oddsidemargin}{ 20pt}
+\setlength{\textwidth}{440pt}
+\setlength{\topmargin}{ 0pt}
+\setlength{\headheight}{00pt}
+\setlength{\headsep}{40pt}
+\setlength{\textheight}{620pt}
+
+\title {ENEE631 Project 2 Proposal - Extracting Image Features using Scale Invariant Feature Transform (SIFT)}
+\author{Naotoshi Seo, David A. Schug}
+\date{April 23, 2007}
+
+\begin{document}
+
+\maketitle
+
+
+\chapter{Introduction}
+
+Image matching is a fundamental aspect of many problems in computer vision, including object or scene recognition, solving for 3D structure form multiple images, stereo correspondence, and motion tracking. Scale-invariant feature transform (or SIFT) proposed by David Lowe in 2003 \cite{SIFT} is an algorithm for extracting distinctive features from images that can be used to perform reliable matching between different views of an object or scene. The features are invariant to image scale, rotation, and partially invariant (i.e. robust) to change in 3D viewpoint, addition of noise, and change in illumination. They are well localized in both the spatial and frequency domains, reducing the probability of disruption by occlusion, clutter, or noise. Large numbers of features can be extracted from typical images with efficient algorithms. In addition, the features are highly distinctive, which allows a single feature to be correctly matched with high probability against a large database of features, providing a basis for object and scene recogition.
+
+\chapter{Methodology}
+
+\subsubsection{SIFT}
+
+The major steps in the computation of SIFT are \cite{SIFT}
+
+\begin{enumerate}
+\item \textbf{Scale-space extrema detection} - a specific type of blob detection where each pixel in the images is compared to its 8 neighbors and the 9 pixels each (corresponding pixel+8 neighbors) of the other pictures in the series.
+\item \textbf{Keypoint localization} - keypoints are chosen from the extrema in scale space.
+\item \textbf{Orientation assignment} - for each keypoint, in a 16x16 window, histograms of gradient directions are computed (using bilinear interpolation).
+\item \textbf{Keypoint descriptor} - representation in a 128-dimensional vector.
+\end{enumerate}
+
+\subsubsection{Keypoint matching}
+
+SIFT detects feature points in each image individually, thus we must find corresponding pairs in two images for uses in object recognition, structure from motion, stereo correspondence, and motion tracking. \cite{SIFT} also described how to do it. 
+
+\section{Individual Task Lists}
+
+We separated individual tasks as follows so that individual workloads are almost equivalent:
+\\
+
+\noindent \textbf{Naotoshi Seo}\\
+\noindent 
+1. Scale-space extrema detection\\
+	\indent 1. Gaussian and Difference-of-Gaussian (DoG) filter\\
+         \indent 2. Generate Gaussian and DoG pyramids\\
+2. Keypoint localization\\
+         \indent 1. Detect local extrema in the DoG pyramids\\
+         \indent 2. Remove low contrast extrema\\
+         \indent 3. Remove points which is matching with edge points\\
+
+\noindent \textbf{David A. Schug}\\
+\noindent 
+3. Orientation assignment\\
+\indent 1. gradient orientations in regions surrounding each keypoint.\\
+4. Keypoint descriptor\\
+\indent 1. representation in a 128-dimensional vector\\
+Keypoint matching\\
+\indent 1. In the sense of the nearest-neighbour
+
+\chapter{Extra Plans}
+
+We will work for some additional tasks if time allows. 
+
+\section{Panoramic Image Stitching}
+
+Panoramic image mosaicing has an extensive research literature and there are several commercial offerings that come bundled with today's digital camera. 
+Matthew Brown and David Lowe \cite{Panorama} presented an application of SIFT to fully automatic construction of panoramas in 2003.  Panoramic image mosaicing has following steps:
+
+%\begin{enumerate}
+%\item Extract SIFT features - for all $n$ images
+%\item Feature Matching - by $k$ nearest-beighbours
+%\item Image Matching - by RANSAC
+%\item Bundle Adjustment
+%\item Multi-band blending. 
+%\end{enumerate}
+\indent 1. Extract SIFT features - for all $n$ images\\
+\indent 2. Feature Matching - by $k$ nearest-beighbours\\
+\indent 3. Image Matching - by RANSAC\\
+\indent 4. Bundle Adjustment\\
+\indent 5. Multi-band blending. 
+
+\section{Structure from Motion}
+
+The structure from motion - recovering scene geometry and camera motion from a sequence of images - is an important task and has wide applicability in many tasks, such as navigation and robot manipulation. 
+We will use a factorization method developed by Tomasi and Kanade \cite{Tomasi} to recover shape and motion under an orthographic projection model. 
+This method requires to know tracking points in the image sequence, thus we will use SIFT as a tracking method for the purpose. 
+
+The factorization method is already implemented by the author, N. Seo \cite{Seo}, as a course project in ENEE731, University of Maryland, 2006. 
+
+\newpage
+
+ \begin{thebibliography}{99}
+
+\bibitem{SIFT}David G. Lowe, "Distinctive image features from scale-invariant keypoints," \textit{International Journal of Computer Vision,} 60, 2 (2004), pp. 91-110.
+\bibitem{Pyramid} P. J. Burt and E. H. Adelson. "The laplacian pyramid as a compact image code," \textit{IEEE Transactions on Communications}, COM-31(4):532-540, 1983.
+
+\textbf{For Application to Panoramic Image Stiching}
+
+\bibitem{Panorama} M. Brown and D. Lowe. "Recognising panoramas," \textit{In Proceedings of IEEE International Conference on Computer Vision}. IEEE Computer Society, 2003. 64
+\bibitem{TechnicalReport} H. Shum and R. Szeliski, "Panoramic Image Mosaics," Tech. Rep. MSR-TR-97-23, Microsoft Research, 1997.
+\bibitem{PyramidMosaic} P. J. Burt and E. H. Adelson. "A multiresolution spline with application to image mosaics," \textit{ACM Transactions on Graphics}, 2(4):217-236, 1983.  
+
+\textbf{For Application to Structure from Motion}
+
+ \bibitem{Tomasi} C. Tomasi and T. Kanade, "Shape and motion from image streams -- a factorization method,"   \textit{International Journal of Computer Vision}, 9(2):137--154, 1992. 
+\bibitem{Hotel} CMU VASC Image Database: hotel \url{http://vasc.ri.cmu.edu//idb/html/motion/hotel/index.html}
+\bibitem{Seo} Naotoshi Seo, "ENEE731 Project - Shape and motion from image streams: a factorization method," 2006. \url{http://note.sonots.com/?SciSoftware%2FFactorization}
+
+\end{thebibliography}
+
+\end{document}

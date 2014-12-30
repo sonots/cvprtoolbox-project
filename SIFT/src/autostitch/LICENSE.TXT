@@ -1,0 +1,15 @@
+
+LICENSE CONDITIONS
+
+Copyright (2005), University of British Columbia.
+
+Autostitch(TM) automatic panorama stitching software is being made available
+for evaluation purposes only. Any commercial use or resale of this software 
+requires a license agreement with the University of British Columbia.  
+For further details, contact Matthew Brown (mbrown[at]cs.ubc.ca) 
+or the University Industry Liason Office of the University of British Columbia.
+
+THE UNIVERSITY OF BRITISH COLUMBIA MAKES NO REPRESENTATIONS OR
+WARRANTIES OF ANY KIND CONCERNING THIS SOFTWARE.
+
+This license file must be retained with all copies of the software.

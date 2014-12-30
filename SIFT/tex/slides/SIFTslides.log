@@ -1,0 +1,581 @@
+This is pdfTeX, Version 3.141592-1.40.3 (MiKTeX 2.6) (preloaded format=platex 2007.5.17)  18 MAY 2007 12:17
+entering extended mode
+**SIFTslides
+(SIFTslides.tex
+LaTeX2e <2005/12/01>
+Loaded hyphenation patterns for american, polish.
+(powerdot.cls
+Document Class: powerdot 2005/09/19 v1.1 powerdot presentation class (HA,CE)
+\c@note=\count79
+\c@slide=\count80
+\c@pd@pause=\count81
+\c@pd@section=\count82
+\c@pd@overlay=\count83
+\c@pd@trivlist=\count84
+\c@pd@onslidedepth=\count85
+\pd@tba=\box26
+\pd@tbb=\box27
+\pd@body=\toks14
+\pd@bmout=\write3
+\pd@tocout=\write4
+\pd@frsep=\skip41
+\pd@colsep=\skip42
+\slidewidth=\skip43
+\slideheight=\skip44
+("C:\Program Files\MiKTeX 2.6\tex\latex\xkeyval\xkeyval.sty"
+Package: xkeyval 2006/11/18 v2.5f package option processing (HA)
+
+("C:\Program Files\MiKTeX 2.6\tex\generic\xkeyval\xkeyval.tex"
+\XKV@toks=\toks15
+\XKV@depth=\count86
+File: xkeyval.tex 2006/11/18 v2.5f key=value parser (HA)
+
+("C:\Program Files\MiKTeX 2.6\tex\generic\xkeyval\keyval.tex")))
+("C:\Program Files\MiKTeX 2.6\tex\latex\base\article.cls"
+Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.6\tex\latex\base\size10.clo"
+File: size10.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count87
+\c@section=\count88
+\c@subsection=\count89
+\c@subsubsection=\count90
+\c@paragraph=\count91
+\c@subparagraph=\count92
+\c@figure=\count93
+\c@table=\count94
+\abovecaptionskip=\skip45
+\belowcaptionskip=\skip46
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\base\size12.clo"
+File: size12.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\geometry\geometry.sty"
+Package: geometry 2002/07/08 v3.2 Page Geometry
+\Gm@cnth=\count95
+\Gm@cntv=\count96
+\c@Gm@tempcnt=\count97
+\Gm@bindingoffset=\dimen103
+\Gm@wd@mp=\dimen104
+\Gm@odd@mp=\dimen105
+\Gm@even@mp=\dimen106
+\Gm@dimlist=\toks16
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\geometry\geometry.cfg"))
+("C:\Program Files\MiKTeX 2.6\tex\latex\hyperref\hyperref.sty"
+Package: hyperref 2007/04/18 v6.76c Hypertext links for LaTeX
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\oberdiek\hycolor.sty"
+Package: hycolor 2007/04/11 v1.1 Code for color options of hyperref/bookmark (H
+O)
+)
+\@linkdim=\dimen107
+\Hy@linkcounter=\count98
+\Hy@pagecounter=\count99
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\hyperref\pd1enc.def"
+File: pd1enc.def 2007/04/18 v6.76c Hyperref: PDFDocEncoding definition (HO)
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\00miktex\hyperref.cfg"
+File: hyperref.cfg 2006/02/14 v1.1 MiKTeX 'hyperref' configuration
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2007/04/11 v2.5 Connects package keyval with LaTeX options (
+HO)
+)
+Package hyperref Info: Option `setpagesize' set `false' on input line 2438.
+Package hyperref Info: Option `pageanchor' set `false' on input line 2438.
+Package hyperref Info: Option `bookmarks' set `false' on input line 2438.
+Package hyperref Info: Hyper figures OFF on input line 2488.
+Package hyperref Info: Link nesting OFF on input line 2493.
+Package hyperref Info: Hyper index ON on input line 2496.
+Package hyperref Info: Plain pages OFF on input line 2503.
+Package hyperref Info: Backreferencing OFF on input line 2508.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks OFF on input line 2664.
+("C:\Program Files\MiKTeX 2.6\tex\latex\ltxmisc\url.sty"
+\Urlmuskip=\muskip10
+Package: url 2005/06/27  ver 3.2  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 2813.
+\Fld@menulength=\count100
+\Field@Width=\dimen108
+\Fld@charsize=\dimen109
+\Choice@toks=\toks17
+\Field@toks=\toks18
+Package hyperref Info: Hyper figures OFF on input line 3297.
+Package hyperref Info: Link nesting OFF on input line 3302.
+Package hyperref Info: Hyper index ON on input line 3305.
+Package hyperref Info: backreferencing OFF on input line 3312.
+Package hyperref Info: Link coloring OFF on input line 3317.
+\Hy@abspage=\count101
+\c@Item=\count102
+\c@Hfootnote=\count103
+)
+*hyperref using driver hdvips*
+("C:\Program Files\MiKTeX 2.6\tex\latex\hyperref\hdvips.def"
+File: hdvips.def 2007/04/18 v6.76c Hyperref driver for dvips
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\hyperref\pdfmark.def"
+File: pdfmark.def 2007/04/18 v6.76c Hyperref definitions for pdfmark specials
+\pdf@docset=\toks19
+\pdf@box=\box28
+\pdf@toks=\toks20
+\pdf@defaulttoks=\toks21
+\Fld@listcount=\count104
+))
+("C:\Program Files\MiKTeX 2.6\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\graphics\graphics.sty"
+Package: graphics 2006/02/20 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2005/12/29 v1.2 MiKTeX 'graphics' configuration
+)
+Package graphics Info: Driver file: dvips.def on input line 90.
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\graphics\dvips.def"
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen110
+\Gin@req@width=\dimen111
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\pstricks\pstricks.sty"
+Package: pstricks 2006/08/10 v0.32 LaTeX wrapper for `PSTricks' (RN,HV)
+
+("C:\Program Files\MiKTeX 2.6\tex\generic\pstricks\pstricks.tex"
+`PSTricks' v1.15  <2006/12/22> (tvz)
+\pst@dima=\dimen112
+\pst@dimb=\dimen113
+\pst@dimc=\dimen114
+\pst@dimd=\dimen115
+\pst@dimg=\dimen116
+\pst@dimh=\dimen117
+\pst@hbox=\box29
+\pst@boxg=\box30
+\pst@cnta=\count105
+\pst@cntb=\count106
+\pst@cntc=\count107
+\pst@cntd=\count108
+\pst@cntg=\count109
+\pst@cnth=\count110
+\pst@toks=\toks22
+("C:\Program Files\MiKTeX 2.6\tex\generic\pstricks\pstricks.con")
+\psunit=\dimen118
+\psxunit=\dimen119
+\psyunit=\dimen120
+\pslinewidth=\dimen121
+\pst@customdefs=\toks23
+\pslinearc=\dimen122
+\everypsbox=\toks24
+\psframesep=\dimen123
+\pslabelsep=\dimen124
+\psk@shift=\dimen125
+\pst@shift=\dimen126
+\theoverlaybox=\box31
+)
+File: pstricks.tex 2006/12/22 v1.15 `PSTricks' (tvz)
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\00miktex\color.cfg"
+File: color.cfg 2005/12/29 v1.1 MiKTeX 'color' configuration
+)
+Package xcolor Info: Package option `override' ignored on input line 216.
+Package xcolor Info: Driver file: dvips.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+))
+("C:\Program Files\MiKTeX 2.6\tex\latex\enumitem\enumitem.sty"
+Package: enumitem 2007/03/12 v2.0 Customized lists
+\enit@toks=\toks25
+\labelindent=\skip47
+\enit@outerparindent=\dimen127
+\enitdp@desc=\count111
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count112
+\float@exts=\toks26
+\float@box=\box32
+\@float@everytoks=\toks27
+\@floatcapt=\box33
+)
+\@float@every@table=\toks28
+\@float@every@figure=\toks29
+ (powerdot-sailor.sty
+Package: powerdot-sailor 2005/09/19 v1.0 sailor style (MH,HA)
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\tools\calc.sty"
+Package: calc 2005/08/06 v4.2 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count113
+\calc@Bcount=\count114
+\calc@Adimen=\dimen128
+\calc@Bdimen=\dimen129
+\calc@Askip=\skip48
+\calc@Bskip=\skip49
+LaTeX Info: Redefining \setlength on input line 75.
+LaTeX Info: Redefining \addtolength on input line 76.
+\calc@Ccount=\count115
+\calc@Cskip=\skip50
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2002/01/22 v2.2d
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2001/10/25 v2.2f
+\@emptytoks=\toks30
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 132.
+))
+("C:\Program Files\MiKTeX 2.6\tex\latex\pst-grad\pst-grad.sty"
+Package: pst-grad 2004/07/15 package wrapper for pst-grad.tex (hv)
+
+("C:\Program Files\MiKTeX 2.6\tex\generic\pst-grad\pst-grad.tex"
+("C:\Program Files\MiKTeX 2.6\tex\generic\xkeyval\pst-xkey.tex"
+File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
+)
+`pst-plot' v1.05, 2006/11/04 (tvz,dg,hv))
+File: pst-grad.tex 2006/11/04 1.05 `pst-grad' (tvz)
+)))
+("C:\Program Files\MiKTeX 2.6\tex\latex\base\latexsym.sty"
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\MiKTeX 2.6\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks31
+\ex@=\dimen130
+))
+("C:\Program Files\MiKTeX 2.6\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen131
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count116
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count117
+\leftroot@=\count118
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count119
+\DOTSCASE@=\count120
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box34
+\strutbox@=\box35
+\big@size=\dimen132
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count121
+\c@MaxMatrixCols=\count122
+\dotsspace@=\muskip11
+\c@parentequation=\count123
+\dspbrk@lvl=\count124
+\tag@help=\toks32
+\row@=\count125
+\column@=\count126
+\maxfields@=\count127
+\andhelp@=\toks33
+\eqnshift@=\dimen133
+\alignsep@=\dimen134
+\tagshift@=\dimen135
+\tagwidth@=\dimen136
+\totwidth@=\dimen137
+\lineht@=\dimen138
+\@envbody=\toks34
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks35
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\natbib\natbib.sty"
+Package: natbib 2007/02/05 8.0 (PWD)
+\bibhang=\skip54
+\bibsep=\skip55
+LaTeX Info: Redefining \cite on input line 602.
+\c@NAT@ctr=\count128
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\natbib\bibentry.sty"
+Package: bibentry 2000/06/20 1.4 (PWD)
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\subfigure\subfigure.sty"
+Package: subfigure 2002/07/30 v2.1.4 subfigure package
+\subfigtopskip=\skip56
+\subfigcapskip=\skip57
+\subfigcaptopadj=\dimen139
+\subfigbottomskip=\skip58
+\subfigcapmargin=\dimen140
+\subfiglabelskip=\skip59
+\c@subfigure=\count129
+\c@lofdepth=\count130
+\c@subtable=\count131
+\c@lotdepth=\count132
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+("C:\Program Files\MiKTeX 2.6\tex\latex\subfigure\subfigure.cfg")
+\subfig@top=\skip60
+\subfig@bottom=\skip61
+)
+(SIFTslides.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 24.
+ ("C:\Program Files\MiKTeX 2.6\tex\latex\psnfss\ot1phv.fd"
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+LaTeX Font Info:    Font shape `OT1/phv/m/n' will be
+(Font)              scaled to size 10.20007pt on input line 24.
+
+Package hyperref Info: Link coloring OFF on input line 24.
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\hyperref\nameref.sty"
+Package: nameref 2007/04/09 v2.29 Cross-referencing by name of section
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\oberdiek\refcount.sty"
+Package: refcount 2006/02/20 v3.0 Data extraction from references (HO)
+)
+\c@section@level=\count133
+)
+LaTeX Info: Redefining \ref on input line 24.
+LaTeX Info: Redefining \pageref on input line 24.
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+(SIFTslides.bm) (SIFTslides.bm) (SIFTslides.toc)
+LaTeX Font Info:    Font shape `OT1/phv/m/n' will be
+(Font)              scaled to size 6.80005pt on input line 25.
+LaTeX Font Info:    Font shape `OT1/phv/m/n' will be
+(Font)              scaled to size 14.6881pt on input line 25.
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 25.
+LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
+(Font)              scaled to size 14.6881pt on input line 25.
+LaTeX Font Info:    Try loading font information for U+msa on input line 25.
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2002/01/19 v2.2g AMS font definitions
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 25.
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2002/01/19 v2.2g AMS font definitions
+)
+LaTeX Font Info:    Try loading font information for U+lasy on input line 25.
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\base\ulasy.fd"
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+LaTeX Font Info:    Font shape `OT1/phv/m/n' will be
+(Font)              scaled to size 9.30756pt on input line 25.
+ [1
+
+]
+File: ../../images/BookSceneMatchLowe.eps Graphic file (type eps)
+
+<../../images/BookSceneMatchLowe.eps> [2]
+File: ../../images/wadham001.eps Graphic file (type eps)
+ <../../images/wadham001.eps> [3]
+File: ../../images/Harriswadham001.eps Graphic file (type eps)
+
+<../../images/Harriswadham001.eps> [4]
+File: ../HarrisScaleVariant.eps Graphic file (type eps)
+ <../HarrisScaleVariant.eps> [5]
+
+Package natbib Warning: Citation `dLowe04' undefined on input line 84.
+
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 84.
+LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
+(Font)              scaled to size 10.20007pt on input line 84.
+[6]
+File: ../../images/LenaGaussianPyramid.eps Graphic file (type eps)
+ <../../images/LenaGaussianPyramid.eps> [7]
+File: ../../images/LenaDoGPyramid.eps Graphic file (type eps)
+
+<../../images/LenaDoGPyramid.eps> [8]
+File: ../Extrema.eps Graphic file (type eps)
+ <../Extrema.eps> [9]
+File: ../../images/LenaKeypointExtrema.eps Graphic file (type eps)
+
+<../../images/LenaKeypointExtrema.eps> [10]
+File: ../../images/LenaKeypointRemoveLowContrast.eps Graphic file (type eps)
+
+<../../images/LenaKeypointRemoveLowContrast.eps> [11]
+File: ../../images/LenaKeypointRemoveEdge.eps Graphic file (type eps)
+
+<../../images/LenaKeypointRemoveEdge.eps> [12]
+File: ../../images/LenaOrientation.eps Graphic file (type eps)
+
+<../../images/LenaOrientation.eps> [13]
+File: ../KeypointDescriptor.eps Graphic file (type eps)
+ <../KeypointDescriptor.eps> [14]
+File: ../../images/BookSceneMatchLowe.eps Graphic file (type eps)
+
+<../../images/BookSceneMatchLowe.eps> [15]
+File: ../../images/Harriswadham001.eps Graphic file (type eps)
+ <../../images/Harriswadham001.eps>
+File: ../../images/Harriswadham001S.eps Graphic file (type eps)
+
+<../../images/Harriswadham001S.eps>
+File: ../../images/SIFTwadham001.eps Graphic file (type eps)
+ <../../images/SIFTwadham001.eps>
+File: ../../images/SIFTwadham001S.eps Graphic file (type eps)
+
+<../../images/SIFTwadham001S.eps>
+Overfull \hbox (12.0pt too wide) in paragraph at lines 195--195
+ [] 
+ []
+
+[16]
+File: ../../images/HarrisScaleInvariantTest05.eps Graphic file (type eps)
+ <../../images/HarrisScaleInvariantTest05.eps>
+File: ../../images/SIFTScaleInvariantTest05.eps Graphic file (type eps)
+
+<../../images/SIFTScaleInvariantTest05.eps>
+Overfull \hbox (11.99998pt too wide) in paragraph at lines 227--227
+ [] 
+ []
+
+[17]
+File: ../../images/hotel/hotel1.eps Graphic file (type eps)
+ <../../images/hotel/hotel1.eps>
+File: ../../images/hotel/hotel50.eps Graphic file (type eps)
+ <../../images/hotel/hotel50.eps>
+File: ../../images/hotel/hotel100.eps Graphic file (type eps)
+
+<../../images/hotel/hotel100.eps>
+Overfull \hbox (17.77652pt too wide) in paragraph at lines 260--260
+ [] 
+ []
+
+[18]
+File: ../../images/hotel/hoteltracked100.eps Graphic file (type eps)
+ <../../images/hotel/hoteltracked100.eps>
+File: ../../images/hotel/klttrack.eps Graphic file (type eps)
+
+<../../images/hotel/klttrack.eps>
+Overfull \hbox (12.0pt too wide) in paragraph at lines 283--283
+ [] 
+ []
+
+[19]
+File: ../../images/castle/castle001.eps Graphic file (type eps)
+ <../../images/castle/castle001.eps>
+File: ../../images/castle/castle002.eps Graphic file (type eps)
+ <../../images/castle/castle002.eps>
+File: ../../images/castle/castle013.eps Graphic file (type eps)
+
+<../../images/castle/castle013.eps>
+Overfull \hbox (17.77652pt too wide) in paragraph at lines 314--314
+ [] 
+ []
+
+[20]
+File: ../../images/castle/SIFTcastle.eps Graphic file (type eps)
+ <../../images/castle/SIFTcastle.eps>
+File: ../../images/castle/KLTcastle.eps Graphic file (type eps)
+ <../../images/castle/KLTcastle.eps>
+Overfull \hbox (12.0pt too wide) in paragraph at lines 337--337
+ [] 
+ []
+
+[21]
+File: ../../images/KIM/KIM3.eps Graphic file (type eps)
+ <../../images/KIM/KIM3.eps>
+File: ../../images/KIM/KIM2.eps Graphic file (type eps)
+ <../../images/KIM/KIM2.eps>
+File: ../../images/KIM/KIM1.eps Graphic file (type eps)
+
+<../../images/KIM/KIM1.eps>
+Overfull \hbox (27.30418pt too wide) in paragraph at lines 368--368
+ [] 
+ []
+
+[22]
+File: ../../images/KIM/pano.eps Graphic file (type eps)
+ <../../images/KIM/pano.eps> [23] (SIFTslides.bbl)
+
+Package natbib Warning: Citation `dLowe04' undefined on input line 393.
+
+LaTeX Font Info:    Font shape `OT1/phv/m/sc' will be
+(Font)              scaled to size 10.20007pt on input line 393.
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <12> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 393.
+LaTeX Font Info:    Font shape `OT1/phv/m/sl' will be
+(Font)              scaled to size 10.20007pt on input line 393.
+
+Package natbib Warning: Citation `cHarris88' undefined on input line 393.
+
+
+Package natbib Warning: Citation `cTomasi91' undefined on input line 393.
+
+
+Package natbib Warning: Citation `mBrown03' undefined on input line 393.
+
+
+Package natbib Warning: There were undefined citations.
+
+[24] (SIFTslides.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 7103 strings out of 95362
+ 91032 string characters out of 1186138
+ 178742 words of memory out of 1181971
+ 9746 multiletter control sequences out of 60000
+ 13437 words of font info for 43 fonts, out of 1000000 for 2000
+ 34 hyphenation exceptions out of 8191
+ 44i,15n,70p,275b,740s stack positions out of 5000i,500n,10000p,200000b,32768s
+
+Output written on SIFTslides.dvi (24 pages, 81936 bytes).

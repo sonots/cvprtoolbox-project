@@ -1,0 +1,29 @@
+\pdbookmark{sec.1}{}{2}{Overview}
+\pdbookmark{sec.1.slide}{sec.1}{2}{Image Matching}
+\pdbookmark{sec.1.slide}{sec.1}{3}{Interest point detector}
+\pdbookmark{sec.1.slide}{sec.1}{4}{Harris corner detector}
+\pdbookmark{sec.1.slide}{sec.1}{5}{Defect of corner detector}
+\pdbookmark{sec.2}{}{6}{Scale Invariant Feature Transform}
+\pdbookmark{sec.2.slide}{sec.2}{6}{SIFT Overview}
+\pdbookmark{sec.2.slide}{sec.2}{7}{Scale Space Construction}
+\pdbookmark{sec.2.slide}{sec.2}{8}{Scale Space Construction (Cont.)}
+\pdbookmark{sec.2.slide}{sec.2}{9}{Keypoint Localization}
+\pdbookmark{sec.2.slide}{sec.2}{10}{Keypoint Localization (Cont.)}
+\pdbookmark{sec.2.slide}{sec.2}{11}{Keypoint Localization (Cont.)}
+\pdbookmark{sec.2.slide}{sec.2}{12}{Keypoint Localization (Cont.)}
+\pdbookmark{sec.2.slide}{sec.2}{13}{Orientation Assignment}
+\pdbookmark{sec.2.slide}{sec.2}{14}{Keypoint Descriptor}
+\pdbookmark{sec.2.slide}{sec.2}{15}{Image Matching}
+\pdbookmark{sec.3}{}{16}{Comparison with Harris}
+\pdbookmark{sec.3.slide}{sec.3}{16}{Comparison with Harris}
+\pdbookmark{sec.3.slide}{sec.3}{17}{Comparison with Harris (Cont.)}
+\pdbookmark{sec.4}{}{18}{Tracking}
+\pdbookmark{sec.4.slide}{sec.4}{18}{Extension into Tracking}
+\pdbookmark{sec.4.slide}{sec.4}{19}{Result}
+\pdbookmark{sec.4.slide}{sec.4}{20}{The 2nd Experiment}
+\pdbookmark{sec.4.slide}{sec.4}{21}{Result and comparison with KLT Feature Tracking}
+\pdbookmark{sec.5}{}{22}{Another application}
+\pdbookmark{sec.5.slide}{sec.5}{22}{Another example of interesting application}
+\pdbookmark{sec.5.slide}{sec.5}{23}{Another example of interesting application}
+\pdbookmark{sec.6}{}{24}{References}
+\pdbookmark{sec.6.slide}{sec.6}{24}{Selected References}

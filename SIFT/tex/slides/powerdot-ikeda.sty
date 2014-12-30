@@ -1,0 +1,215 @@
+%%
+%% This is file `powerdot-ikeda.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% powerdot.dtx  (with options: `pdikeda')
+%% 
+%% ----------------------------------------------------------
+%% Copyright (C) 2005 Hendri Adriaens and Christopher Ellison
+%% ----------------------------------------------------------
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%
+%% This work has the LPPL maintenance status "maintained".
+%%
+%% This Current Maintainer of this work is Christopher Ellison.
+%%
+%% This work consists of all files listed in manifest.txt.
+%%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{powerdot-ikeda}[2005/09/19 v1.1 ikeda style (CE,HA)]
+\RequirePackage{calc}
+\RequirePackage{pifont}
+\definecolor{pdplum}{rgb}{.435,.031,.165}
+\definecolor{pddarkblue}{rgb}{.051,.094,.29}
+\definecolor{pdgogreen}{rgb}{.051,.329,.29}
+\definecolor{pdoffwhite}{rgb}{.941,.98,1}
+\pddefinetemplate{titleslide}{
+  titlefont=\Large\bfseries\centering,
+  textpos={.13\slidewidth,.7\slideheight},
+  textwidth=.75\slidewidth,
+  textfont=\centering,
+  textheight=.56\slideheight
+}{%
+  \psframe[linestyle=none,fillstyle=solid,linewidth=0pt,%
+    fillcolor=pdplum](0,\slideheight)(\slidewidth,0)%
+  \psframe[linestyle=none,fillstyle=solid,fillcolor=pddarkblue]%
+    (.05\slidewidth,.95\slideheight)(.95\slidewidth,.05\slideheight)%
+  \psline[linestyle=solid,linecolor=pdoffwhite,linewidth=.01]%
+    (.1\slidewidth,.1\slideheight)(.1\slidewidth,.9\slideheight)%
+  \psline[linestyle=solid,linecolor=pdoffwhite,linewidth=.01]%
+    (.9\slidewidth,.1\slideheight)(.9\slidewidth,.9\slideheight)%
+  \pspolygon[linestyle=none,framearc=.3,fillstyle=vlines*,fillcolor=pdplum,%
+    hatchcolor=pdoffwhite,hatchwidth=.1\pslinewidth,hatchsep=.005\linewidth]%
+    (.1\slidewidth,.1\slideheight)(.25\slidewidth,.07\slideheight)%
+    (.5\slidewidth,.1\slideheight)(.75\slidewidth,.13\slideheight)%
+    (.9\slidewidth,.1\slideheight)%
+  \pspolygon[linestyle=none,framearc=.3,fillstyle=hlines*,fillcolor=pdplum,%
+    hatchcolor=pdoffwhite,hatchwidth=.1\pslinewidth,hatchsep=.005\linewidth]%
+    (.1\slidewidth,.9\slideheight)(.25\slidewidth,.93\slideheight)%
+    (.5\slidewidth,.9\slideheight)(.75\slidewidth,.87\slideheight)%
+    (.9\slidewidth,.9\slideheight)%
+}
+\pddefinetemplate{basic}{
+  titlehook=Bc,titlefont=\large\bfseries\centering,
+  tocslidesep=.6ex,
+  toctcolor=pdoffwhite,
+  tochlcolor=pddarkblue,
+  tochltcolor=pdoffwhite,
+  ifsetup=portrait,
+  tocsecsep=.6ex,
+  textpos={.05\slidewidth,.83\slideheight},
+  textwidth=.9\slidewidth,
+  lfpos={.03\slidewidth,.025\slideheight},
+  rfpos={.97\slidewidth,.025\slideheight},
+  stochook=tr,stocpos={.47\slidewidth,.15\slideheight},
+  stocfont=\tiny\raggedleft,
+  ntocpos={.53\slidewidth,.15\slideheight},
+  ifsetup=landscape,
+  textpos={.2\slidewidth,.84\slideheight},
+  textwidth=.75\slidewidth,
+  lfpos={.19\slidewidth,.025\slideheight},
+  rfpos={.97\slidewidth,.025\slideheight}
+}{%
+  \psframe*[linecolor=pddarkblue,linewidth=0pt]%
+    (0,0)(\slidewidth,\slideheight)%
+}
+\pddefinetemplate[basic]{slide}{
+  ifsetup=landscape,
+  titlewidth=.75\slidewidth,
+  titlepos={.575\slidewidth,.92\slideheight},
+  tocpos={.01\slidewidth,.83\slideheight},
+  tocwidth=.14\slidewidth,
+  tocsecm={\psline[linewidth=.5pt,linecolor=pddarkblue](-.05,-.05)(.143\slidewidth,-.05)},
+  textheight=.72\slideheight,
+  ifsetup=portrait,
+  titlepos={.5\slidewidth,.88\slideheight},
+  titlewidth=.95\slidewidth,
+  textheight=.64\slideheight
+}{%
+  \psset{linestyle=none}%
+  \pdifsetup{landscape}{%
+    \psframe[fillstyle=solid,fillcolor=pdplum,linewidth=0pt]%
+      (0,0)(.16\slidewidth,\slideheight)%
+    \setlength\@tempdima{.16\slidewidth-.4cm}%
+    \setlength\@tempdimb{.97\slideheight-.8cm}%
+    \psframe[fillstyle=solid,fillcolor=pddarkblue,linewidth=0pt]%
+      (.16\slidewidth,.97\slideheight)(\@tempdima,\@tempdimb)%
+    \setlength\@tempdima{.16\slidewidth+.4cm}%
+    \psframe[fillstyle=solid,fillcolor=pdplum,linewidth=0pt]%
+      (.16\slidewidth,.97\slideheight)(\@tempdima,\@tempdimb)%
+    \pspolygon[framearc=.3,fillstyle=solid,fillcolor=pddarkblue]%
+      (0,.935\slideheight)(.02\slidewidth,.945\slideheight)%
+      (.065\slidewidth,.935\slideheight)(.11\slidewidth,.925\slideheight)%
+      (.13\slidewidth,.935\slideheight)%
+    \pspolygon[framearc=.3,fillstyle=hlines*,fillcolor=pdplum,%
+      hatchcolor=pdoffwhite,hatchwidth=.1\pslinewidth,hatchsep=.005\linewidth]%
+      (.185\slidewidth,.09\slideheight)(.335\slidewidth,.06\slideheight)%
+      (.58\slidewidth,.09\slideheight)%
+    \pspolygon[framearc=.3,fillstyle=vlines*,fillcolor=pdplum,%
+      hatchcolor=pdoffwhite,hatchwidth=.1\pslinewidth,hatchsep=.005\linewidth]%
+      (.58\slidewidth,.09\slideheight)(.825\slidewidth,.06\slideheight)%
+      (.975\slidewidth,.09\slideheight)%
+  }{%
+    \pspolygon[framearc=.3,fillstyle=vlines*,fillcolor=pdplum,%
+      hatchcolor=pdoffwhite,hatchwidth=.1\pslinewidth,hatchsep=.005\linewidth]%
+      (.02\slidewidth,.95\slideheight)(.17\slidewidth,.98\slideheight)%
+      (.5\slidewidth,.95\slideheight)%
+    \pspolygon[framearc=.3,fillstyle=hlines*,fillcolor=pdplum,%
+      hatchcolor=pdoffwhite,hatchwidth=0.1\pslinewidth,hatchsep=.005\linewidth]%
+      (.5\slidewidth,.95\slideheight)(.82\slidewidth,.98\slideheight)%
+      (.98\slidewidth,.95\slideheight)%
+    \psframe[fillstyle=solid,fillcolor=pdplum,linewidth=0pt]%
+      (0,0)(\slidewidth,.17\slideheight)%
+    \pspolygon[framearc=.3,fillstyle=vlines*,fillcolor=pdplum,%
+      hatchcolor=pddarkblue,hatchwidth=.1\pslinewidth,hatchsep=.002\linewidth]%
+      (.05\slidewidth,.1\slideheight)(.08\slidewidth,.08\slideheight)%
+      (.14\slidewidth,.1\slideheight)(.20\slidewidth,.12\slideheight)%
+      (.23\slidewidth,.1\slideheight)%
+    \pspolygon[framearc=.3,fillstyle=hlines*,fillcolor=pdplum,%
+      hatchcolor=pddarkblue,hatchwidth=.1\pslinewidth,hatchsep=.002\linewidth]%
+      (.77\slidewidth,.1\slideheight)(.80\slidewidth,.12\slideheight)%
+      (.86\slidewidth,.1\slideheight)(.92\slidewidth,.08\slideheight)%
+      (.95\slidewidth,.1\slideheight)%
+  }%
+}
+\pddefinetemplate[basic]{wideslide}{
+  lfpos={.03\slidewidth,.025\slideheight},
+  titlewidth=.95\slidewidth,
+  ifsetup=landscape,
+  titlepos={.5\slidewidth,.88\slideheight},
+  textpos={.025\slidewidth,.84\slideheight},
+  textheight=.72\slideheight,
+  ifsetup=portrait,
+  titlepos={.5\slidewidth,.92\slideheight},
+  textpos={.025\slidewidth,.87\slideheight},
+  textheight=.68\slideheight
+}{%
+  \psset{linestyle=none,framearc=.3}%
+  \pdifsetup{landscape}{%
+    \pspolygon[fillstyle=vlines*,fillcolor=pdplum,%
+      hatchcolor=pdoffwhite,hatchwidth=.1\pslinewidth,hatchsep=.005\linewidth]%
+      (.02\slidewidth,.95\slideheight)(.17\slidewidth,.98\slideheight)%
+      (.5\slidewidth,.95\slideheight)%
+    \pspolygon[fillstyle=hlines*,fillcolor=pdplum,%
+      hatchcolor=pdoffwhite,hatchwidth=.1\pslinewidth,hatchsep=.005\linewidth]%
+      (.5\slidewidth,.95\slideheight)(.83\slidewidth,.98\slideheight)%
+      (.98\slidewidth,.95\slideheight)%
+    \pspolygon[fillstyle=hlines*,fillcolor=pdplum,%
+      hatchcolor=pdoffwhite,hatchwidth=.1\pslinewidth,hatchsep=.005\linewidth]%
+      (.02\slidewidth,.09\slideheight)(.17\slidewidth,.06\slideheight)%
+      (.5\slidewidth,.09\slideheight)%
+    \pspolygon[fillstyle=vlines*,fillcolor=pdplum,%
+      hatchcolor=pdoffwhite,hatchwidth=.1\pslinewidth,hatchsep=.005\linewidth]%
+      (.5\slidewidth,.09\slideheight)(.83\slidewidth,.06\slideheight)%
+      (.98\slidewidth,.09\slideheight)%
+  }{%
+    \psframe[fillstyle=solid,fillcolor=pdplum,framearc=0,%
+      linewidth=0pt](0,0)(\slidewidth,.17\slideheight)%
+    \pspolygon[fillstyle=vlines*,fillcolor=pdplum,%
+      hatchcolor=pddarkblue,hatchwidth=.1\pslinewidth,hatchsep=.002\linewidth]%
+      (.05\slidewidth,.1\slideheight)(.08\slidewidth,.08\slideheight)%
+      (.14\slidewidth,.1\slideheight)(.2\slidewidth,.12\slideheight)%
+      (.23\slidewidth,.1\slideheight)%
+    \pspolygon[fillstyle=hlines*,fillcolor=pdplum,%
+      hatchcolor=pddarkblue,hatchwidth=.1\pslinewidth,hatchsep=.002\linewidth]%
+      (.77\slidewidth,.1\slideheight)(.8\slidewidth,.12\slideheight)%
+      (.86\slidewidth,.1\slideheight)(.92\slidewidth,.08\slideheight)%
+      (.95\slidewidth,.1\slideheight)%
+  }%
+}
+\pddefinetemplate[slide]{sectionslide}{
+  titlehook=c,titlefont=\large\bfseries\centering,
+  ifsetup=landscape,
+  titlepos={.575\slidewidth,.55\slideheight},
+  titlewidth=.75\slidewidth,
+  ifsetup=portrait,
+  titlepos={.5\slidewidth,.55\slideheight},
+  titlewidth=.9\slidewidth
+}{}
+\pddefinetemplate[wideslide]{sectionwideslide}{
+  titlehook=c,titlefont=\large\bfseries\centering,
+  titlepos={.5\slidewidth,.55\slideheight},
+  titlewidth=.9\slidewidth
+}{}
+\setkeys[pd]{section}{sectemp=sectionslide,widesectemp=sectionwideslide}
+\def\labelitemi{\color{pdplum}\footnotesize\ding{110}}
+\def\labelitemii{\color{pdgogreen}\small\ding{115}}
+\def\labelitemiii{\color{pdplum}\tiny\ding{110}}
+\def\labelitemiv{\color{pdgogreen}\tiny\ding{115}}
+\pdsetup{
+  list={labelsep=1em,leftmargin=*,itemsep=0pt,topsep=5pt,parsep=0pt}
+}
+\color{pdoffwhite}
+\def\rmdefault{cmss}
+\endinput
+%%
+%% End of file `powerdot-ikeda.sty'.

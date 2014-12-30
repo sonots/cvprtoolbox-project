@@ -1,0 +1,45 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.4)
+The top-level auxiliary file: SIFTslides.aux
+The style file: siam.bst
+Database file #1: ../report/SIFT.bib
+You've used 4 entries,
+            2030 wiz_defined-function locations,
+            525 strings with 4267 characters,
+and the built_in function-call counts, 1321 in all, are:
+= -- 127
+> -- 46
+< -- 0
++ -- 19
+- -- 14
+* -- 99
+:= -- 209
+add.period$ -- 4
+call.type$ -- 4
+change.case$ -- 19
+chr.to.int$ -- 0
+cite$ -- 4
+duplicate$ -- 64
+empty$ -- 99
+format.name$ -- 14
+if$ -- 289
+int.to.chr$ -- 0
+int.to.str$ -- 4
+missing$ -- 4
+newline$ -- 15
+num.names$ -- 8
+pop$ -- 15
+preamble$ -- 1
+purify$ -- 15
+quote$ -- 0
+skip$ -- 57
+stack$ -- 0
+substring$ -- 89
+swap$ -- 28
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 16
+warning$ -- 0
+while$ -- 15
+width$ -- 5
+write$ -- 38
