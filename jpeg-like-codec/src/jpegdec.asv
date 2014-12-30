@@ -1,0 +1,83 @@
+function O = jpegdec(zigzag)
+% JPEG-like  decoder
+%
+%  [O] = jpegenc
+%
+% Input arguments ([]s are optional):
+%  zigzag (0 or 1): flag to use zigzag scannning. Default is 1 (use). 
+%
+% Output arguments ([]s are optional):
+%  O   (matrix) of size NxN. Decoded Image
+%
+% Future Work: 
+%  Support NxM image
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : March 2007
+if nargin < 1,
+    zigzag = 1;
+end
+% entropy decoding and load propeties
+path = 'Cr_';
+copyfile(strcat(path, 'JPEG.jpg'), 'JPEG.jpg');
+copyfile(strcat(path, 'JPEG_DCTQ_ZZ.txt'), 'JPEG_DCTQ_ZZ.txt');
+[nr, nc, m, chrtable, CrVec] = JPEG_entropy_decode('');
+path = 'Cb_';
+copyfile(strcat(path, 'JPEG.jpg'), 'JPEG.jpg');
+copyfile(strcat(path, 'JPEG_DCTQ_ZZ.txt'), 'JPEG_DCTQ_ZZ.txt');
+[nc, nr, m, chrtable, CbVec] = JPEG_entropy_decode('');
+path = 'Y_';
+copyfile(strcat(path, 'JPEG.jpg'), 'JPEG.jpg');
+copyfile(strcat(path, 'JPEG_DCTQ_ZZ.txt'), 'JPEG_DCTQ_ZZ.txt');
+[nRow, nCol, m, lumtable, YVec] = JPEG_entropy_decode('');
+% m block size
+s = nRow / nc; % down-up sampling factor;
+
+% izigzag scanning for each block
+ind = gen_zigzagind(m);
+nBlock = size(Y, 1);
+nBlockInRow = floor(nRow / m);
+for k=0:(nBlock-1)
+    i = mod(k, nBlockInRow);
+    j = floor(k / nBlockInRow);
+    si = i*m+1;
+    sj = j*m+1;
+    if zigzag
+        Y(si:(si+m-1), sj:(sj+m-1)) = Vector2ZigzagMtx(YVec(k+1, :), ind);
+    else
+        Y(si:(si+m-1), sj:(sj+m-1)) = reshape(YVec(k+1, :), m, m);
+    end
+end
+nBlock = size(CbVec, 1);
+nBlockInRow = floor(floor(nRow / s) / m);
+for k=0:(nBlock-1)
+    i = mod(k, nBlockInRow);
+    j = floor(k / nBlockInRow);
+    si = i*m+1;
+    sj = j*m+1;
+    if zigzag
+        Cb(si:(si+m-1), sj:(sj+m-1)) = Vector2ZigzagMtx(dCbDCTQuanVec(k+1, :), ind);
+        Cr(si:(si+m-1), sj:(sj+m-1)) = Vector2ZigzagMtx(dCrDCTQuanVec(k+1, :), ind);
+    else
+        Cb(si:(si+m-1), sj:(sj+m-1)) = reshape(dCbDCTQuanVec(k+1, :), m, m);
+        Cr(si:(si+m-1), sj:(sj+m-1)) = reshape(dCrDCTQuanVec(k+1, :), m, m);
+    end
+end
+% inverse quantization table
+YDCT = blkproc(YDCTQuan,[m m],'x.*P1', lumtable);
+dCbDCT = blkproc(dCbDCTQuan,[m m],'x.*P1', chrtable);
+dCrDCT = blkproc(dCrDCTQuan,[m m],'x.*P1', chrtable);
+% inverse DCT
+dctmat = dctmtx(m);
+Y = blkproc(YDCT, [m m], 'P1''*x*P1', dctmat); % or 'idct2(x)'
+dCb = blkproc(dCbDCT, [m m], 'P1''*x*P1', dctmat);
+dCr = blkproc(dCrDCT, [m m], 'P1''*x*P1', dctmat);
+% upsampling
+Cb = imresize(dCb, s);
+Cr = imresize(dCr, s);
+% RGB to YCbCr
+Y = uint8(Y + 128);
+Cb = uint8(Cb + 128);
+Cr = uint8(Cr + 128);
+YCbCr = cat(3, Y, Cb, Cr);
+O = ycbcr2rgb(YCbCr);

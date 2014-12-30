@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of UpDyadHi</title>
+  <meta name="keywords" content="UpDyadHi">
+  <meta name="description" content="UpDyadHi -- Hi-Pass Upsampling operator; periodized">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../index.html">Home</a> &gt;  <a href="index.html">WaveUtilities</a> &gt; UpDyadHi.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../index.html"><img alt="<" border="0" src="../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for WaveUtilities&nbsp;<img alt=">" border="0" src="../right.png"></a></td></tr></table>-->
+
+<h1>UpDyadHi
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>UpDyadHi -- Hi-Pass Upsampling operator; periodized</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function y = UpDyadHi(x,qmf) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> UpDyadHi -- Hi-Pass Upsampling operator; periodized
+  Usage
+    u = UpDyadHi(d,f)
+  Inputs
+    d    1-d signal at coarser scale
+    f    filter
+  Outputs
+    u    1-d signal at finer scale
+
+  See Also
+    <a href="DownDyadLo.html" class="code" title="function d = DownDyadLo(x,qmf)">DownDyadLo</a>, <a href="DownDyadHi.html" class="code" title="function d = DownDyadHi(x,qmf)">DownDyadHi</a>, <a href="UpDyadLo.html" class="code" title="function y = UpDyadLo(x,qmf)">UpDyadLo</a>, <a href="IWT_PO.html" class="code" title="function x = IWT_PO(wc,L,qmf)">IWT_PO</a>, <a href="aconv.html" class="code" title="function y = aconv(f,x)">aconv</a></pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="MirrorFilt.html" class="code" title="function y = MirrorFilt(x)">MirrorFilt</a>	MirrorFilt -- Apply (-1)^t modulation</li><li><a href="UpSample.html" class="code" title="function y = UpSample(x,s)">UpSample</a>	UpSample -- Upsampling operator</li><li><a href="aconv.html" class="code" title="function y = aconv(f,x)">aconv</a>	aconv -- Convolution Tool for Two-Scale Transform</li><li><a href="rshift.html" class="code" title="function y = rshift(x)">rshift</a>	rshift -- Circular right shift of 1-d signal</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="IWT2_PO.html" class="code" title="function x = IWT2_PO(wc,L,qmf)">IWT2_PO</a>	IWT2_PO -- Inverse 2-d MRA wavelet transform (periodized, orthogonal)</li><li><a href="IWT_PO.html" class="code" title="function x = IWT_PO(wc,L,qmf)">IWT_PO</a>	IWT_PO -- Inverse Wavelet Transform (periodized, orthogonal)</li></ul>
+<!-- crossreference -->
+
+
+
+<hr><address>Generated on Mon 08-Mar-2004 09:02:18 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/">m2html</a></strong> &copy; 2003</address>
+</body>
+</html>

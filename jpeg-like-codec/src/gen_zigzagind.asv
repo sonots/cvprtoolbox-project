@@ -1,0 +1,31 @@
+function ind = gen_zigzagind(N)
+% Generate zigzag association indices between matrix and to be generate
+% vector for JPEG like zigzag scanning
+%
+%  ind = gen_zigzagind(N)
+%
+% Input arguments ([]s are optional):
+%  N   (scalar) size of NxN matrix to be zigzag scanned
+%
+% Output arguments ([]s are optional):
+%  ind (matrix) of size N^2x2. First column contains the appropriate row
+%   and the second column contains the column indices. 
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : March 2007
+ind = zeros(N,2);
+u = 0; r = 2; inc = 1;
+
+for n = 1:N*N
+  r = r - inc; u = u + inc;
+  if (u > N)
+    r = r + 2; u = N; inc = -1;
+  elseif (r == 0)
+    r = 1; inc = -1;
+  elseif (r > N)
+    u = u + 2; r = N; inc = 1;
+  elseif (u == 0)
+    u = 1; inc = 1;
+  end
+  ind(n,:) = [r u];
+end

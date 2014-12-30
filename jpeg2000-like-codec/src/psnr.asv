@@ -1,0 +1,26 @@
+function  [snr,mse] = psnr (A,B)
+% Peak Signal-to-Noise Ratio
+%
+%  psnr = psnr(I, O)
+%
+% Input arguments ([]s are optional):
+%  I   (matrix) of size NxN. Data A
+%  O   (matrix) of size NxN. Data B
+%
+% Output arguments ([]s are optional):
+%  psnr (scalar) Peak Signal-to-Noise Ratio
+%  [mse]  (scalar) Mean Squared Error
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : March 2007
+
+diff = A - B;	
+diff_sq = diff .^ 2;		% difference squared
+mse_clmn = mean(diff_sq);	% means square diff. of the columns;
+mse = mean(mse_clmn);
+
+if (mse == 0)
+    snr=Inf;
+else
+    snr = 10*log10(255^2/mse);          % PSNR
+end

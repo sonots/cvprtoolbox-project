@@ -1,0 +1,113 @@
+function ezw_compress(img_in, bpp_target, file_out)
+% EZW Based Image Compression
+%
+%  ezw_compress(img_in, bpp_target, file_out)
+%
+% Input arguments ([]s are optional):
+%  img_in (string): path to input image to be compressed
+%  bpp_target (scalar): target bitrate in bits per pixel e.g - 0.125
+%  file_out (string): path to output file
+%
+% Uses: ezw.m WaveUtilities/WaveletTransform2D.m
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : April 2007
+% read image
+img_in = '../images/Lena.bmp';
+I = imread(img_in);
+[nRow, nCol, C] = size(I);
+if C == 3,
+    I = rgb2gray(I); % Think of only Y components now
+end
+disp(sprintf('Original size is %d bits', nRow * nCol * 8));
+
+% remove DC component
+I = double(I);
+dc = mean(mean(I));
+I = I - dc;
+
+% wavelet transform
+display('wavelet transform ....');
+tic
+addpath('WaveUtilities');
+warning('off','MATLAB:dispatcher:InexactMatch');
+[X,resolution,qmf] = WaveletTransform2D(double(I), 0, 'Daubechies', 20);
+X = round(X);
+toc
+
+% Progressive (Embedded) Compression
+% Initialization
+[N, nCol] = size(X);
+scan = ezw_mortonorder(N);
+T0 = 2^floor(log2(max(max(abs(X)))));
+T = T0;
+Tmin = T0/2;
+i = 1;
+sublist = [];
+% Encoding, EZW, huffman, arithmetic coding
+while T >= Tmin
+    fprintf('ezw encoding %d pass ...\n', i);
+    tic
+    [sigmaps{i} sublist X] = ezw_dominantpass(X, T, sublist, scan);
+    [refmaps{i}] = ezw_subordinatepass(sublist, T, T0);
+    toc
+
+    disp('huffman encoding ...');
+    tic
+    [huffman_sigs{i}, codewords_sigs{i}, pad_sigs{i}] = huffman(uint8(sigmaps{i}));
+    [huffman_refs{i}, codewords_refs{i}, pad_refs{i}] = huffman(uint8(refmaps{i}));
+%     
+%     % length on header version
+%     sigmap = '';
+%     for i=1:length(sigmaps)-1
+%         length_sigs(i) = length(sigmaps{i});
+%         sigmap = [sigmap sigmaps{i}];
+%     end
+%     sigmap = [sigmap sigmaps{length(sigmaps)}];
+%     refmap = '';
+%     for i=1:length(refmaps)-1
+%         length_refs(i) = length(refmaps{i});
+%         refmap = [refmap refmaps{i}];
+%     end
+%     refmap = [refmap refmaps{length(refmaps)}];
+%     whos length_sigs
+%     whos length_refs
+    % e.g., 8 + 1731 + 8 + 264 bytes
+
+    % delimter version
+    % sigmap = sigmaps{1};
+    % for i=2:length(sigmaps)
+    %     sigmap = [sigmap 'd' sigmaps{i}]; % delimiter d for each pass
+    % end
+    % refmap = refmaps{1};
+    % for i=2:length(refmaps)
+    %     refmap = [refmap 2 refmaps{i}]; % delimiter 2 for each pass
+    % end
+    % e.g., 1837 + 317 bytes. header version is superior
+    whos huffman_sigs{i}
+    whos huffman_refs{i}
+    toc
+    
+    %%%%% Arithmetic encoding, Copyright (c) 1999-2001.  Karl Skretting.
+    % This gives another 15% extra compression ratio
+    display('arithmetic encoding ...')
+    tic;
+    xc = cell(2,1);
+    xc{1} = double([huffman_sigs{i}']);
+    arithmetic_sigs{i} = arith06(xc);
+    xc = cell(2,1);
+    xc{1} = double([huffman_refs{i}']);
+    arithmetic_refs{i} = arith06(xc);
+    toc
+    whos arithmetic_sigs{i}
+    whos arithmetic_refs{i}
+    
+    bpp = (bytes(arithmetic_sigs) + bytes(arithmetic_refs)) / (nRow * nCol);
+    disp('bpp =');
+    disp(b
+    i = i + 1;
+    T = T / 2;
+end
+end
+
+

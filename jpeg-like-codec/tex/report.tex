@@ -1,0 +1,1035 @@
+\documentclass[article,oneside]{memoir}
+
+\usepackage{graphicx} % Add graphics capabilities
+\usepackage{booktabs} % ``Proper'' table layout
+\usepackage{amsmath}  % Better maths support
+\usepackage[colorlinks=false,linkcolor=red]{hyperref} % Hyperlink capabilities
+%\usepackage{url}
+
+\usepackage{memhfixc} % This package is required to resolve incompatibilities
+                      % with the memoir class & the hyperref package
+                      
+\setlength{\oddsidemargin}{ 20pt}
+\setlength{\textwidth}{440pt}
+\setlength{\topmargin}{ 0pt}
+\setlength{\headheight}{00pt}
+\setlength{\headsep}{40pt}
+\setlength{\textheight}{620pt}
+
+\title {ENEE631 Assignment 2}
+\author{Naotoshi Seo, sonots@umd.edu}
+\date{February 28, 2007}
+
+
+\begin{document}
+
+\maketitle
+
+\chapter{Part I.4}
+
+\subsubsection{Examine the frequency response of 3x3 Sobel Filter}
+
+\noindent \bf{Matlab Code}
+\begin{verbatim}
+hsobel = [-1 0 1;
+     -2 0 2;
+     -1 0 1];
+Hsobel = log(abs(fft2(hsobel, 128, 128)));
+imshow(Hsobel, [-1 max(max(Hsobel))]);
+\end{verbatim}
+
+
+\begin{center}
+\includegraphics[]{../images/DFTSobel.png}
+\end{center}
+
+Center region means low frequencies. Upper or bottom region means high frequencies for the horizontal changes (vertical edge detector), and left or right region means high frequencies for the vertical changes. 
+
+As we can see this is a high pass filter for the horizontal changes as we expected. However, this filter does not pass pretty low and high frequencies for vertical changes even if the horizontal changes are high frequency. 
+
+\noindent \bf{Matlab Code}
+\begin{verbatim}
+have = ones(3, 3);
+hsobel = [-1 0 1;
+     -2 0 2;
+     -1 0 1];
+heff = conv2(hsobel, have);
+Heff = log(abs(fft2(heff, 128, 128)));
+imshow(Heff, [-1 max(max(Heff))]);
+\end{verbatim}
+
+By applying smoothing filter (average filter) before applying sobel filter, the 'pass' range was broaden. 
+The reason why there are still cutoff frequencies is because the average filter is not a efficient low pass filter as a gaussian filter. 
+
+\begin{center}
+\includegraphics[]{../images/DFTEff.png}
+\end{center}
+
+\subsubsection{Determine the impulse response of the effective filter}
+
+$$ h_{eff} = h_{sobel} * h_{smooth} = \left[ \begin{array}{ccccc}
+-1 & -1 & 0 & 1 & 1 \\
+-3 & -3 & 0 & 3 & 3 \\
+-4 & -4 & 0 & 4 & 4 \\
+-3 & -3 & 0 & 3 & 3 \\
+-1 & -1 & 0 & 1 & 1 \end{array} \right]. $$
+
+\subsubsection{Determine the frequency response of the overall effective filter}
+
+See above. 
+(I used matlab because I can write a math equation of DFT (definition) or generate $ 3 \times 3 $ matrix, but it does not help me to see the frequency response gradiations. )
+
+\subsubsection{How much computation and which is more efficient?}
+
+Assume the outer space of the image is filled (there are several methods such as zero fill). 
+The convolution between $ m \times n $ mask and $ M \times N $ image takes
+\begin{center}
+($ m \times n $ multiplications + $ m \times n $ summations) $ \times M \times N $
+\end{center}
+and this generates an image of size $ M+(m/2) \times N+(n/2) $. 
+Applying $h_{eff}$ takes
+$$ (25 + 25) \times M \times N = 50 \times M \times N $$
+Applying $ h_{smooth} $ and then $ h_{sobel} $ takes
+$$ 18 \times M \times N + 18 \times (M+1) \times (N+1) = 36 \times M \times N + 18 \times M + 18 \times N + 18 $$. 
+Therefore, $ h_{sobel} * (h_{smooth} * Image) $ is more efficent than $ h_{eff} * Image $ if $ M, N \geq 2 $ (it means 'in general'.)
+
+\newpage
+
+\chapter{Computer Part - FFTs of images}
+
+\section{Synthesis Images}
+
+\subsection{const.m}
+
+\begin{verbatim}
+% 1.(1) Generate a gray scale image in a 128x128 array. 
+% Generate as a separable 2-D signal when possible
+% (a) Constant value 0.5 in both directions
+function [X f g] = const
+f = ones(128, 1) * sqrt(0.5);
+g = ones(1, 128) * sqrt(0.5);
+X = f * g;
+end
+\end{verbatim}
+
+\subsection{step2.m}
+
+\begin{verbatim}
+% 1.(1) Generate a gray scale image in a 128x128 array. 
+% Generate as a separable 2-D signal when possible
+% (b) A step a the midpoint of the image in both directions;
+function [X] = step2
+f = [zeros(64, 1); ones(64, 1)];
+g = [zeros(1, 64) ones(1, 64)];
+X = f * g;
+end
+\end{verbatim}
+
+\subsection{ramp.m}
+
+\begin{verbatim}
+% 1.(1) Generate a gray scale image in a 128x128 array. 
+% Generate as a separable 2-D signal when possible
+% (c) Ramp from 0 to 1 in one direction and constant in the other
+function [X f g] = ramp
+f = ones(128, 1);
+g = 0:(1/128):1-(1/128);
+X = f * g;
+end
+\end{verbatim}
+
+\subsection{delta.m}
+
+\begin{verbatim}
+% 1.(1) Generate a gray scale image in a 128x128 array. 
+% Generate as a separable 2-D signal when possible
+% (e) Delta function a the center of the image in both directions
+function [X f g] = delta
+f = zeros(128, 1); f(128/2) = 1;
+g = zeros(1, 128); g(128/2) = 1;
+X = f * g;
+end
+\end{verbatim}
+
+\subsection{cosine.m}
+
+\begin{verbatim}
+% 1.(1) Generate a gray scale image in a 128x128 array. 
+% Generate as a separable 2-D signal when possible
+% (e) cosine signal with 2 periods in both directions
+function [X] = cosine
+i = (1:128)' - 1;
+f = cos(pi * i / 32);
+g = f';
+X = f * g;
+end
+\end{verbatim}
+
+\subsection{sramp.m}
+
+\begin{verbatim}
+% 1.(1) Generate a gray scale image in a 128x128 array. 
+% Generate as a separable 2-D signal when possible
+% (h) cosine signal with 3 periods in one direction and a ramp function 
+% in the other
+function [X] = sramp
+i = (1:128)' - 1;
+f = cos(pi * i / (128/6));
+g = 0:(1/128):1-(1/128);
+X = f * g;
+end
+\end{verbatim}
+
+\newpage
+
+\subsection{demo\_synthesis.m}
+
+\begin{verbatim}
+% 1.(1) Generate gray scale images in a 128x128 array. 
+a = const;
+b = step2;
+c = ramp;
+e = delta;
+g = cosine;
+h = sramp;
+figure;
+subplot(2, 3, 1); imshow(a);
+subplot(2, 3, 2); imshow(b);
+subplot(2, 3, 3); imshow(c);
+subplot(2, 3, 4); imshow(e);
+subplot(2, 3, 5); imshow(g);
+subplot(2, 3, 6); imshow(h);
+\end{verbatim}
+
+\begin{center}
+\includegraphics[]{../images/I1Subplot.png}\\
+I1Subplot.png
+\end{center}
+
+\newpage
+
+\section{Apply 2-D FFT}
+
+\subsection{demo\_fft2.m}
+
+\begin{verbatim}
+% 1. (2) do 2-D FFT on each of 1. (2)
+% I did not create fft2 function by myself because the problem statement 
+% is not mentioning to do so. 
+function demo_fft2
+X(:, :, 1) = const;
+X(:, :, 2) = step2;
+X(:, :, 3) = ramp;
+X(:, :, 4) = delta;
+X(:, :, 5) = cosine;
+X(:, :, 6) = sramp;
+
+figure;
+for i=1:6
+    %imshow(X(:, :, i));
+    fft = log(abs(fft2(X(:, :, i))));
+    subplot(2, 3, i);
+    imshow(fft, [-1 12]);
+    colormap(jet);
+    colorbar;
+end
+\end{verbatim}
+
+\begin{center}
+\includegraphics[]{../images/I2DFT.png}\\
+I2DFT.png
+\end{center}
+
+\section{FFT for a few digital images}
+
+\begin{center}
+\includegraphics[width=7cm]{../images/portrait.jpg}\\
+Original: portrait.jpg
+\end{center}
+
+\begin{center}
+\includegraphics[width=13.5cm]{../images/I3DFTportrait.png}\\
+I3DFTportrait.png
+\end{center}
+
+\begin{center}
+\includegraphics[height=7cm]{../images/view.jpg}\\
+Original: view.jpg
+\end{center}
+
+\begin{center}
+\includegraphics[width=13.5cm]{../images/I3DFTScene.png}\\
+I3DFTScene.png
+\end{center}
+
+\begin{center}
+\includegraphics[width=7cm]{../images/screenshot.jpg}\\
+Original: screenshot.jpg
+\end{center}
+
+\begin{center}
+\includegraphics[width=13.5cm]{../images/I3DFTSynthetic.png}\\
+I3DFTSynthetic.png
+\end{center}
+
+\newpage
+
+\subsection{What are the similar and different characteristic?}
+
+From DFT images, we can recognize the synthetic image has many straight edges. 
+(Similar things usually happen when a synthetic image is created by human and computer artificially. )
+In contrast, the poratrait image has few edges although it is also created by human. 
+(It is probably because the portrait was drawn by hand without using rulers, rather, it looks the artist tried to avoid to draw straight lines as much as possible. )
+Natural scene also did not have many edges unlike artificial scene. 
+All of them have high intensities at the corners and low intensities at the center. 
+
+\subsection{Examine the conjugate symmetry of 2-D FFT}
+
+$$ F(u, v) = F^*(-u, -v) $$
+
+\begin{verbatim}
+synthetic = double(rgb2gray(imread('../images/screenshot.jpg')));
+fft = fft2(synthetic, 128, 128);
+fft = fft(2:128,2:128); 
+% drop F(0,0) because it is special
+% drop F(0,:) and F(:, 0) because [-pi, pi). drop -pi. 
+if (fft - conj(flipud(fliplr(fft))) < .00001)
+    disp('conjugate symmetric!');
+end
+\end{verbatim}
+
+\noindent Result
+
+conjugate symmetric!
+
+\newpage
+
+\chapter{Image Sharpening}
+
+\section{Sharpen more - Paint Shop Pro}
+
+\begin{center}
+\includegraphics[width=7cm]{../images/II1LenaSharpen.png}\\
+II1LenaSharpen.bmp
+\end{center}
+
+\subsection{Observe effect}
+By repeating this process, edges were emphasized. It looked the same filter was applied everytime. 
+Furtheremore, this filter is probably a Laplacian sharpening filter
+
+\subsection{Discuss whether a blurred image can be completely recovered and to what extent the restoration is possible.}
+
+Blurring can be expressed by summation of a process such as
+$$ y_0 = b x_0 \mathbf{~~~~~initial state} $$
+$$ y_i = a x_{i-1} + b x_{i}, \mathbf{~~for~~} i = 1, 2, ... \infty $$
+where $ {x_i}, i = 0, 1, ... \infty $ is an input process and $ {y_i} $ is an blurred output process. (This is a simple case, of course.)
+
+If we know the value of $ a $ and $ b $ and the initial state, we can restore the input process $ x_{i} $ as
+$$ y_0 / b = x_0 $$
+$$ (y_1 - a x_0) / b = x_1 $$
+$$ \vdots $$
+
+Therefore, it is possible. In this case, the answer for the second question is "`completely"'. 
+However, in practice, we have unknown parameters such as noise processes, and it will be impossible to completely recover images. However, still we can estimate these parameters and we can restore images close to the original images. 
+
+\section{High Boost filter - Paint Shop Pro}
+
+\begin{center}
+\includegraphics[width=7cm]{../images/II2LenaProHighboost.png}\\
+II2LenaProHighboost.png
+\end{center}
+
+\section {High boost filter - Matlab}
+
+\subsection{doConv2.m}
+
+\begin{verbatim}
+function [C] = doConv2(A, B, boundary)
+% doConv2 Two dimensional convolution.
+%
+%  [C] = doConv2(A, B, boundary)
+%
+% Input arguments ([]s are optional):
+%  A   (matrix) of size MxN. Input.
+%  B   (matrix) of size PxQ. Mask.
+%  [boundary] (string) boundary operation
+%      'ignore'    - ignore outer space
+%      'zero'      - zero fill (Future Work)
+%      'replicate' - extend boundary values to outer space (Future Work)
+%
+% Output arguments ([]s are optional):
+%  C   (matrix) of size MxN. Output
+%
+% see conv2.m, imfilter.m
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : Feb 2007
+if nargin < 3, boundary = 'zero';, end
+
+if ~isa(A,'double'), A = double(A);, end;
+if ~isa(B,'double'), B = double(B);, end;
+[nRowA nColA] = size(A);
+[nRowB nColB] = size(B);
+rowRegion = -floor(nRowB/2):ceil(nRowB/2-1);
+colRegion = -floor(nColB/2):ceil(nColB/2-1);
+for j=1:nColA
+    for i=1:nRowA
+        Is = i + rowRegion;
+        Js = j + colRegion;
+        % ignore outer space
+        mask = B(Is >= 1 & Is <= nColA, Js >= 1 & Js <= nRowA);
+        Is = Is(Is >= 1 & Is <= nColA);
+        Js = Js(Js >= 1 & Js <= nRowA);
+        source = A(Is, Js);
+        C(i, j) = sum(sum(source .* mask));
+    end
+end
+end
+\end{verbatim}
+
+\begin{highboostfilter2.m}
+\begin{verbatim}
+function [O] = highboostfilter2(I, m, A, B)
+% 2-D High Boot Filtering
+%
+%  [O] = highboostfilter(I, m, A, B)
+%
+% Input arguments ([]s are optional):
+%  I   (matrix) of size MxN. Input image.
+%  m   (scalar) mask size
+%  A   (scalar) all pass factor weight >= 1
+%  [B] (scalar) Division factor. Default is A. 
+%
+% Output arguments ([]s are optional):
+%  O   (matrix) of size MxN. Output image
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : Feb 2007
+if nargin < 3, A = 1;, end
+if nargin < 4, B = A;, end
+M = ones(m, m) * -1;
+w = A + (m * m -1);
+M(round(m/2), round(m/2)) = w;
+M = M / B;
+O = doConv2(I, M);
+O = uint8(O); % cutoff as Paint Shop Pro does
+end
+end
+\end{verbatim}
+
+\subsubsection{Observe and explain the filtering result for different filter size and other parameters. }
+
+High boost filter is composed by the summation of an all pass filter and a high pass filter as
+
+$$ h_{highboost} = A h_{allpass} + h_{highpass} = A \left[ \begin{array}{ccc}
+0 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 0 \end{array} \right] + \left[ \begin{array}{ccc}
+-1 & -1 & -1 \\
+-1 & 8 & -1 \\
+-1 & -1 & -1 \\ \end{array} \right] = \left[ \begin{array}{ccc}
+-1 & -1 & -1 \\
+-1 & A+8 & -1 \\
+-1 & -1 & -1 \\ \end{array} \right]. $$
+Note that, when A = 1, high-boost filtering becomes "`standard"' Laplacian sharpening, and when A = 0, it becomes Laplacian filter (edge detection). 
+
+\begin{center}
+\includegraphics[width=7cm]{../images/II3LenaHighboostA9B9m3.png}\\
+II3LenaHighboostA9B9m3.png\\
+m = 3, A = B = 9. 
+\end{center}
+
+This equals to the picture of the Paint Shop Pro part. 
+
+\begin{center}
+\includegraphics[width=7cm]{../images/II3LenaHighboostA1B1m3.png}\\
+II3LenaHighboostA1B1m3.png\\
+m = 3, A = B = 1.
+\end{center}
+
+This sharpened more because it suppress the all pass filter. This is called as "`standard"' Laplacian sharpening. 
+
+\begin{center}
+\includegraphics[width=7cm]{../images/II3LenaHighboostA9B5m3.png}\\
+II3LenaHighboostA9B5m3.png\\
+m = 3, A = 9, B = 5.
+\end{center}
+
+My high boost filtering program and Paint Shop Pro cut-off pixel values which are out of dynamic range. 
+Lowering division factor ( $ B < A $ ) causes higher possibilities which each pixel take a value of out of dynamic range. Above picture shows many pixels were cutoff into 255 and this is the reason why there are many white pixels (because A is pretty large, there are little possibilities which each pixel take a negative value, and this is the reason why cutoff into 0 (black) did not occur so much). Generally, high boost filter can be used to brighten images by this reason (original + high pass filter $ => $ brighten). 
+ 
+\begin{center}
+\includegraphics[width=7cm]{../images/II3LenaHighboostA1B1m7.png}\\
+II3LenaHighboostA1B1m7.png\\
+m = 7, A = 1, B = 1.
+\end{center}
+
+Increasing mask size sharpens the image more. Sharpening means emphasizing edges. This is the characteristics of Laplacian filter (edge detector) which is a component of the high boost filter. 
+
+\chapter{Image Enhancement and Restoration}
+
+\section{Boat1.tif}
+
+Smoothing filter is suitable for this noisy image. 
+Although it will be blurred, it is a good pre-processing when we apply thresholding later on. 
+I used a average filter for smoothing. 
+
+\subsection{avgfltr2.m}
+
+\begin{verbatim}
+function [O] = avgfltr2(I, m)
+% 2-D Average Filter
+%
+%  [O] = avgfltr2(I, m)
+%
+% Input arguments ([]s are optional):
+%  I  (matrix) of size MxN. Input.
+%  m  (scalar) mask size
+%
+% Output arguments ([]s are optional):
+%  O  (matrix) of size MxN. Output
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : Feb 2007
+M = ones(m, m) / (m * m);
+O = doConv2(I, M);
+end
+\end{verbatim}
+
+\begin{center}
+\includegraphics[width=7cm]{../images/Boat1.png}\\
+Original: Boat1.tif
+\end{center}
+
+\begin{center}
+\includegraphics[width=12cm]{../images/IIIBoat1Average.png}\\
+IIIBoat1Average.png - Mask size 3
+\end{center}
+
+\section{Boat2.tif}
+
+Median filter is suitable for this kinds of images (pepper noise). 
+
+\subsubsection{medfltr2.m}
+\begin{verbatim}
+function [O] = medfltr2(I, m)
+% 2-D Median Filter
+%
+%  [O] = medfltr2(I, m)
+%
+% Input arguments ([]s are optional):
+%  I  (matrix) of size MxN. Input.
+%  m  (scalar) mask size
+%
+% Output arguments ([]s are optional):
+%  O  (matrix) of size MxN. Output
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : Feb 2007
+[nRow nCol] = size(I);
+region = -floor(m/2):ceil(m/2-1);
+for j=1:nCol
+    for i=1:nRow
+        Is = i + region;
+        Js = j + region;
+        % ignore outer space
+        Is = Is(Is >= 1 & Is <= nCol);
+        Js = Js(Js >= 1 & Js <= nRow);
+        source = I(Is, Js);
+        source = reshape(source, length(Is)*length(Js), 1);
+        O(i, j) = median(source); % or sort and take mid
+    end
+end
+end
+\end{verbatim}
+
+\begin{center}
+\includegraphics[width=7cm]{../images/Boat2.png}\\
+Original: Boat2.tif
+\end{center}
+
+\begin{center}
+\includegraphics[width=12cm]{../images/IIIBoat2Median.png}\\
+IIIBoat2Median.png - Mask size 5
+\end{center}
+
+\section{Lena1.tif}
+
+Histogram Equalization or Histogram Streching is suitable for this kinds of images (small dynamic range). 
+
+\subsection{doHisteq.m}
+\begin{verbatim}
+function [O] = doHisteq(I, L)
+% Histogram Equalization
+%
+%  [O] = doHisteq(I)
+%
+% Input arguments ([]s are optional):
+%  I   (matrix) of size MxN. Input.
+%  [L] (scalar) dynamic range. Default is 256.
+%
+% Output arguments ([]s are optional):
+%  O   (matrix) of size MxN. Output
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : Feb 2007
+if nargin < 2, L = 256;, end;
+[nRow, nCol] = size(I);
+% pdf
+for i=1:L
+    pdf(i) = sum(sum(I == i-1));
+end
+% or pdf = hist(reshape(I, nRow * nCol, 1), 0:(L-1));
+pdf = pdf / (nRow * nCol);
+% cdf
+cdf = cumsum(pdf);
+% transform
+O = zeros(nRow, nCol);
+for i=1:L
+    if (pdf(i) > 0)
+        O = O + (I == i-1) * cdf(i);
+    end
+end
+O = uint8(O * (L-1));
+end
+\end{verbatim}
+
+\subsection{histnorm.m}
+
+\begin{verbatim}
+function [O] = histnorm(I, L)
+% Histogram Normalization or Streching
+%
+%  [O] = histnorm(I)
+%
+% Input arguments ([]s are optional):
+%  I   (matrix) of size MxN. Input.
+%  [L] (scalar) dynamic range. Default is 256.
+%
+% Output arguments ([]s are optional):
+%  O   (matrix) of size MxN. Output
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : Feb 2007
+if nargin < 2, L = 256;, end;
+mini = min(min(I));
+O = I - mini;
+maxi = max(max(O));
+O = O * (L-1) / maxi;
+O = uint8(O);
+end
+\end{verbatim}
+
+
+\begin{center}
+\includegraphics[width=7cm]{../images/Lena1.png}\\
+Original: Lena1.tif
+\end{center}
+
+\begin{center}
+\includegraphics[width=12cm]{../images/IIILena1Histeq.png}\\
+IIILena1Histeq.png
+\end{center}
+
+\begin{center}
+\includegraphics[width=12cm]{../images/IIILena1Histstrech.png}\\
+IIILena1Histstrech.png
+\end{center}
+
+\newpage
+
+\chapter{Edge Detection}
+
+I implemented Sobel, Prewitt, and LoG.
+Sobel and Prewitt are similar although the good threshold values are slightly different. 
+When we want to take into account both horizontal and vertical direction using Sobel or Prewitt, we simply sum the result of horizontal and vertical filter (gradient). 
+In contrast, LoG does not require to compute two directions separately and sum them up. 
+However, it generated somehow noisy output. 
+
+\subsection{sobel.m}
+
+\begin{verbatim}
+function [O] = sobel(I, THRESH, DIRECTION)
+% Sobel Edge Detection
+%
+%  [O] = sobel(I, THRESH, DIRECTION)
+%
+% Input arguments ([]s are optional):
+%  I           (matrix) of size MxN: Input.
+%  [THRESH]    (scalar): ignores all edges that are not stronger than THRESH.
+%               If it is [], no thresholding. Default is no thresholding.
+%  [DIRECTION] (string): 'horizontal' or 'vertical' or '45' or '135'. 
+%               Default is 'horizontal'.
+%
+% Output arguments ([]s are optional):
+%  O  (matrix) of size MxN. Output
+%
+% see also: edge.m (edge.m does thining lines also, though)
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : Feb 2007
+if nargin < 3, DIRECTION = 'horizontal';, end;
+
+if strcmp(DIRECTION, 'horizontal')
+    M = [-1 -2 -1;
+          0  0  0 ;
+          1  2  1];
+elseif strcmp(DIRECTION, 'vertical')
+    M = [-1 0 1;
+         -2 0 2;
+         -1 0 1];
+elseif strcmp(DIRECTION, '135')
+    M = [0  1 2;
+        -1  0 1;
+        -2 -1 0];
+elseif strcmp(DIRECTION, '45')
+    M = [-2 -1 0;
+         -1  0 1;
+          0  1 2];
+end
+O = doConv2(I, M);
+if nargin > 1 && length(THRESH) > 0
+    O = (abs(O) > THRESH);
+end
+end
+\end{verbatim}
+
+\subsection{prewitt.m}
+
+\begin{verbatim}
+function [O] = prewitt(I, THRESH, DIRECTION)
+% Prewitt Edge Detection
+%
+%  [O] = prewitt(I, THRESH, DIRECTION)
+%
+% Input arguments ([]s are optional):
+%  I           (matrix) of size MxN: Input.
+%  [THRESH]    (scalar): ignores all edges that are not stronger than THRESH.
+%               If it is [], no thresholding. Default is no thresholding.
+%  [DIRECTION] (string): 'horizontal' or 'vertical' or '45' or '135'. 
+%               Default is 'horizontal'.
+%
+% Output arguments ([]s are optional):
+%  O  (matrix) of size MxN. Output
+%
+% see also: edge.m (edge.m does thining lines also, though)
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : Feb 2007
+if nargin < 3, DIRECTION = 'horizontal';, end;
+%if ~(isa(I,'double') || isa(I,'single')), I = im2single(I);, end;
+%gh = imfilter(I,fspecial('prewitt'),'replicate'); % horizontal
+%gv = imfilter(I,fspecial('prewitt')','replicate'); % vertical
+
+if strcmp(DIRECTION, 'horizontal')
+    M = [-1 -1 -1;
+          0  0  0 ;
+          1  1  1];
+elseif strcmp(DIRECTION, 'vertical')
+    M = [-1 0 1;
+         -1 0 1;
+         -1 0 1];
+elseif strcmp(DIRECTION, '135')
+    M = [0  1 1;
+        -1  0 1;
+        -1 -1 0];
+elseif strcmp(DIRECTION, '45')
+    M = [-1 -1 0;
+         -1  0 1;
+          0  1 1];
+end
+O = doConv2(I, M);
+if nargin > 1 && length(THRESH) > 0
+    O = (abs(O) > THRESH);
+end
+end
+
+\end{verbatim}
+
+\subsection{LoG.m}
+
+\begin{verbatim}
+function [O] = LoG(I, THRESH)
+% LoG (Laplacian of Gaussian) Edge Detection
+%
+%  [O] = LoG(I, THRESH)
+%
+% Input arguments ([]s are optional):
+%  I           (matrix) of size MxN: Input.
+%  [THRESH]    (scalar): ignores all edges that are not stronger than THRESH.
+%               If it is [], no thresholding. Default is no thresholding.
+%
+% Output arguments ([]s are optional):
+%  O  (matrix) of size MxN. Output
+%
+% see also: edge.m (edge.m does thining lines also, though)
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : Feb 2007
+M = [0 0 -1 0 0;
+    0 -1 -2 -1 0;
+    -1 -2 16 -2 -1;
+    0 -1 -2 -1 0;
+    0 0 -1 0 0];
+O = doConv2(I, M);
+if nargin > 1 && length(THRESH) > 0
+    O = (abs(O) > THRESH);
+end
+end
+\end{verbatim}
+
+\subsection{demo\_edge.m}
+
+\begin{verbatim}
+function demo_edge
+lena = imread('../images/Lena.tif');
+
+% sobel
+sobel_h = histnorm(sobel(lena, [], 'horizontal'));
+%figure;imshow(sobel_h);title('Sobel: horizontal');
+%imwrite(sobel_h, '../images/IV1LenaSobelHorizontalGradient.png');
+figure;direction_map(sobel_h);title('Sobel: horizontal: edge direction map');
+sobel_h = sobel(lena, 32, 'horizontal');
+%figure;imshow(sobel_h);title('Sobel: horizontal: threshold 32');
+%imwrite(sobel_h, '../images/IV1LenaSobelHorizontal32.png');
+sobel_h = sobel(lena, 96, 'horizontal');
+%figure;imshow(sobel_h);title('Sobel: horizontal: threshold 96');
+%imwrite(sobel_h, '../images/IV1LenaSobelHorizontal96.png');
+
+
+sobel_v = histnorm(sobel(lena, [], 'vertical'));
+%figure;imshow(sobel_v);title('Sobel: vertical');
+%imwrite(sobel_v, '../images/IV1LenaSobelVerticalGradient.png');
+figure;direction_map(sobel_v);title('Sobel: vertical: edge direction map');
+sobel_v = sobel(lena, 32, 'vertical');
+%figure;imshow(sobel_v);title('Sobel: verticall: threshold 32');
+%imwrite(sobel_v, '../images/IV1LenaSobelVertical32.png');
+sobel_v = sobel(lena, 96, 'vertical');
+%figure;imshow(sobel_v);title('Sobel: verticall: threshold 96');
+%imwrite(sobel_v, '../images/IV1LenaSobelVertical96.png');
+
+% prewitt
+prewitt_h = histnorm(prewitt(lena, [], 'horizontal'));
+%figure;imshow(prewitt_h);title('Prewitt: horizontal');
+%imwrite(prewitt_h, '../images/IV1LenaPrewittHorizontalGradient.png');
+%figure;direction_map(prewitt_h);title('Prewitt: horizontal: edge direction map');
+prewitt_h = prewitt(lena, 32, 'horizontal');
+%figure;imshow(prewitt_h);title('Prewitt: horizontal: threshold 32');
+%imwrite(prewitt_h, '../images/IV1LenaPrewittHorizontal32.png');
+prewitt_h = prewitt(lena, 96, 'horizontal');
+%figure;imshow(prewitt_h);title('Prewitt: horizontal: threshold 96');
+%imwrite(prewitt_h, '../images/IV1LenaPrewittHorizontal96.png');
+
+prewitt_v = histnorm(prewitt(lena, [], 'vertical'));
+%figure;imshow(prewitt_v);title('Prewitt: vertical');
+%imwrite(prewitt_v, '../images/IV1LenaPrewittVerticalGradient.png');
+figure;direction_map(prewitt_v);title('Prewitt: vertical: edge direction map');
+prewitt_v = prewitt(lena, 32, 'vertical');
+%figure;imshow(prewitt_v);title('Prewitt: verticall: threshold 32');
+%imwrite(prewitt_v, '../images/IV1LenaPrewittVertical32.png');
+prewitt_v = prewitt(lena, 96, 'vertical');
+%figure;imshow(prewitt_v);title('Prewitt: verticall: threshold 96');
+%imwrite(prewitt_v, '../images/IV1LenaPrewittVertical96.png');
+
+% LoG
+LoG_v = histnorm(LoG(lena));
+%figure;imshow(LoG_v);title('LoG (Laplacian of Gaussian)');
+%imwrite(LoG_v, '../images/IV1LenaLoGGradient.png');
+figure;direction_map(LoG_v);title('LoG: edge direction map');
+LoG_v = LoG(lena, 32);
+%figure;imshow(LoG_v);title('LoG: threshold 32');
+%imwrite(LoG_v, '../images/IV1LenaLoG32.png');
+LoG_v = LoG(lena, 96);
+%figure;imshow(LoG_v);title('LoG: threshold 96');
+%imwrite(LoG_v, '../images/IV1LenaLoG96.png');
+end
+
+
+function direction_map(edge)
+ space = 32;
+ [X,Y] = meshgrid(1:space:length(edge), 1:space:length(edge));
+ [DX,DY] = gradient(double(edge), 1, 1);
+ DX = DX(X);
+ DY = DY(Y);
+ quiver(X, Y, DX, DY);
+end
+\end{verbatim}
+
+\begin{center}
+  \begin{figure}[ht]
+  \begin{tabular}{@{} cc @{}}
+
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaSobelHorizontalGradient.png}
+    \\ IV1LenaSobelHorizontalGradient.png
+   \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaSobelHorizontalDirection.png}
+    \\ IV1LenaSobelHorizontalDirection.png
+   \end{center}
+  \end{minipage}    \\
+  
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaSobelHorizontal32.png}
+    \\ IV1LenaSobelHorizontal32.png - Threshold 32
+   \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaSobelHorizontal96.png}
+    \\ IV1LenaSobelHorizontal96.png - Threshold 96
+   \end{center}
+  \end{minipage}    \\
+    
+  \end{tabular}
+ \label{fig:color}
+ \end{figure} 
+\end{center}
+
+
+\begin{center}
+  \begin{figure}[ht]
+  \begin{tabular}{@{} cc @{}}
+
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaSobelVerticalGradient.png}
+    \\ IV1LenaSobelVerticalGradient.png
+   \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaSobelVerticalDirection.png}
+    \\ IV1LenaSobelVerticalDirection.png
+   \end{center}
+  \end{minipage}    \\
+  
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaSobelVertical32.png}
+    \\ IV1LenaSobelVertical32.png - Threshold 32
+   \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaSobelVertical96.png}
+    \\ IV1LenaSobelVertical96.png - Threshold 96
+   \end{center}
+  \end{minipage}    \\
+    
+  \end{tabular}
+ \label{fig:color}
+ \end{figure} 
+\end{center}
+
+\begin{center}
+  \begin{figure}[ht]
+  \begin{tabular}{@{} cc @{}}
+
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaPrewittHorizontalGradient.png}
+    \\ IV1LenaPrewittHorizontalGradient.png
+   \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaPrewittHorizontalDirection.png}
+    \\ IV1LenaPrewittHorizontalDirection.png
+   \end{center}
+  \end{minipage}    \\
+  
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaPrewittHorizontal32.png}
+    \\ IV1LenaPrewittHorizontal32.png - Threshold 32
+   \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaPrewittHorizontal96.png}
+    \\ IV1LenaPrewittHorizontal96.png - Threshold 96
+   \end{center}
+  \end{minipage}    \\
+    
+  \end{tabular}
+ \label{fig:color}
+ \end{figure} 
+\end{center}
+
+
+\begin{center}
+  \begin{figure}[ht]
+  \begin{tabular}{@{} cc @{}}
+
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaPrewittVerticalGradient.png}
+    \\ IV1LenaPrewittVerticalGradient.png
+   \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaPrewittVerticalDirection.png}
+    \\ IV1LenaPrewittVerticalDirection.png
+   \end{center}
+  \end{minipage}    \\
+  
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaPrewittVertical32.png}
+    \\ IV1LenaPrewittVertical32.png - Threshold 32
+   \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaPrewittVertical96.png}
+    \\ IV1LenaPrewittVertical96.png - Threshold 96
+   \end{center}
+  \end{minipage}    \\
+    
+  \end{tabular}
+ \label{fig:color}
+ \end{figure} 
+\end{center}
+
+
+\begin{center}
+  \begin{figure}[ht]
+  \begin{tabular}{@{} cc @{}}
+
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaLoGGradient.png}
+    \\ IV1LenaLoGGradient.png
+   \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaLoGDirection.png}
+    \\ IV1LenaLoGDirection.png
+   \end{center}
+  \end{minipage}    \\
+  
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaLoG32.png}
+    \\ IV1LenaLoG32.png - Threshold 32
+   \end{center}
+  \end{minipage}    &
+  \begin{minipage}{0.5\hsize}
+   \begin{center}
+    \includegraphics[width=7cm]{../images/IV1LenaLoG96.png}
+    \\ IV1LenaLoG96.png - Threshold 96
+   \end{center}
+  \end{minipage}    \\
+    
+  \end{tabular}
+ \label{fig:color}
+ \end{figure} 
+\end{center}
+\end{document}

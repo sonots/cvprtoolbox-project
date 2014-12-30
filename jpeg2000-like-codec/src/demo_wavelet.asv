@@ -1,0 +1,25 @@
+function demo_wavelet
+I = imread('../images/Lena.bmp');
+% % for the decomposition filter you can select: db1, qmf5, qmf8, qmf9,
+% % qmf12, qmf13, qmf16
+% %X = wave_transform(I); % db1 (Haar)
+% %X = wave_transform_qmf(I,9); % qmf9
+% addpath('matlabPyrTools');
+% X = wave_transform_qmf(double(I), 8);
+% figure;imshow(X)
+% I = invwave_transform_qmf(X,8);
+% figure;imshow(I);
+
+addpath('WaveUtilities');
+warning('off','MATLAB:dispatcher:InexactMatch');
+coarse = ;
+wname = 'Daubechies';
+number = 4;
+[X,resolution,qmf] = WaveletTransform2D(double(I), coarse, wname, number);
+figure;imshow(X);
+[m,T] = size(X); I = sqrt(T); resolution = log2(I) - coarse;
+qmf = MakeONFilter(wname, number);
+[I] = IWaveletTransform2D(X,resolution,qmf);
+figure;imshow(uint8(I));
+end
+

@@ -1,0 +1,32 @@
+function [psnr] = psnr(I, O)
+% Peak Signal-to-Noise Ratio of luminance components in y-axis vs.
+% Compression Ration (CR) in x-axis.
+%
+%  psnr(I, O)
+%
+% Input arguments ([]s are optional):
+%  I   (matrix) of size NxN. Original Image
+%  O   (matrix) of size NxN. Code-decoded Image
+%
+% Output arguments ([]s are optional):
+%  None: output into files. 
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : March 2007
+I = rgb2ycbcr(I);
+IY = I(:, :, 1);
+IY = double(IY);
+O = rgb2ycbcr(O);
+OY = I(:, :, 1);
+OY = double(OY);
+[nRow, nCol, nColo] = size(I);
+MSE=zeros(1,z);
+for k=1:nColor
+    for i=1:nRow
+        for j=1:nCol
+            MSE(k)= MSE(k)+(I(i,j,k)-O(i,j,k))^2;
+        end        
+    end
+end
+MSE=MSE/(nRow*nCol*nColor);
+psnr=10*log10(255^2./MSE);

@@ -1,0 +1,37 @@
+function demo_compress_spiht
+postfix = '';
+img_in = '../images/Lena.bmp';
+I = imgread(img_in);
+[nRow, nCol] = size(I);
+for i=1:10
+    bitbudget = bitbude
+bitbudget = 100000;
+bpp_target = bitbudget / (nRow * nCol);
+file_out = sprintf('../images/LenaSPIHT%02d%s.dat', bitbudet, postfix);
+file_in = file_out;
+img_out = sprintf('../images/LenaSPIHT%02d%s.png', bitbudget, postfix);
+if exist(file_out) == 0,
+    compress_spiht(img_in, bpp_target, file_out);
+end
+if exist(img_out) == 0,
+    decompress_spiht(file_in, img_out);
+end
+
+% plot bpp vs psnr
+A = double(imgread(img_in));
+[nRow, nCol] = size(A);
+eval(sprintf('load %s -mat', file_in));
+bits = length(huff);
+bpp = bits / (nRow * nCol);
+I = imgread(img_out);
+snr = psnr(A, I);
+
+bpps
+psnrs
+%figure;
+hold on;
+plot(bpps, psnrs, '-k');
+% title('BPP vs PSNR for SPIHT-Based Encoding');
+xlabel('bpp (bits per pixel)');
+ylabel('PSNR in dB');
+    

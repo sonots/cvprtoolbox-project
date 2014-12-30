@@ -1,0 +1,205 @@
+function [N, T0, sigmaps, refmaps] = ezw(X, Tmin);
+% EZW encoding
+%
+%  [N T0 sigmaps refmaps] = ezw(X, Tmin)
+%
+% Input arguments ([]s are optional):
+%  X (matrix) of size NxN: wavelet coefficients
+%  [Tmin] (scalar): minimum threshold of iterations. Default is 2
+%
+% Output arguments ([]s are optional):
+%  N  (scalar): size of wavelet coefficients matrix
+%  T0 (scalar): initial threshold used while encoding
+%  sigmaps (cell of strings):
+%   Significant map containing significance data ('p','n','z','t') for
+%   each pass. Each string contains data for a different pass.
+%  refmaps (cell of row vectors):
+%   Refinement map containing refinement data (0 or 1) for each
+%   pass. Each vector contains data for a different pass.
+%
+% Uses: ezw_childtree.m, ezw_mortonorder.m
+% See also: iezw.m
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : April 2007
+
+% Input Argument Check
+if nargin < 2, Tmin = 2; end
+[N, nCol] = size(X);
+if N ~= nCol
+    error('The # of rows and # of cols must be same');
+end
+if mod(log2(N), 1) ~= 0
+    error('Size of Image must be power of 2');
+end
+
+% Initial threshold
+T0 = 2^floor(log2(max(max(abs(X)))));
+T  = T0;
+% Generate Morton scan order
+scan = ezw_mortonorder(N);
+
+% Encoding, Iterate dominant pass and subordinate pass
+i = 1;
+sublist = [];
+while T >= Tmin
+    [sigmaps{i} sublist X] = ezw_dominantpass(X, T, sublist, scan);
+    [refmaps{i}] = ezw_subordinatepass(sublist, T);
+    i = i + 1;
+    T = T / 2;
+end
+end
+
+function [sigmap, sublist, Xn] = ezw_dominantpass(X, T, sublist, scan);
+% EZW dominantpass function
+%
+%  [sigmap, sublist, Xn] = ezw_dominantpass(X, T, sublist, scan)
+%
+% Input arguments ([]s are optional):
+%  X (matrix) of size NxN: wavelet coefficients matrix
+%  T (scalar): treshold to use for this step, initial treshold should be
+%            pow2(floor(log2(max(max(abs(wavedata))))))
+%  sublist (matrix) of size ?x3: Subordinate list to be used in
+%         subordinate pass which is containing the coefficients that
+%         are detected significant in past passes
+%            The 1st col is the original coefficient
+%            The 2nd col is first reconstruction value of this coefficient
+%            The 3rd col is the index at the scanning order
+%  scan (matrix) of size N^2x2: scan order
+%         (currently only Morton scan order supported).
+%
+% Output arguments ([]s are optional):
+%  sigmap (string): Significant symbol map
+%            'p' significant positive
+%            'n' significant negative
+%            'z' isolated zero
+%            't' zerotree root
+%  sublist (matrix) of size ?x3: Subordinate list to be used in
+%         subordinate pass which is containing the coefficients that
+%         are detected significant in past and current passes
+%            The 1st col is the original coefficient
+%            The 2nd col is first reconstruction value of this coefficient
+%            The 3rd col is the index at the scanning order
+%  Xn (matrix) of size NxN:
+%         new wavelet coefficients to be used in the next pass
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : April 2007
+
+% Input Argument Check
+[N, nCol] = size(X);
+if N ~= nCol
+    error('The # of rows and # of cols must be same');
+end
+if mod(log2(N), 1) ~= 0
+    error('Size of Image must be power of 2');
+end
+if nargin < 4,
+    scan = ezw_mortonorder(N);
+end
+
+% Initialization
+Xn = X; % store originals to undo bookkeeping actions
+sigmap  = [];
+
+for k = 1:N*N
+    % get matrix index for k
+    i = scan(k,1);
+    j = scan(k,2);
+    % NaN marks elements already dedected as significant in previous pass
+    % realmax marks elements detected as in zerotree (only for this pass!)
+    if(isnan(Xn(i,j)) | Xn(i,j) == realmax)
+        continue;
+    end
+    if (abs(Xn(i,j)) >= T) % significant
+        if (Xn(i,j) >= 0) % positive significant
+            sigmap = [sigmap 'p'];
+            % push new siginificant coef to subordinate list
+            sublist = [sublist; [X(i,j), T + T/2, k]];
+        else % negative significant
+            sigmap = [sigmap 'n'];
+            sublist = [sublist; [X(i,j), -T - T/2, k]];
+        end
+        Xn(i,j) = NaN; % ignore in the next pass
+    else % zerotree or isolated zero
+        if i > N/2 | j > N/2 % definitely isolated zero if no children
+            sigmap = [sigmap 'z'];
+        else
+            mask = ezw_childtree(i,j,N);
+            children = Xn .* mask;
+            if(isempty(find(abs(children) >= T)))
+                % zerotree root
+                sigmap = [sigmap 't'];
+                % mark elements as zerotree nodes (only for this pass!)
+                Xn = Xn + (mask * realmax);
+            else % isolated zero
+                sigmap = [sigmap 'z'];
+            end
+        end
+    end
+end
+% realmax (zerotree mark) must be restored to original value, but keep NaN
+index = find(Xn == realmax);
+Xn(index) = X(index);
+% sort sublist in scanning (morton) order
+sublist = sortrows(sublist, 3);
+end
+
+function [refmap, sublist] = ezw_subordinatepass(sublist, T);
+% EZW subordinatepass function
+%
+%  [refmap sublist] = ezw_dominantpass(X, T)
+%
+% Input arguments ([]s are optional):
+%  sublist (matrix) of size ?x(over 1): Subordinate list to be used in
+%         subordinate pass which is containing the coefficients that
+%         are detected significant in past and current passes
+%            The 1st col is the original coefficient
+%  T (scalar): treshold
+%
+% Output arguments ([]s are optional):
+%  refmap: matrix containing 0's and 1's for refinement of the suborinate list
+%  [sublist]: new subordinate list (reconstruction values are refined)
+%
+% Author: Naotoshi Seo <sonots(at)umd.edu>
+% Date  : April 2007
+
+% T0 (initial) = 32, T = 16 (2nd pass)
+% [16, 24) => 0, [24, 32) => 1
+% [32, 40) => 0, [40, 48) => 1
+% [48, 56) => 0, [56, 64) => 1
+if 
+refmap = zeros(1, size(sublist, 1));
+refmap(find(bitand(abs(round(sublist(:,1))),T/2) == T/2)) = 1; 
+% for i = 1:size(sublist, 1)
+%     for t = T:T:T0*2
+%         if abs(sublist(i, 1)) > t + t/2
+%             refmap(i) = 1;
+%         elseif abs(sublist(i, 1)) > t
+%             refmap(i) = 0;
+%         else
+%             break;
+%         end
+%     end
+% end
+
+% refine reconstructed values if wants
+if nargout < 2,
+    return;
+end
+for i = 1:length(refmap),
+    if(refmap(i) == 1),
+        if(sublist(i,1) > 0),
+            sublist(i,2) = sublist(i,2) + T/4;
+        else
+            sublist(i,2) = sublist(i,2) - T/4;
+        end
+    else
+        if(sublist(i,1) > 0),
+            sublist(i,2) = sublist(i,2) - T/4;
+        else
+            sublist(i,2) = sublist(i,2) + T/4;
+        end
+    end
+end
+end

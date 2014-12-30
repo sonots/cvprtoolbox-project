@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of aconv</title>
+  <meta name="keywords" content="aconv">
+  <meta name="description" content="aconv -- Convolution Tool for Two-Scale Transform">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../index.html">Home</a> &gt;  <a href="index.html">WaveUtilities</a> &gt; aconv.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../index.html"><img alt="<" border="0" src="../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for WaveUtilities&nbsp;<img alt=">" border="0" src="../right.png"></a></td></tr></table>-->
+
+<h1>aconv
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>aconv -- Convolution Tool for Two-Scale Transform</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function y = aconv(f,x) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> aconv -- Convolution Tool for Two-Scale Transform
+  Usage
+    y = aconv(f,x)
+  Inputs
+    f    filter
+    x    1-d signal
+  Outputs
+    y    filtered result
+
+  Description
+    Filtering by periodic convolution of x with the
+    time-reverse of f.
+
+  See Also
+    <a href="iconv.html" class="code" title="function y = iconv(f,x)">iconv</a>, <a href="UpDyadHi.html" class="code" title="function y = UpDyadHi(x,qmf)">UpDyadHi</a>, <a href="UpDyadLo.html" class="code" title="function y = UpDyadLo(x,qmf)">UpDyadLo</a>, <a href="DownDyadHi.html" class="code" title="function d = DownDyadHi(x,qmf)">DownDyadHi</a>, <a href="DownDyadLo.html" class="code" title="function d = DownDyadLo(x,qmf)">DownDyadLo</a></pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="Reverse.html" class="code" title="function r = Reverse(x)">Reverse</a>	reverse -- Reverse order of elements in 1-d signal</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="DownDyadLo.html" class="code" title="function d = DownDyadLo(x,qmf)">DownDyadLo</a>	DownDyadLo -- Lo-Pass Downsampling operator (periodized)</li><li><a href="UpDyadHi.html" class="code" title="function y = UpDyadHi(x,qmf)">UpDyadHi</a>	UpDyadHi -- Hi-Pass Upsampling operator; periodized</li></ul>
+<!-- crossreference -->
+
+
+
+<hr><address>Generated on Mon 08-Mar-2004 09:02:18 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/">m2html</a></strong> &copy; 2003</address>
+</body>
+</html>

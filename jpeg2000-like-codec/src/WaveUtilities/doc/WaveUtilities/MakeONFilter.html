@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of MakeONFilter</title>
+  <meta name="keywords" content="MakeONFilter">
+  <meta name="description" content="MakeONFilter -- Generate Orthonormal QMF Filter for Wavelet Transform">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../index.html">Home</a> &gt;  <a href="index.html">WaveUtilities</a> &gt; MakeONFilter.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../index.html"><img alt="<" border="0" src="../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for WaveUtilities&nbsp;<img alt=">" border="0" src="../right.png"></a></td></tr></table>-->
+
+<h1>MakeONFilter
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>MakeONFilter -- Generate Orthonormal QMF Filter for Wavelet Transform</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function f = MakeONFilter(Type,Par) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> MakeONFilter -- Generate Orthonormal QMF Filter for Wavelet Transform
+  Usage
+    qmf = MakeONFilter(Type,Par)
+  Inputs
+    Type   string, 'Haar', 'Beylkin', 'Coiflet', 'Daubechies',
+           'Symmlet', 'Vaidyanathan','Battle'
+    Par    integer, it is a parameter related to the support and vanishing
+           moments of the wavelets, explained below for each wavelet.
+
+ Outputs
+    qmf    quadrature mirror filter
+
+  Description
+    The Haar filter (which could be considered a Daubechies-2) was the
+    first wavelet, though not called as such, and is discontinuous.
+
+    The Beylkin filter places roots for the frequency response function
+    close to the Nyquist frequency on the real axis.
+
+    The Coiflet filters are designed to give both the mother and father
+    wavelets 2*Par vanishing moments; here Par may be one of 1,2,3,4 or 5.
+
+    The Daubechies filters are minimal phase filters that generate wavelets
+    which have a minimal support for a given number of vanishing moments.
+    They are indexed by their length, Par, which may be one of
+    4,6,8,10,12,14,16,18 or 20. The number of vanishing moments is par/2.
+
+    Symmlets are also wavelets within a minimum size support for a given 
+    number of vanishing moments, but they are as symmetrical as possible,
+    as opposed to the Daubechies filters which are highly asymmetrical.
+    They are indexed by Par, which specifies the number of vanishing
+    moments and is equal to half the size of the support. It ranges 
+    from 4 to 10.
+
+    The Vaidyanathan filter gives an exact reconstruction, but does not
+    satisfy any moment condition.  The filter has been optimized for
+    speech coding.
+
+    The Battle-Lemarie filter generate spline orthogonal wavelet basis.
+    The parameter Par gives the degree of the spline. The number of 
+    vanishing moments is Par+1.
+
+  See Also
+    <a href="FWT_PO.html" class="code" title="function wcoef = FWT_PO(x,L,qmf)">FWT_PO</a>, <a href="IWT_PO.html" class="code" title="function x = IWT_PO(wc,L,qmf)">IWT_PO</a>, <a href="FWT2_PO.html" class="code" title="function wc = FWT2_PO(x,L,qmf)">FWT2_PO</a>, <a href="IWT2_PO.html" class="code" title="function x = IWT2_PO(wc,L,qmf)">IWT2_PO</a>, WPAnalysis
+
+  References
+    The books by Daubechies and Wickerhauser.</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="reverse.html" class="code" title="function r = reverse(x)">reverse</a>	reverse -- Reverse order of elements in 1-d signal</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="IWaveletTransform.html" class="code" title="function [X] = IWaveletTransform(W,resolution,qmf)">IWaveletTransform</a>	WAVELETTRANSFORM 1D inverse wavelet transform</li><li><a href="IWaveletTransform2D.html" class="code" title="function [X] = IWaveletTransform2D(W,resolution,qmf)">IWaveletTransform2D</a>	WAVELETTRANSFORM 2D inverse wavelet transform</li><li><a href="WaveletTransform.html" class="code" title="function [W,resolution,qmf] = WaveletTransform(X,scale,wbase,mom)">WaveletTransform</a>	WAVELETTRANSFORM 1D wavelet transform</li><li><a href="WaveletTransform2D.html" class="code" title="function [W,resolution,qmf] = WaveletTransform2D(X,scale,wbase,mom)">WaveletTransform2D</a>	WAVELETTRANSFORM 2D wavelet transform</li></ul>
+<!-- crossreference -->
+
+
+
+<hr><address>Generated on Mon 08-Mar-2004 09:02:18 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/">m2html</a></strong> &copy; 2003</address>
+</body>
+</html>

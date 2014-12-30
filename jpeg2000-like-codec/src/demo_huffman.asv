@@ -1,0 +1,36 @@
+function demo_huffman
+data = ['npzztttzzzzzz']
+[encoded, codewords, pad] = huffman(uint8(data));
+decoded = ihuffman(encoded, codewords, pad);
+decoded = char(decoded)
+% test
+equal = isequal(data, decoded)
+% display in bits form
+fprintf('encoded = \n\n\t');
+for i=1:length(encoded)
+    fprintf('%s', dec2bin(encoded(i)));
+end
+for i=1:length(encoded)
+    for bit=1:8
+        fprintf('%d', bitget(encoded(i), bit));
+    end
+fprintf('\n\n');
+% display codewords in bits form
+fprintf('codewords = \n\n');
+[codes, cols, words] = find(codewords);
+for i=1:length(codes)
+    fprintf('\t');
+    code = NaN;
+    for j=52:-1:1
+        bit = bitget(codes(i), j);
+        if ischar(code),
+            code = sprintf('%d%s', bit, code);
+        elseif bit == 1,
+            code = '';
+        end
+    end
+    fprintf('%s <=> %c\n', code, words(i));
+end
+fprintf('\n');
+end
+

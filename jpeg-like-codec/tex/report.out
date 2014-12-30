@@ -1,0 +1,14 @@
+\BOOKMARK [0][-]{chapter.1}{Part I.4}{}
+\BOOKMARK [0][-]{chapter.2}{Computer Part - FFTs of images}{}
+\BOOKMARK [1][-]{section.2.1}{Synthesis Images}{chapter.2}
+\BOOKMARK [1][-]{section.2.2}{Apply 2-D FFT}{chapter.2}
+\BOOKMARK [1][-]{section.2.3}{FFT for a few digital images}{chapter.2}
+\BOOKMARK [0][-]{chapter.3}{Image Sharpening}{}
+\BOOKMARK [1][-]{section.3.1}{Sharpen more - Paint Shop Pro}{chapter.3}
+\BOOKMARK [1][-]{section.3.2}{High Boost filter - Paint Shop Pro}{chapter.3}
+\BOOKMARK [1][-]{section.3.3}{High boost filter - Matlab}{chapter.3}
+\BOOKMARK [0][-]{chapter.4}{Image Enhancement and Restoration}{}
+\BOOKMARK [1][-]{section.4.1}{Boat1.tif}{chapter.4}
+\BOOKMARK [1][-]{section.4.2}{Boat2.tif}{chapter.4}
+\BOOKMARK [1][-]{section.4.3}{Lena1.tif}{chapter.4}
+\BOOKMARK [0][-]{chapter.5}{Edge Detection}{}

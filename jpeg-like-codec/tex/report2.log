@@ -1,0 +1,247 @@
+This is TeX, Version 3.14159 (Web2C 7.3.1) (format=latex 2003.8.27)  16 MAR 2007 18:04
+**report2.tex
+(report2.tex
+LaTeX2e <1999/12/01> patch level 1
+Babel <v3.6Z> and hyphenation patterns for american, french, german, ngerman, n
+ohyphenation, loaded.
+(/afs/glue.umd.edu/software/teTeX-1.0.7/share/texmf/tex/latex/base/article.cls
+Document Class: article 1999/09/10 v1.4a Standard LaTeX document class
+(/afs/glue.umd.edu/software/teTeX-1.0.7/share/texmf/tex/latex/base/size12.clo
+File: size12.clo 1999/09/10 v1.4a Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/afs/glue.umd.edu/software/teTeX-1.0.7/share/texmf/tex/latex/graphics/graphicx
+.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/afs/glue.umd.edu/software/teTeX-1.0.7/share/texmf/tex/latex/graphics/keyval.s
+ty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/afs/glue.umd.edu/software/teTeX-1.0.7/share/texmf/tex/latex/graphics/graphics
+.sty
+Package: graphics 1999/02/16 v1.0l Standard LaTeX Graphics (DPC,SPQR)
+
+(/afs/glue.umd.edu/software/teTeX-1.0.7/share/texmf/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/afs/glue.umd.edu/software/teTeX-1.0.7/share/texmf/tex/latex/config/graphics.c
+fg)
+Package graphics Info: Driver file: dvips.def on input line 80.
+
+(/afs/glue.umd.edu/software/teTeX-1.0.7/share/texmf/tex/latex/graphics/dvips.de
+f
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+) (report2.aux)
+\openout1 = `report2.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 18.
+ [1
+
+]
+Overfull \hbox (23.12523pt too wide) in paragraph at lines 108--108
+[]\OT1/cmtt/m/n/12 %  C  (matrix) of size NxN. Basis Vectors. Rows of C are ort
+honormal basis.[] 
+ []
+
+[2]
+File: ../images/II1DCTBasisImage.eps Graphic file (type eps)
+ <../images/II1DCTBasisImage.eps> [3] [4]
+Overfull \hbox (16.95023pt too wide) in paragraph at lines 220--220
+[]    \OT1/cmtt/m/n/12 imshow(im, [min(min(im)) max(max(im))], 'InitialMagnific
+ation', 1500);[] 
+ []
+
+[5]
+File: ../images/II2dctimg0.eps Graphic file (type eps)
+ <../images/II2dctimg0.eps>
+File: ../images/II2IDCT1.eps Graphic file (type eps)
+ <../images/II2IDCT1.eps>
+File: ../images/II2IDCT2.eps Graphic file (type eps)
+
+<../images/II2IDCT2.eps>
+File: ../images/II2IDCT4.eps Graphic file (type eps)
+ <../images/II2IDCT4.eps> [6]
+File: ../images/II2IDCT8.eps Graphic file (type eps)
+ <../images/II2IDCT8.eps>
+File: ../images/II2dctimg.eps Graphic file (type eps)
+
+<../images/II2dctimg.eps> [7] [8]
+Overfull \hbox (4.60022pt too wide) in paragraph at lines 296--296
+[]        \OT1/cmtt/m/n/12 O(si:(si+m-1), sj:(sj+m-1)) = dct2(I(si:(si+m-1), sj
+:(sj+m-1)));[] 
+ []
+
+File: ../images/II3blkdctimg.eps Graphic file (type eps)
+<../images/II3blkdctimg.eps> [9]
+File: ../images/III1LenaC20.eps Graphic file (type eps)
+ <../images/III1LenaC20.eps>
+File: ../images/III1LenaC20r.eps Graphic file (type eps)
+
+<../images/III1LenaC20r.eps> [10]
+File: ../images/III1LenaC90.eps Graphic file (type eps)
+ <../images/III1LenaC90.eps>
+File: ../images/III1LenaC90r.eps Graphic file (type eps)
+
+<../images/III1LenaC90r.eps> [11]
+Overfull \hbox (4.60022pt too wide) in paragraph at lines 402--402
+[]\OT1/cmtt/m/n/12 %  ind (matrix) of size N^2x2. First column contains the app
+ropriate row[] 
+ []
+
+
+Overfull \hbox (47.82524pt too wide) in paragraph at lines 402--402
+[]\OT1/cmtt/m/n/12 %   indices and the second column contains the column indice
+s of scanned matrix[] 
+ []
+
+[12] [13]
+Overfull \hbox (4.60022pt too wide) in paragraph at lines 599--599
+[]\OT1/cmtt/m/n/12 %  CF  (scalar) Compression factor (correlated to the quanti
+zation scale[] 
+ []
+
+[14]
+Overfull \hbox (41.65024pt too wide) in paragraph at lines 599--599
+[]\OT1/cmtt/m/n/12 %  Ylen, Cblen, Crlen (scalar) compressed file length for Y,
+ Cb, Cr components[] 
+ []
+
+[15]
+Overfull \hbox (171.3253pt too wide) in paragraph at lines 599--599
+[]            \OT1/cmtt/m/n/12 YDCTQuanVec = [YDCTQuanVec; ZigzagMtx2Vector(YDC
+TQuan(si:(si+m-1), sj:(sj+m-1)), ind)];[] 
+ []
+
+
+Overfull \hbox (134.27528pt too wide) in paragraph at lines 599--599
+[]            \OT1/cmtt/m/n/12 YDCTQuanVec = [YDCTQuanVec; reshape(YDCTQuan(si:
+(si+m-1), sj:(sj+m-1)), 1, m*m)];[] 
+ []
+
+
+Overfull \hbox (208.37532pt too wide) in paragraph at lines 599--599
+[]            \OT1/cmtt/m/n/12 dCbDCTQuanVec = [dCbDCTQuanVec; ZigzagMtx2Vector
+(dCbDCTQuan(si:(si+m-1), sj:(sj+m-1)), ind)];[] 
+ []
+
+
+Overfull \hbox (208.37532pt too wide) in paragraph at lines 599--599
+[]            \OT1/cmtt/m/n/12 dCrDCTQuanVec = [dCrDCTQuanVec; ZigzagMtx2Vector
+(dCrDCTQuan(si:(si+m-1), sj:(sj+m-1)), ind)];[] 
+ []
+
+
+Overfull \hbox (171.3253pt too wide) in paragraph at lines 599--599
+[]            \OT1/cmtt/m/n/12 dCbDCTQuanVec = [dCbDCTQuanVec; reshape(dCbDCTQu
+an(si:(si+m-1), sj:(sj+m-1)), 1, m*m)];[] 
+ []
+
+
+Overfull \hbox (171.3253pt too wide) in paragraph at lines 599--599
+[]            \OT1/cmtt/m/n/12 dCrDCTQuanVec = [dCrDCTQuanVec; reshape(dCrDCTQu
+an(si:(si+m-1), sj:(sj+m-1)), 1, m*m)];[] 
+ []
+
+
+Overfull \hbox (4.60022pt too wide) in paragraph at lines 599--599
+[]\OT1/cmtt/m/n/12 Ylen = JPEG_entropy_encode(nRow, nCol, m, lumtable, YDCTQuan
+Vec, '', 1);[] 
+ []
+
+
+Overfull \hbox (47.82524pt too wide) in paragraph at lines 599--599
+[]\OT1/cmtt/m/n/12 Cblen = JPEG_entropy_encode(nRow/s, nCol/s, m, chrtable, dCb
+DCTQuanVec, '', 1);[] 
+ []
+
+[16]
+Overfull \hbox (47.82524pt too wide) in paragraph at lines 599--599
+[]\OT1/cmtt/m/n/12 Crlen = JPEG_entropy_encode(nRow/s, nCol/s, m, chrtable, dCr
+DCTQuanVec, '', 1);[] 
+ []
+
+[17]
+Overfull \hbox (103.40027pt too wide) in paragraph at lines 686--686
+[]        \OT1/cmtt/m/n/12 YDCTQuan(si:(si+m-1), sj:(sj+m-1)) = Vector2ZigzagMt
+x(YDCTQuanVec(k+1, :), ind);[] 
+ []
+
+
+Overfull \hbox (54.00024pt too wide) in paragraph at lines 686--686
+[]        \OT1/cmtt/m/n/12 YDCTQuan(si:(si+m-1), sj:(sj+m-1)) = reshape(YDCTQua
+nVec(k+1, :), m, m);[] 
+ []
+
+
+Overfull \hbox (128.10028pt too wide) in paragraph at lines 686--686
+[]        \OT1/cmtt/m/n/12 dCbDCTQuan(si:(si+m-1), sj:(sj+m-1)) = Vector2Zigzag
+Mtx(dCbDCTQuanVec(k+1, :), ind);[] 
+ []
+
+
+Overfull \hbox (128.10028pt too wide) in paragraph at lines 686--686
+[]        \OT1/cmtt/m/n/12 dCrDCTQuan(si:(si+m-1), sj:(sj+m-1)) = Vector2Zigzag
+Mtx(dCrDCTQuanVec(k+1, :), ind);[] 
+ []
+
+
+Overfull \hbox (78.70026pt too wide) in paragraph at lines 686--686
+[]        \OT1/cmtt/m/n/12 dCbDCTQuan(si:(si+m-1), sj:(sj+m-1)) = reshape(dCbDC
+TQuanVec(k+1, :), m, m);[] 
+ []
+
+
+Overfull \hbox (78.70026pt too wide) in paragraph at lines 686--686
+[]        \OT1/cmtt/m/n/12 dCrDCTQuan(si:(si+m-1), sj:(sj+m-1)) = reshape(dCrDC
+TQuanVec(k+1, :), m, m);[] 
+ []
+
+[18]
+File: ../images/IIIJpegCodec.eps Graphic file (type eps)
+ <../images/IIIJpegCodec.eps> [19] [20]
+File: ../images/III2CRvsPSNR.eps Graphic file (type eps)
+ <../images/III2CRvsPSNR.eps>
+[21]
+File: ../images/III2CRvsPSNRNoZigzag.eps Graphic file (type eps)
+ <../images/III2CRvsPSNRNoZigzag.eps> [22] [23] (report2.aux) ) 
+Here is how much of TeX's memory you used:
+ 541 strings out of 10901
+ 6477 string characters out of 71484
+ 53624 words of memory out of 263001
+ 3511 multiletter control sequences out of 10000+0
+ 6539 words of font info for 24 fonts, out of 400000 for 1000
+ 14 hyphenation exceptions out of 1000
+ 25i,6n,19p,185b,313s stack positions out of 300i,100n,500p,50000b,4000s
+
+Output written on report2.dvi (23 pages, 27860 bytes).

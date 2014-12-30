@@ -1,0 +1,921 @@
+This is pdfeTeX, Version 3.141592-1.30.6-2.2 (MiKTeX 2.5) (preloaded format=pdflatex 2007.2.15)  28 FEB 2007 12:53
+entering extended mode
+**C:/Documents*and*Settings/Administrator/My*Documents/!umd/ENEE631/assign_2_se
+o/tex/report.tex
+
+("C:\Documents and Settings\Administrator\My Documents\!umd\ENEE631\assign_2_se
+o\tex\report.tex"
+LaTeX2e <2005/12/01>
+Babel <v3.8g> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman, ngerman, french, loaded.
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\memoir\memoir.cls"
+Document Class: memoir 2005/09/25 v1.618 configurable document class
+\onelineskip=\skip41
+\lxvchars=\skip42
+\xlvchars=\skip43
+\@memcnta=\count79
+\stockheight=\skip44
+\stockwidth=\skip45
+\trimtop=\skip46
+\trimedge=\skip47
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\memoir\mem10.clo"
+File: mem10.clo 2002/07/27 v0.2 memoir class 10pt size option
+)
+\spinemargin=\skip48
+\foremargin=\skip49
+\uppermargin=\skip50
+\lowermargin=\skip51
+\headdrop=\skip52
+\normalrulethickness=\skip53
+\headwidth=\skip54
+\c@storedpagenumber=\count80
+\thanksmarkwidth=\skip55
+\thanksmarksep=\skip56
+\droptitle=\skip57
+\abstitleskip=\skip58
+\absleftindent=\skip59
+\abs@leftindent=\dimen102
+\absrightindent=\skip60
+\absparindent=\skip61
+\absparsep=\skip62
+\c@part=\count81
+\c@chapter=\count82
+\c@section=\count83
+\c@subsection=\count84
+\c@subsubsection=\count85
+\c@paragraph=\count86
+\c@subparagraph=\count87
+\beforechapskip=\skip63
+\midchapskip=\skip64
+\afterchapskip=\skip65
+\chapindent=\skip66
+\bottomsectionskip=\skip67
+\secindent=\skip68
+\beforesecskip=\skip69
+\aftersecskip=\skip70
+\subsecindent=\skip71
+\beforesubsecskip=\skip72
+\aftersubsecskip=\skip73
+\subsubsecindent=\skip74
+\beforesubsubsecskip=\skip75
+\aftersubsubsecskip=\skip76
+\paraindent=\skip77
+\beforeparaskip=\skip78
+\afterparaskip=\skip79
+\subparaindent=\skip80
+\beforesubparaskip=\skip81
+\aftersubparaskip=\skip82
+\pfbreakskip=\skip83
+\c@@ppsavesec=\count88
+\c@@ppsaveapp=\count89
+\ragrparindent=\dimen103
+\parsepi=\skip84
+\topsepi=\skip85
+\itemsepi=\skip86
+\parsepii=\skip87
+\topsepii=\skip88
+\topsepiii=\skip89
+\m@msavetopsep=\skip90
+\m@msavepartopsep=\skip91
+\@enLab=\toks14
+\c@vslineno=\count90
+\c@poemline=\count91
+\c@modulo@vs=\count92
+\vleftskip=\skip92
+\vrightskip=\skip93
+\stanzaskip=\skip94
+\versewidth=\skip95
+\vgap=\skip96
+\vindent=\skip97
+\vleftmargin=\dimen104
+\c@verse=\count93
+\c@chrsinstr=\count94
+\beforepoemtitleskip=\skip98
+\afterpoemtitleskip=\skip99
+\c@poem=\count95
+\beforePoemTitleskip=\skip100
+\midPoemTitleskip=\skip101
+\afterPoemTitleskip=\skip102
+\col@sep=\dimen105
+\extrarowheight=\dimen106
+\NC@list=\toks15
+\extratabsurround=\skip103
+\backup@length=\skip104
+\TX@col@width=\dimen107
+\TX@old@table=\dimen108
+\TX@old@col=\dimen109
+\TX@target=\dimen110
+\TX@delta=\dimen111
+\TX@cols=\count96
+\TX@ftn=\toks16
+\heavyrulewidth=\dimen112
+\lightrulewidth=\dimen113
+\cmidrulewidth=\dimen114
+\belowrulesep=\dimen115
+\belowbottomsep=\dimen116
+\aboverulesep=\dimen117
+\abovetopsep=\dimen118
+\cmidrulesep=\dimen119
+\cmidrulekern=\dimen120
+\defaultaddspace=\dimen121
+\@cmidla=\count97
+\@cmidlb=\count98
+\@aboverulesep=\dimen122
+\@belowrulesep=\dimen123
+\@thisruleclass=\count99
+\@lastruleclass=\count100
+\@thisrulewidth=\dimen124
+\ctableftskip=\skip105
+\ctabrightskip=\skip106
+\abovecolumnspenalty=\count101
+\@linestogo=\count102
+\@cellstogo=\count103
+\@cellsincolumn=\count104
+\crtok=\toks17
+\@mincolumnwidth=\dimen125
+\c@newflo@tctr=\count105
+\@contcwidth=\skip107
+\@contindw=\skip108
+\abovecaptionskip=\skip109
+\belowcaptionskip=\skip110
+\subfloattopskip=\skip111
+\subfloatcapskip=\skip112
+\subfloatcaptopadj=\skip113
+\subfloatbottomskip=\skip114
+\subfloatlabelskip=\skip115
+\subfloatcapmargin=\dimen126
+\c@@contsubnum=\count106
+\beforeepigraphskip=\skip116
+\afterepigraphskip=\skip117
+\epigraphwidth=\skip118
+\epigraphrule=\skip119
+LaTeX Info: Redefining \em on input line 4895.
+LaTeX Info: Redefining \emph on input line 4903.
+\tocentryskip=\skip120
+\tocbaseline=\skip121
+\cftparskip=\skip122
+\cftbeforepartskip=\skip123
+\cftpartindent=\skip124
+\cftpartnumwidth=\skip125
+\cftbeforechapterskip=\skip126
+\cftchapterindent=\skip127
+\cftchapternumwidth=\skip128
+\cftbeforesectionskip=\skip129
+\cftsectionindent=\skip130
+\cftsectionnumwidth=\skip131
+\cftbeforesubsectionskip=\skip132
+\cftsubsectionindent=\skip133
+\cftsubsectionnumwidth=\skip134
+\cftbeforesubsubsectionskip=\skip135
+\cftsubsubsectionindent=\skip136
+\cftsubsubsectionnumwidth=\skip137
+\cftbeforeparagraphskip=\skip138
+\cftparagraphindent=\skip139
+\cftparagraphnumwidth=\skip140
+\cftbeforesubparagraphskip=\skip141
+\cftsubparagraphindent=\skip142
+\cftsubparagraphnumwidth=\skip143
+\c@maxsecnumdepth=\count107
+\bibindent=\dimen127
+\bibitemsep=\skip144
+\indexcolsep=\skip145
+\indexrule=\skip146
+\indexmarkstyle=\toks18
+\@indexbox=\insert233
+\glossarycolsep=\dimen128
+\glossaryrule=\dimen129
+\sideparvshift=\skip147
+\sideins=\insert232
+\sidebarhsep=\skip148
+\sidebarvsep=\skip149
+\sidebarwidth=\skip150
+\footmarkwidth=\skip151
+\footmarksep=\skip152
+\footparindent=\skip153
+\footinsdim=\skip154
+\footinsv@r=\insert231
+\@mpfootinsv@r=\insert230
+\m@m@k=\count108
+\m@m@h=\dimen130
+\m@mipn@skip=\skip155
+\c@sheetsequence=\count109
+\c@lastsheet=\count110
+\c@lastpage=\count111
+\every@verbatim=\toks19
+\afterevery@verbatim=\toks20
+\verbatim@line=\toks21
+\tab@position=\count112
+\verbatim@in@stream=\read1
+\verbatimindent=\skip156
+\verbatim@out=\write3
+\bvboxsep=\skip157
+\c@bvlinectr=\count113
+\bvnumlength=\skip158
+\FrameRule=\dimen131
+\FrameSep=\dimen132
+\c@cp@cntr=\count114
+LaTeX Info: Redefining \: on input line 8292.
+LaTeX Info: Redefining \! on input line 8294.
+\c@ism@mctr=\count115
+\c@xsm@mctr=\count116
+\c@csm@mctr=\count117
+\c@ksm@mctr=\count118
+\c@xksm@mctr=\count119
+\c@cksm@mctr=\count120
+\c@msm@mctr=\count121
+\c@xmsm@mctr=\count122
+\c@cmsm@mctr=\count123
+\c@bsm@mctr=\count124
+\c@workm@mctr=\count125
+\c@figure=\count126
+\c@lofdepth=\count127
+\c@lofdepth=\count127
+\cftbeforefigureskip=\skip159
+\cftfigureindent=\skip160
+\cftfigurenumwidth=\skip161
+\c@table=\count127
+\c@lotdepth=\count128
+\c@lotdepth=\count128
+\cftbeforetableskip=\skip162
+\cfttableindent=\skip163
+\cfttablenumwidth=\skip164
+Package abstract emulated by memoir.
+Package appendix emulated by memoir.
+Package array emulated by memoir.
+Package booktabs emulated by memoir.
+Package ccaption emulated by memoir.
+Package chngcntr emulated by memoir.
+Package chngpage emulated by memoir.
+Package crop emulated by memoir.
+Package dcolumn emulated by memoir.
+Package delarray emulated by memoir.
+Package enumerate emulated by memoir.
+Package epigraph emulated by memoir.
+Package framed emulated by memoir.
+Package ifmtarg emulated by memoir.
+Package ifpdf emulated by memoir.
+Package index emulated by memoir.
+Package makeidx emulated by memoir.
+Package moreverb emulated by memoir.
+Package needspace emulated by memoir.
+Package newfile emulated by memoir.
+Package nextpage emulated by memoir.
+Package patchcmd emulated by memoir.
+Package shortvrb emulated by memoir.
+Package showidx emulated by memoir.
+Package tabularx emulated by memoir.
+Package titleref emulated by memoir.
+Package titling emulated by memoir.
+Package tocbibind emulated by memoir.
+Package tocloft emulated by memoir.
+Package verbatim emulated by memoir.
+Package verse emulated by memoir.
+
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\memoir\mempatch.sty"
+File: mempatch.sty 2006/12/23 v4.7 Patches for memoir class v1.618
+\m@mscap@capbox=\box26
+\m@mscap@fbox=\box27
+\sidecapsep=\dimen133
+\sidecapwidth=\dimen134
+\m@m@tempdima=\dimen135
+\m@mscapraise=\dimen136
+\sidecapraise=\dimen137
+\m@mscapmainwidth=\dimen138
+\m@mscaplkern=\dimen139
+\c@book=\count128
+\cftbeforebookskip=\skip165
+\cftbookindent=\dimen140
+\cftbooknumwidth=\dimen141
+\c@pagenote=\count129
+Package pagenote emulated by memoir.
+\cftbeforesectionskip=\skip166
+\cftsectionindent=\skip167
+\cftsectionnumwidth=\skip168
+\cftbeforesubsectionskip=\skip169
+\cftsubsectionindent=\skip170
+\cftsubsectionnumwidth=\skip171
+\cftbeforesubsubsectionskip=\skip172
+\cftsubsubsectionindent=\skip173
+\cftsubsubsectionnumwidth=\skip174
+\cftbeforeparagraphskip=\skip175
+\cftparagraphindent=\skip176
+\cftparagraphnumwidth=\skip177
+\cftbeforesubparagraphskip=\skip178
+\cftsubparagraphindent=\skip179
+\cftsubparagraphnumwidth=\skip180
+\cftbeforefigureskip=\skip181
+\cftfigureindent=\skip182
+\cftfigurenumwidth=\skip183
+\cftbeforetableskip=\skip184
+\cfttableindent=\skip185
+\cfttablenumwidth=\skip186
+\everylistparindent=\dimen142
+Package setspace emulated by memoir.
+\memPD=\dimen143
+Package parskip emulated by memoir.
+\m@mabparskip=\skip187
+\itemsepii=\skip188
+\itemsepiii=\skip189
+\partopsepiii=\skip190
+\sidebartopsep=\skip191
+\c@lofdepth=\count130
+\c@lotdepth=\count131
+))
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks22
+)
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\graphics\graphics.sty"
+Package: graphics 2006/02/20 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2005/12/29 v1.2 MiKTeX 'graphics' configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 90.
+
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\graphics\pdftex.def"
+File: pdftex.def 2007/01/08 v0.04d Graphics/color for pdfTeX
+\Gread@gobject=\count132
+))
+\Gin@req@height=\dimen144
+\Gin@req@width=\dimen145
+)
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip192
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks23
+\ex@=\dimen146
+))
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen147
+)
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count133
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count134
+\leftroot@=\count135
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count136
+\DOTSCASE@=\count137
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box28
+\strutbox@=\box29
+\big@size=\dimen148
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count138
+\c@MaxMatrixCols=\count139
+\dotsspace@=\muskip10
+\c@parentequation=\count140
+\dspbrk@lvl=\count141
+\tag@help=\toks24
+\row@=\count142
+\column@=\count143
+\maxfields@=\count144
+\andhelp@=\toks25
+\eqnshift@=\dimen149
+\alignsep@=\dimen150
+\tagshift@=\dimen151
+\tagwidth@=\dimen152
+\totwidth@=\dimen153
+\lineht@=\dimen154
+\@envbody=\toks26
+\multlinegap=\skip193
+\multlinetaggap=\skip194
+\mathdisplay@stack=\toks27
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\hyperref\hyperref.sty"
+Package: hyperref 2007/01/18 v6.75o Hypertext links for LaTeX
+\@linkdim=\dimen155
+\Hy@linkcounter=\count145
+\Hy@pagecounter=\count146
+
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\hyperref\pd1enc.def"
+File: pd1enc.def 2007/01/18 v6.75o Hyperref: PDFDocEncoding definition (HO)
+)
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\00miktex\hyperref.cfg"
+File: hyperref.cfg 2006/02/14 v1.1 MiKTeX 'hyperref' configuration
+)
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2006/08/22 v2.4 Connects package keyval with LaTeX options (
+HO)
+)
+Package hyperref Info: Option `colorlinks' set `false' on input line 2237.
+Package hyperref Info: Hyper figures OFF on input line 2287.
+Package hyperref Info: Link nesting OFF on input line 2292.
+Package hyperref Info: Hyper index ON on input line 2295.
+Package hyperref Info: Plain pages OFF on input line 2302.
+Package hyperref Info: Backreferencing OFF on input line 2307.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 2443.
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\ltxmisc\url.sty"
+\Urlmuskip=\muskip11
+Package: url 2005/06/27  ver 3.2  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 2598.
+\Fld@menulength=\count147
+\Field@Width=\dimen156
+\Fld@charsize=\dimen157
+\Choice@toks=\toks28
+\Field@toks=\toks29
+Package hyperref Info: Hyper figures OFF on input line 3076.
+Package hyperref Info: Link nesting OFF on input line 3081.
+Package hyperref Info: Hyper index ON on input line 3084.
+Package hyperref Info: backreferencing OFF on input line 3091.
+Package hyperref Info: Link coloring OFF on input line 3096.
+\Hy@abspage=\count148
+\c@Item=\count149
+)
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\memoir\memhfixc.sty"
+Package: memhfixc 2006/11/22 v1.9 nameref/hyperref package fixes for memoir cla
+ss
+\c@memhycontfloat=\count150
+)
+*hyperref using default driver hpdftex*
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\hyperref\hpdftex.def"
+File: hpdftex.def 2007/01/18 v6.75o Hyperref driver for pdfTeX
+\Fld@listcount=\count151
+) (report.aux
+
+LaTeX Warning: Label `fig:color' multiply defined.
+
+
+LaTeX Warning: Label `fig:color' multiply defined.
+
+
+LaTeX Warning: Label `fig:color' multiply defined.
+
+
+LaTeX Warning: Label `fig:color' multiply defined.
+
+)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+ ("C:\Program Files\MiKTeX 2.5.2580\tex\context\base\supp-pdf.tex"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count152
+\scratchdimen=\dimen158
+\scratchbox=\box30
+\nofMPsegments=\count153
+\nofMParguments=\count154
+\MPscratchCnt=\count155
+\MPscratchDim=\dimen159
+\MPnumerator=\count156
+\everyMPtoPDFconversion=\toks30
+)
+Package hyperref Info: Link coloring OFF on input line 24.
+ ("C:\Program Files\MiKTeX 2.5.2580\tex\latex\hyperref\nameref.sty"
+Package: nameref 2006/12/27 v2.28 Cross-referencing by name of section
+
+("C:\Program Files\MiKTeX 2.5.2580\tex\latex\oberdiek\refcount.sty"
+Package: refcount 2006/02/20 v3.0 Data extraction from references (HO)
+)
+\c@section@level=\count157
+)
+LaTeX Info: Redefining \ref on input line 24.
+LaTeX Info: Redefining \pageref on input line 24.
+
+(report.out) (report.out)
+\@outlinefile=\write4
+
+Redoing nameref's sectioning
+Redoing nameref's label
+
+! Class memoir Error: Font command \bf is not supported.
+
+See the memoir class documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 \noindent \bf
+                  {Matlab Code}
+Use \textbf, or \bfseries{...}, or the oldfontcommands option
+
+<../images/DFTSobel.png, id=63, 219.82124pt x 161.10187pt>
+File: ../images/DFTSobel.png Graphic file (type png)
+
+<use ../images/DFTSobel.png>
+
+! Class memoir Error: Font command \bf is not supported.
+
+See the memoir class documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.50 \noindent \bf
+                  {Matlab Code}
+Use \textbf, or \bfseries{...}, or the oldfontcommands option
+
+
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [1
+
+{psfonts.map} <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE63
+1/assign_2_seo/images/DFTSobel.png (PNG copy)>]
+<../images/DFTEff.png, id=85, 219.82124pt x 161.10187pt>
+File: ../images/DFTEff.png Graphic file (type png)
+
+<use ../images/DFTEff.png>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [2 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_2
+_seo/images/DFTEff.png (PNG copy)>]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [3]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [4]
+<../images/I1Subplot.png, id=122, 421.575pt x 316.18124pt>
+File: ../images/I1Subplot.png Graphic file (type png)
+
+<use ../images/I1Subplot.png>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [5 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_2
+_seo/images/I1Subplot.png (PNG copy)>]
+<../images/I2DFT.png, id=128, 421.575pt x 316.18124pt>
+File: ../images/I2DFT.png Graphic file (type png)
+
+<use ../images/I2DFT.png>
+<../images/portrait.jpg, id=129, 478.50348pt x 635.21526pt>
+File: ../images/portrait.jpg Graphic file (type jpg)
+
+<use ../images/portrait.jpg>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [6 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_2
+_seo/images/I2DFT.png (PNG copy)>]
+<../images/I3DFTportrait.png, id=135, 421.575pt x 316.18124pt>
+File: ../images/I3DFTportrait.png Graphic file (type png)
+
+<use ../images/I3DFTportrait.png>
+<../images/view.jpg, id=136, 513.92pt x 342.27875pt>
+File: ../images/view.jpg Graphic file (type jpg)
+ <use ../images/view.jpg>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [7 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_2
+_seo/images/portrait.jpg> <C:/Documents and Settings/Administrator/My Documents
+/!umd/ENEE631/assign_2_seo/images/I3DFTportrait.png (PNG copy)>]
+<../images/I3DFTScene.png, id=142, 421.575pt x 316.18124pt>
+File: ../images/I3DFTScene.png Graphic file (type png)
+
+<use ../images/I3DFTScene.png>
+<../images/screenshot.jpg, id=143, 803.0pt x 642.4pt>
+File: ../images/screenshot.jpg Graphic file (type jpg)
+
+<use ../images/screenshot.jpg>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [8 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_2
+_seo/images/view.jpg> <C:/Documents and Settings/Administrator/My Documents/!um
+d/ENEE631/assign_2_seo/images/I3DFTScene.png (PNG copy)>]
+<../images/I3DFTSynthetic.png, id=148, 421.575pt x 316.18124pt>
+File: ../images/I3DFTSynthetic.png Graphic file (type png)
+
+<use ../images/I3DFTSynthetic.png>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [9 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_2
+_seo/images/screenshot.jpg> <C:/Documents and Settings/Administrator/My Documen
+ts/!umd/ENEE631/assign_2_seo/images/I3DFTSynthetic.png (PNG copy)>]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [10]
+<../images/II1LenaSharpen.png, id=162, 256.96pt x 256.96pt>
+File: ../images/II1LenaSharpen.png Graphic file (type png)
+
+<use ../images/II1LenaSharpen.png>
+<../images/II2LenaProHighboost.png, id=163, 256.96pt x 256.96pt>
+File: ../images/II2LenaProHighboost.png Graphic file (type png)
+
+<use ../images/II2LenaProHighboost.png>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [11 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/II1LenaSharpen.png (PNG copy)>]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [12 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/II2LenaProHighboost.png (PNG copy)>]
+
+! LaTeX Error: Environment highboostfilter2.m undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.390 \begin{highboostfilter2.m}
+                                
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+<../images/II3LenaHighboostA9B9m3.png, id=178, 256.96pt x 256.96pt>
+File: ../images/II3LenaHighboostA9B9m3.png Graphic file (type png)
+
+<use ../images/II3LenaHighboostA9B9m3.png>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [13]
+<../images/II3LenaHighboostA1B1m3.png, id=185, 256.96pt x 256.96pt>
+File: ../images/II3LenaHighboostA1B1m3.png Graphic file (type png)
+
+<use ../images/II3LenaHighboostA1B1m3.png>
+<../images/II3LenaHighboostA9B5m3.png, id=186, 256.96pt x 256.96pt>
+File: ../images/II3LenaHighboostA9B5m3.png Graphic file (type png)
+
+<use ../images/II3LenaHighboostA9B5m3.png>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [14 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/II3LenaHighboostA9B9m3.png (PNG copy)> <C:/Documents and Settings/
+Administrator/My Documents/!umd/ENEE631/assign_2_seo/images/II3LenaHighboostA1B
+1m3.png (PNG copy)>] <../images/II3LenaHighboostA1B1m7.png, id=191, 256.96pt x 
+256.96pt>
+File: ../images/II3LenaHighboostA1B1m7.png Graphic file (type png)
+
+<use ../images/II3LenaHighboostA1B1m7.png>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [15 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/II3LenaHighboostA9B5m3.png (PNG copy)> <C:/Documents and Settings/
+Administrator/My Documents/!umd/ENEE631/assign_2_seo/images/II3LenaHighboostA1B
+1m7.png (PNG copy)>] <../images/Boat1.png, id=196, 256.96pt x 256.96pt>
+File: ../images/Boat1.png Graphic file (type png)
+
+<use ../images/Boat1.png>
+<../images/IIIBoat1Average.png, id=197, 316.18124pt x 257.46187pt>
+File: ../images/IIIBoat1Average.png Graphic file (type png)
+
+<use ../images/IIIBoat1Average.png>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [16 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/Boat1.png (PNG copy)>]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [17 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/IIIBoat1Average.png (PNG copy)>]
+<../images/Boat2.png, id=208, 256.96pt x 256.96pt>
+File: ../images/Boat2.png Graphic file (type png)
+ <use ../images/Boat2.png>
+<../images/IIIBoat2Median.png, id=209, 316.18124pt x 257.46187pt>
+File: ../images/IIIBoat2Median.png Graphic file (type png)
+
+<use ../images/IIIBoat2Median.png>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [18 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/Boat2.png (PNG copy)> <C:/Documents and Settings/Administrator/My 
+Documents/!umd/ENEE631/assign_2_seo/images/IIIBoat2Median.png (PNG copy)>]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [19]
+<../images/Lena1.png, id=221, 192.72pt x 192.72pt>
+File: ../images/Lena1.png Graphic file (type png)
+ <use ../images/Lena1.png>
+<../images/IIILena1Histeq.png, id=222, 316.18124pt x 257.46187pt>
+File: ../images/IIILena1Histeq.png Graphic file (type png)
+
+<use ../images/IIILena1Histeq.png>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [20 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/Lena1.png (PNG copy)>]
+<../images/IIILena1Histstrech.png, id=227, 316.18124pt x 257.46187pt>
+File: ../images/IIILena1Histstrech.png Graphic file (type png)
+
+<use ../images/IIILena1Histstrech.png>
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [21 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/IIILena1Histeq.png (PNG copy)> <C:/Documents and Settings/Administ
+rator/My Documents/!umd/ENEE631/assign_2_seo/images/IIILena1Histstrech.png (PNG
+ copy)>]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [22]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [23]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [24]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [25]
+<../images/IV1LenaSobelHorizontalGradient.png, id=253, 256.96pt x 256.96pt>
+File: ../images/IV1LenaSobelHorizontalGradient.png Graphic file (type png)
+
+<use ../images/IV1LenaSobelHorizontalGradient.png>
+<../images/IV1LenaSobelHorizontalDirection.png, id=254, 421.575pt x 316.18124pt
+>
+File: ../images/IV1LenaSobelHorizontalDirection.png Graphic file (type png)
+ <use ../images/IV1LenaSobelHorizontalDirection.png>
+<../images/IV1LenaSobelHorizontal32.png, id=255, 256.96pt x 256.96pt>
+File: ../images/IV1LenaSobelHorizontal32.png Graphic file (type png)
+
+<use ../images/IV1LenaSobelHorizontal32.png>
+<../images/IV1LenaSobelHorizontal96.png, id=256, 256.96pt x 256.96pt>
+File: ../images/IV1LenaSobelHorizontal96.png Graphic file (type png)
+
+<use ../images/IV1LenaSobelHorizontal96.png>
+Overfull \hbox (12.0pt too wide) in paragraph at lines 860--890
+[][]
+ []
+
+<../images/IV1LenaSobelVerticalGradient.png, id=257, 256.96pt x 256.96pt>
+File: ../images/IV1LenaSobelVerticalGradient.png Graphic file (type png)
+
+<use ../images/IV1LenaSobelVerticalGradient.png>
+<../images/IV1LenaSobelVerticalDirection.png, id=258, 421.575pt x 316.18124pt>
+File: ../images/IV1LenaSobelVerticalDirection.png Graphic file (type png)
+
+<use ../images/IV1LenaSobelVerticalDirection.png>
+<../images/IV1LenaSobelVertical32.png, id=259, 256.96pt x 256.96pt>
+File: ../images/IV1LenaSobelVertical32.png Graphic file (type png)
+
+<use ../images/IV1LenaSobelVertical32.png>
+<../images/IV1LenaSobelVertical96.png, id=260, 256.96pt x 256.96pt>
+File: ../images/IV1LenaSobelVertical96.png Graphic file (type png)
+
+<use ../images/IV1LenaSobelVertical96.png>
+Overfull \hbox (12.0pt too wide) in paragraph at lines 896--926
+[][]
+ []
+
+<../images/IV1LenaPrewittHorizontalGradient.png, id=261, 256.96pt x 256.96pt>
+File: ../images/IV1LenaPrewittHorizontalGradient.png Graphic file (type png)
+
+<use ../images/IV1LenaPrewittHorizontalGradient.png>
+<../images/IV1LenaPrewittHorizontalDirection.png, id=262, 421.575pt x 316.18124
+pt>
+File: ../images/IV1LenaPrewittHorizontalDirection.png Graphic file (type png)
+ <use ../images/IV1LenaPrewittHorizontalDirection.png>
+<../images/IV1LenaPrewittHorizontal32.png, id=263, 256.96pt x 256.96pt>
+File: ../images/IV1LenaPrewittHorizontal32.png Graphic file (type png)
+
+<use ../images/IV1LenaPrewittHorizontal32.png>
+<../images/IV1LenaPrewittHorizontal96.png, id=264, 256.96pt x 256.96pt>
+File: ../images/IV1LenaPrewittHorizontal96.png Graphic file (type png)
+
+<use ../images/IV1LenaPrewittHorizontal96.png>
+Overfull \hbox (12.0pt too wide) in paragraph at lines 931--961
+[][]
+ []
+
+<../images/IV1LenaPrewittVerticalGradient.png, id=265, 256.96pt x 256.96pt>
+File: ../images/IV1LenaPrewittVerticalGradient.png Graphic file (type png)
+
+<use ../images/IV1LenaPrewittVerticalGradient.png>
+<../images/IV1LenaPrewittVerticalDirection.png, id=266, 421.575pt x 316.18124pt
+>
+File: ../images/IV1LenaPrewittVerticalDirection.png Graphic file (type png)
+ <use ../images/IV1LenaPrewittVerticalDirection.png>
+<../images/IV1LenaPrewittVertical32.png, id=267, 256.96pt x 256.96pt>
+File: ../images/IV1LenaPrewittVertical32.png Graphic file (type png)
+
+<use ../images/IV1LenaPrewittVertical32.png>
+<../images/IV1LenaPrewittVertical96.png, id=268, 256.96pt x 256.96pt>
+File: ../images/IV1LenaPrewittVertical96.png Graphic file (type png)
+
+<use ../images/IV1LenaPrewittVertical96.png>
+Overfull \hbox (12.0pt too wide) in paragraph at lines 967--997
+[][]
+ []
+
+<../images/IV1LenaLoGGradient.png, id=269, 256.96pt x 256.96pt>
+File: ../images/IV1LenaLoGGradient.png Graphic file (type png)
+
+<use ../images/IV1LenaLoGGradient.png>
+<../images/IV1LenaLoGDirection.png, id=270, 421.575pt x 316.18124pt>
+File: ../images/IV1LenaLoGDirection.png Graphic file (type png)
+
+<use ../images/IV1LenaLoGDirection.png>
+<../images/IV1LenaLoG32.png, id=271, 256.96pt x 256.96pt>
+File: ../images/IV1LenaLoG32.png Graphic file (type png)
+
+<use ../images/IV1LenaLoG32.png>
+<../images/IV1LenaLoG96.png, id=272, 256.96pt x 256.96pt>
+File: ../images/IV1LenaLoG96.png Graphic file (type png)
+
+<use ../images/IV1LenaLoG96.png>
+Overfull \hbox (12.0pt too wide) in paragraph at lines 1003--1033
+[][]
+ []
+
+
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [26 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/IV1LenaSobelHorizontalGradient.png (PNG copy)> <C:/Documents and S
+ettings/Administrator/My Documents/!umd/ENEE631/assign_2_seo/images/IV1LenaSobe
+lHorizontalDirection.png (PNG copy)> <C:/Documents and Settings/Administrator/M
+y Documents/!umd/ENEE631/assign_2_seo/images/IV1LenaSobelHorizontal32.png (PNG 
+copy)> <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assig
+n_2_seo/images/IV1LenaSobelHorizontal96.png (PNG copy)>]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [27 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/IV1LenaSobelVerticalGradient.png (PNG copy)> <C:/Documents and Set
+tings/Administrator/My Documents/!umd/ENEE631/assign_2_seo/images/IV1LenaSobelV
+erticalDirection.png (PNG copy)> <C:/Documents and Settings/Administrator/My Do
+cuments/!umd/ENEE631/assign_2_seo/images/IV1LenaSobelVertical32.png (PNG copy)>
+ <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_2_se
+o/images/IV1LenaSobelVertical96.png (PNG copy)>]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [28 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/IV1LenaPrewittHorizontalGradient.png (PNG copy)> <C:/Documents and
+ Settings/Administrator/My Documents/!umd/ENEE631/assign_2_seo/images/IV1LenaPr
+ewittHorizontalDirection.png (PNG copy)> <C:/Documents and Settings/Administrat
+or/My Documents/!umd/ENEE631/assign_2_seo/images/IV1LenaPrewittHorizontal32.png
+ (PNG copy)> <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631
+/assign_2_seo/images/IV1LenaPrewittHorizontal96.png (PNG copy)>]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [29 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/IV1LenaPrewittVerticalGradient.png (PNG copy)> <C:/Documents and S
+ettings/Administrator/My Documents/!umd/ENEE631/assign_2_seo/images/IV1LenaPrew
+ittVerticalDirection.png (PNG copy)> <C:/Documents and Settings/Administrator/M
+y Documents/!umd/ENEE631/assign_2_seo/images/IV1LenaPrewittVertical32.png (PNG 
+copy)> <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assig
+n_2_seo/images/IV1LenaPrewittVertical96.png (PNG copy)>]
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
+
+ [30 <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631/assign_
+2_seo/images/IV1LenaLoGGradient.png (PNG copy)> <C:/Documents and Settings/Admi
+nistrator/My Documents/!umd/ENEE631/assign_2_seo/images/IV1LenaLoGDirection.png
+ (PNG copy)> <C:/Documents and Settings/Administrator/My Documents/!umd/ENEE631
+/assign_2_seo/images/IV1LenaLoG32.png (PNG copy)> <C:/Documents and Settings/Ad
+ministrator/My Documents/!umd/ENEE631/assign_2_seo/images/IV1LenaLoG96.png (PNG
+ copy)>]
+(report.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ )
+(\end occurred inside a group at level 1)
+
+### semi simple group (level 1) entered at line 390 (\begingroup)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 6320 strings out of 95419
+ 85476 string characters out of 1187149
+ 168766 words of memory out of 1166834
+ 9182 multiletter control sequences out of 60000
+ 10465 words of font info for 38 fonts, out of 1000000 for 2000
+ 14 hyphenation exceptions out of 8191
+ 30i,13n,38p,621b,498s stack positions out of 5000i,500n,10000p,200000b,32768s
+PDF statistics:
+ 292 PDF objects out of 300000
+ 71 named destinations out of 300000
+ 344 words of extra memory for PDF output out of 10000
+<C:/Program Files/MiKTeX 2.5.2580/fonts/type1/bluesky/cm/cmr7.p
+fb><C:/Program Files/MiKTeX 2.5.2580/fonts/type1/bluesky/cm/cmsy7.pfb><C:/Progr
+am Files/MiKTeX 2.5.2580/fonts/type1/bluesky/cm/cmex10.pfb><C:/Program Files/Mi
+KTeX 2.5.2580/fonts/type1/bluesky/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.5.25
+80/fonts/type1/bluesky/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.5.2580/fonts/typ
+e1/bluesky/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.5.2580/fonts/type1/bluesky/
+cm/cmsl10.pfb><C:/Program Files/MiKTeX 2.5.2580/fonts/type1/bluesky/cm/cmtt10.p
+fb><C:/Program Files/MiKTeX 2.5.2580/fonts/type1/bluesky/cm/cmbx10.pfb><C:/Prog
+ram Files/MiKTeX 2.5.2580/fonts/type1/bluesky/cm/cmbx12.pfb><C:/Program Files/M
+iKTeX 2.5.2580/fonts/type1/bluesky/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.5.25
+80/fonts/type1/bluesky/cm/cmr12.pfb>
+Output written on report.pdf (30 pages, 1818248 bytes).
